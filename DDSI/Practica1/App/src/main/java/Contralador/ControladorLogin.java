@@ -20,7 +20,8 @@ public class ControladorLogin {
 
     void Conectar() {
         try {
-            conexion = new Conexion("mariadb", "172.18.1.241", "DDSI_024", "DDSI_024", "DDSI_024");
+            // conexion = new Conexion("mariadb", "172.18.1.241:3306", "DDSI_024", "DDSI_024", "82AD5V");
+			conexion = new Conexion("oracle", "172.17.20.39:1521", "etsi", "DDSI_022", "95AS3E");
         } catch (SQLException se) {
             String mensaje = ("codigo: " + se.getErrorCode() +
                 " SQL: " + se.getSQLState()+

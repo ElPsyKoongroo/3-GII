@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Modelo;
-//import org.mariadb.jdbc.*;
 import java.sql.*;
 
 /**
@@ -22,15 +21,16 @@ public class Conexion {
             else{
                 url = "jdbc:" + sgbd + ":thin:@" + ip + ":" + servicio_bd; 
             }
+
+			System.out.println("URL: " + url + "\nUser: " + usuario + "\nPassword: " + password);
             conexion = DriverManager.getConnection(url, usuario, password);
         }
         catch(SQLException e){
             System.out.println("Error catastrofico: " + e.getMessage());
-        }
-         
+        }         
     }
     
-    void Desconexion() throws SQLException {
+    void desconexion() throws SQLException {
         try {
             conexion.close();
         } catch (SQLException e) {
