@@ -37,6 +37,14 @@ public class Conexion {
             System.out.println(e.getMessage());
         }
     }
-    
+	
+	public DatabaseMetaData informacionDB() {
+		try{
+			return this.conexion.getMetaData();
+		} catch(SQLException e) {
+			System.err.println("Error al obtener la MetaData: " + e);
+			return null;
+		}
+	}
     
 }
