@@ -16,26 +16,25 @@ import java.util.Scanner;
 public class AMC_PRACTICA_1_App {
 
     /**
-     * @param args the command line arguments
-     */
+     * @author ElPsy     
+     * */
+    
     public static void main(String[] args)
     {
         ArrayList<Punto> puntos = new ArrayList<>();
         
-        puntos.add(new Punto(2,2));
-        puntos.add(new Punto(2,8));
-        puntos.add(new Punto(4,5));
-        puntos.add(new Punto(5,6));
-        puntos.add(new Punto(6,5));
-        puntos.add(new Punto(7,8));
-        puntos.add(new Punto(6,2));
-        puntos.add(new Punto(1,5));
-        puntos.add(new Punto(9,5));
-        puntos.add(new Punto(5,9));
-        puntos.add(new Punto(4,2));
-        puntos.add(new Punto(8,3));
-        puntos.add(new Punto(2,7));
-        puntos.add(new Punto(9,8));
+        puntos.add(new Punto(4, 5));
+        puntos.add(new Punto(5, 6));
+        puntos.add(new Punto(6, 5));
+        puntos.add(new Punto(7, 8));
+        puntos.add(new Punto(6, 2));
+        puntos.add(new Punto(1, 5));
+        puntos.add(new Punto(9, 5));
+        puntos.add(new Punto(5, 9));
+        puntos.add(new Punto(4, 2));
+        puntos.add(new Punto(8, 3));
+        puntos.add(new Punto(2, 7));
+        puntos.add(new Punto(9, 8));
         
         ArrayList<Punto> resultado;
         

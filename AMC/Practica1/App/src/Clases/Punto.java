@@ -7,7 +7,7 @@ import java.util.*;
 
 /**
  *
- * @author usuario
+ * @author ElPsy
  */
 public class Punto
 {
