@@ -11,13 +11,10 @@ import java.util.Scanner;
 
 /**
  *
- * @author usuario
+ * @author ElPsy 
  */
-public class AMC_PRACTICA_1_App {
 
-    /**
-     * @author ElPsy     
-     * */
+public class AMC_PRACTICA_1_App {
     
     public static void main(String[] args)
     {
