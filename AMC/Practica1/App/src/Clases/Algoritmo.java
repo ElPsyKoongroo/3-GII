@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author usuario
+ * @author ElPsy
  */
 public class Algoritmo
 {
