@@ -30,7 +30,7 @@ public class Conexion {
         }         
     }
     
-    void desconexion() throws SQLException {
+    public void desconexion() throws SQLException {
         try {
             conexion.close();
         } catch (SQLException e) {

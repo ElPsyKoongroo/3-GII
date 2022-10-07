@@ -34,8 +34,12 @@ public class ControladorLogin {
 		this.showMetaData();
     }
 
-    void Desconectar() throws SQLException{
-        
+    public void Desconectar() {
+		try{
+		conexion.desconexion(); 
+		} catch (SQLException e) {
+			System.err.println("Error al desconectar la base de datos: " + e);
+		}
     }
 	
 	DatabaseMetaData getMetaData(){
