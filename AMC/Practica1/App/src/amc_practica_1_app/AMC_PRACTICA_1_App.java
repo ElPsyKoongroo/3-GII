@@ -41,6 +41,20 @@ public class AMC_PRACTICA_1_App {
         {
             System.out.println("Punto " + (i+1) + ": " + resultado.get(i));
         }
+        ArrayList<Punto> in = new ArrayList<Punto>(); 
+        try {
+            Reader reader = new Reader("burma14.tsp");
+            in = reader.getPuntos();
+            
+
+        } catch (FileNotFoundException e) {
+            System.err.println("Error: " + e);
+        }
+        
+        for (Punto p : in) {
+           System.out.println(p); 
+        }
+
     }
     
 }
