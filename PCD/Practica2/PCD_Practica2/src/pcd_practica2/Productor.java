@@ -20,8 +20,9 @@ public class Productor extends Thread {
             colita.Acola(random);
             
             System.out.println(
-                    "Numero añadido: " + random
+                    "\n\nNumero añadido: " + random
                     + "\nId: " + Thread.currentThread().getId()
+                    + "\n\n"
             );
         }
     }
