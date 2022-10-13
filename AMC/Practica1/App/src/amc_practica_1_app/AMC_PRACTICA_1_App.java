@@ -18,7 +18,9 @@ public class AMC_PRACTICA_1_App {
     
     public static void main(String[] args)
     {
-        ArrayList<Punto> puntos = new ArrayList<>();
+        /*ArrayList<Punto> puntos = new ArrayList<>();
+        
+        
         
         puntos.add(new Punto(4, 5));
         puntos.add(new Punto(5, 6));
@@ -41,15 +43,18 @@ public class AMC_PRACTICA_1_App {
         {
             System.out.println("Punto " + (i+1) + ": " + resultado.get(i));
         }
+        */
+        // Prueba de la clase Reader para leer archivos tsp
         ArrayList<Punto> in = new ArrayList<Punto>(); 
         try {
             Reader reader = new Reader("burma14.tsp");
             in = reader.getPuntos();
-            
 
         } catch (FileNotFoundException e) {
             System.err.println("Error: " + e);
         }
+        
+        Algoritmo.QuickSort(in, 0, in.size()-1);
         
         for (Punto p : in) {
            System.out.println(p); 
