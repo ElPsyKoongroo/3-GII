@@ -28,7 +28,7 @@ public class ControladorLogin {
             String mensaje = ("codigo: " + se.getErrorCode() +
                 " SQL: " + se.getSQLState()+
                 " Texto :" + se.getMessage());
-            System.out.println("Atención, se ha producido un error con " + mensaje);
+            this.vc.mensajeConsola("Atención, se ha producido un error con ", mensaje);
         }   
 
 		this.showMetaData();
@@ -36,9 +36,9 @@ public class ControladorLogin {
 
     public void Desconectar() {
 		try{
-		conexion.desconexion(); 
+		    conexion.desconexion(); 
 		} catch (SQLException e) {
-			System.err.println("Error al desconectar la base de datos: " + e);
+			this.vc.mensajeConsola("Error al desconectar la base de datos: ", e.toString());
 		}
     }
 	
