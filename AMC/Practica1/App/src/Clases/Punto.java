@@ -3,34 +3,38 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Clases;
+
 import java.util.*;
 
 /**
  *
  * @author ElPsy
  */
-public class Punto
-{
-    public double x,y;
-    public Punto(double a, double b)
-    {
+public class Punto {
+    public double x, y;
+
+    public Punto(double a, double b) {
         x = a;
         y = b;
     }
-    
-    public double Distancia(Punto a)
-    {
-        return Math.sqrt(Math.pow(a.x-x, 2) + Math.pow(a.y-y, 2));
+
+    public double Distancia(Punto a) {
+        return Math.sqrt(Math.pow(a.x - x, 2) + Math.pow(a.y - y, 2));
     }
-    public double Distancia3(Punto a, Punto b)
-    {
+
+    /**
+     * 
+     * @param a
+     * @param b
+     * @return Devuelve la suma de las diastancias this|a + this|b
+     */
+    public double Distancia3(Punto a, Punto b) {
         return this.Distancia(a) + a.Distancia(b);
     }
-    
+
     @Override
-    public String toString()
-    {
+    public String toString() {
         return String.format("X: %f, Y: %f", x, y);
     }
-    
+
 }

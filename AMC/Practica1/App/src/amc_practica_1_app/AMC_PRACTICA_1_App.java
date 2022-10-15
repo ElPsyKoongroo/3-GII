@@ -5,9 +5,8 @@
 package amc_practica_1_app;
 import Clases.*;
 import java.util.ArrayList;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.io.FileNotFoundException;
 
 /**
  *
@@ -16,50 +15,37 @@ import java.util.Scanner;
 
 public class AMC_PRACTICA_1_App {
     
-    public static void main(String[] args)
-    {
-        /*ArrayList<Punto> puntos = new ArrayList<>();
-        
-        
-        
-        puntos.add(new Punto(4, 5));
-        puntos.add(new Punto(5, 6));
-        puntos.add(new Punto(6, 5));
-        puntos.add(new Punto(7, 8));
-        puntos.add(new Punto(6, 2));
-        puntos.add(new Punto(1, 5));
-        puntos.add(new Punto(9, 5));
-        puntos.add(new Punto(5, 9));
-        puntos.add(new Punto(4, 2));
-        puntos.add(new Punto(8, 3));
-        puntos.add(new Punto(2, 7));
-        puntos.add(new Punto(9, 8));
-        
-        ArrayList<Punto> resultado;
-        
-        resultado = Algoritmo.SolucionExhaustiva(puntos);
-        
-        for (int i = 0; i < 3; i++)
-        {
-            System.out.println("Punto " + (i+1) + ": " + resultado.get(i));
-        }
-        */
-        // Prueba de la clase Reader para leer archivos tsp
+    public static void main(String[] args) {
+
+         
         ArrayList<Punto> in = new ArrayList<Punto>(); 
         try {
-            Reader reader = new Reader("burma14.tsp");
+            Reader reader = new Reader("d657.tsp");
             in = reader.getPuntos();
 
         } catch (FileNotFoundException e) {
             System.err.println("Error: " + e);
         }
         
-        Algoritmo.QuickSort(in, 0, in.size()-1);
-        
-        for (Punto p : in) {
-           System.out.println(p); 
+        in = Algoritmo.GeneraPuntos(20_000, 1000, 0);
+        QuickSort.Ordena(in, 0, in.size()-1);
+        try{
+            long start = System.currentTimeMillis();
+            ArrayList<Punto> DyB = Algoritmo.DivideVenceras(in);
+            long end = System.currentTimeMillis();
+            System.out.println((end-start) + " ms");
+            for (Punto p : DyB) {
+                System.out.println(p);
+            }
+        } catch (Exception e) {
+            System.exit(-1);
         }
 
+        // for (Punto p : exhaust) {
+        //    System.out.println(p); 
+        // }
+         
+        // System.out.println("\n\n\n");
     }
     
 }
