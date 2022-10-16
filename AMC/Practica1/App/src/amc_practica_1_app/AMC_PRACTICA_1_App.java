@@ -20,14 +20,14 @@ public class AMC_PRACTICA_1_App {
          
         ArrayList<Punto> in = new ArrayList<Punto>(); 
         try {
-            Reader reader = new Reader("d657.tsp");
+            Reader reader = new Reader("puntos.tsp");
             in = reader.getPuntos();
 
         } catch (FileNotFoundException e) {
             System.err.println("Error: " + e);
         }
         
-        in = Algoritmo.GeneraPuntos(20_000, 1000, 0);
+        //in = Algoritmo.GeneraPuntos(2_000, 1000, 0);
         QuickSort.Ordena(in, 0, in.size()-1);
         try{
             long start = System.currentTimeMillis();

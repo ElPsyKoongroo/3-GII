@@ -91,6 +91,7 @@ public class Algoritmo {
 
     private static double CalculaFixed(ArrayList<Punto> puntos, int start, int end) {
         double distanciaMinima = Double.MAX_VALUE;
+        //System.out.println((end - start));
         if (end - start + 1 < 3) return distanciaMinima; 
         ++end;
         for (int i = start; i < end; i++) {
