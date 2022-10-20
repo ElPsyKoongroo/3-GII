@@ -13,7 +13,9 @@ public class App {
     }
 }
 
-
+// jdbc:mariadb://172.18.1.241:3306/DDSI_024
+// jdbc:mariadb://172.18.1.241:3306/DDSI_001
+// jdbc:mariadb://172.18.1.241:3306/DDSI_022
 
 
 

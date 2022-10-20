@@ -26,6 +26,8 @@ public class Conexion {
         }
         catch(SQLException e){
             System.out.println("Error catastrofico: " + e.getMessage());
+            System.out.println(e.getSQLState());
+            System.out.println(e.getErrorCode());
         }         
     }
     
