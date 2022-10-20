@@ -10,6 +10,7 @@ public class ExtraCanvas extends Canvas {
     private ArrayList<Punto> solucion;
     private int size_mult = 2;
     private double mult = 1;
+    private int point_size = 3;
     
     public ExtraCanvas(Dimension dimension){
         super();
@@ -37,18 +38,29 @@ public class ExtraCanvas extends Canvas {
         Graphics g = this.getGraphics();
         g.setColor(Color.RED);
         for(Punto p : this.solucion){
-            g.fillOval((int)p.x, (int)p.y, 5*size_mult, 5*size_mult);
+            g.fillOval((int)p.x, (int)p.y, point_size*size_mult, point_size*size_mult);
         }
     }
 
     public void zoomIn(double q){
         this.mult += q;
+        
+        if(this.mult >= 10) this.size_mult = 5;
+        else this.size_mult = 3;
         zoom();
     }
 
     public void zoomOut(double q){
         this.mult -= q;
+        
         zoom();
+    }
+    
+    private void fixSize()
+    {
+        if(this.mult >= 10) this.size_mult = 5;
+        else if(this.mult <5 ) this.size_mult = 2;
+        else this.size_mult = 4;
     }
 
     private void resetCanvas(){
@@ -60,14 +72,14 @@ public class ExtraCanvas extends Canvas {
     private void zoom(){
         resetCanvas();
 
+        System.out.println("Actual zoom = " + mult);
         if(this.mult == 0) {
             drawPoints();
-            drawSolution();
+            drawSolution();    
             return ;
         }
 
         Graphics g = this.getGraphics();
-        System.out.println("Actual zoom = " + mult);
 
         int x_offset = (500 - (int) (solucion.get(0).x * mult)); 
         int y_offset = (500 - (int) (solucion.get(0).y * mult)); 
@@ -76,7 +88,8 @@ public class ExtraCanvas extends Canvas {
             this.drawPoint((int)(p.x*mult+x_offset), (int)(p.y*mult + y_offset), Color.BLACK);
         }
 
-
+        
+        //Puntos de la solucion
         for(int i = 1; i<3; i++){
             this.drawPoint(
                 (int)(mult*this.solucion.get(i).x + x_offset),
@@ -98,7 +111,7 @@ public class ExtraCanvas extends Canvas {
     private void drawPoint(int x, int y, Color c){
         Graphics g = this.getGraphics();
         g.setColor(c);
-        g.fillOval(x, y, 5*this.size_mult, 5*this.size_mult);
+        g.fillOval(x, y, point_size*this.size_mult, point_size*this.size_mult);
     }
 
 }
