@@ -29,26 +29,19 @@ public class ControladorLogin implements ActionListener {
         //this.Conectar();
     }
 
-    void Conectar() {
-        try {
-            // conexion = new Conexion("mariadb", "172.18.1.241:3306", "DDSI_022", "DDSI_022", "DDSI_022");
-            conexion = new Conexion("oracle", "172.17.20.39:1521", "etsi", "DDSI_022", "DDSI_022");
-        } catch (SQLException se) {
-            String mensaje = ("codigo: " + se.getErrorCode() +
-                " SQL: " + se.getSQLState()+
-                " Texto :" + se.getMessage());
-            vc.mensajeConsola("Atención, se ha producido un error con ", mensaje);
-        }   
+    private void Conectar() {
+        String ip = this.vLogin.IpTextBox.getText().trim();         
+        String server = ((String) this.vLogin.ServerComboBox.getSelectedItem()).trim();
+        String server_bd = this.vLogin.BDTextBox.getText().trim();
+        String user = this.vLogin.UserTextBox.getText().trim();
+        String password = new String (this.vLogin.PassTextBox.getPassword()).trim();
+        this.conexion = new Conexion(server, ip, server_bd, user, password);   
 
 	this.showMetaData();
     }
 
     public void Desconectar() {
-        try{
-        conexion.desconexion(); 
-        } catch (SQLException e) {
-                vc.mensajeConsola("Error al desconectar la base de datos: ", e.toString());
-        }
+        conexion.desconexion();
     }
 	
     DatabaseMetaData getMetaData(){
@@ -63,14 +56,28 @@ public class ControladorLogin implements ActionListener {
         vLogin.TwitterButton.addActionListener(this);
         vLogin.AcceptButton.addActionListener(this);
     }
+    
+    /*
+    private void () throws Exception {
+        // "mariadb", "172.18.1.241:3306", "DDSI_022", "DDSI_022", "DDSI_022"
+        String ip = this.vLogin.IpTextBox.getText();         
+        String server = (String) this.vLogin.ServerComboBox.getSelectedItem();
+        String server_bd = this.vLogin.BDTextBox.getText();
+        String user = this.vLogin.UserTextBox.getText();
+        String password = new String (this.vLogin.PassTextBox.getPassword());
+        this.conexion = new Conexion(server, ip, server_bd, user, password);
+    }
+    */
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         switch(e.getActionCommand()){
             case "Conectar": {
+                //this.conexion.desconexion();
                 Conectar();
-                if (conexion != null){
-                    vc.mensajeConsola("Se ha conectado con exito");
-                    vLogin.dispose();
+                if (this.conexion != null) {
+                    this.vc.mensajeConsola("Se ha conectado con exito");
+                    this.vLogin.dispose();
                     break;
                 }
             }

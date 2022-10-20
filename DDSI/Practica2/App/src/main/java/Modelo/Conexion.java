@@ -12,7 +12,7 @@ import java.sql.*;
 public class Conexion {
     public Connection conexion;
     
-    public Conexion(String sgbd, String ip, String servicio_bd, String usuario, String password) throws SQLException{
+    public Conexion(String sgbd, String ip, String servicio_bd, String usuario, String password) {
         String url = "";
         try{
             if("mariadb".equals(sgbd)){
@@ -21,8 +21,7 @@ public class Conexion {
             else{
                 url = "jdbc:" + sgbd + ":thin:@" + ip + ":" + servicio_bd; 
             }
-
-			System.out.println("URL: " + url + "\nUser: " + usuario + "\nPassword: " + password);
+            System.out.println("URL: " + url + "\nUser: " + usuario + "\nPassword: " + password);
             conexion = DriverManager.getConnection(url, usuario, password);
         }
         catch(SQLException e){
@@ -30,21 +29,23 @@ public class Conexion {
         }         
     }
     
-    public void desconexion() throws SQLException {
+    public void desconexion() {
         try {
             conexion.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+        } catch (Exception e) {
+            System.out.println(" -- ");
         }
     }
 	
-	public DatabaseMetaData informacionDB() {
-		try{
-			return this.conexion.getMetaData();
-		} catch(SQLException e) {
-			System.err.println("Error al obtener la MetaData: " + e);
-			return null;
-		}
-	}
+    public DatabaseMetaData informacionDB() {
+        try{
+                return this.conexion.getMetaData();
+        } catch(SQLException e) {
+                System.err.println("Error al obtener la MetaData: " + e);
+                return null;
+        }
+    }
     
 }

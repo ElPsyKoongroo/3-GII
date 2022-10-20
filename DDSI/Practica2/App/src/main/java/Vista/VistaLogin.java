@@ -54,7 +54,7 @@ public class VistaLogin extends javax.swing.JFrame {
 
         IpTextBox.setText(" ");
 
-        ServerComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ServerComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "mariadb", "oracle", " " }));
         ServerComboBox.setMaximumSize(new java.awt.Dimension(90, 164));
         ServerComboBox.setMinimumSize(new java.awt.Dimension(9, 16));
         ServerComboBox.setPreferredSize(new java.awt.Dimension(4, 164));
@@ -69,6 +69,11 @@ public class VistaLogin extends javax.swing.JFrame {
 
         AcceptButton.setText("Aceptar");
         AcceptButton.setActionCommand("Conectar");
+        AcceptButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AcceptButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -135,6 +140,10 @@ public class VistaLogin extends javax.swing.JFrame {
     private void ServerComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ServerComboBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ServerComboBoxActionPerformed
+
+    private void AcceptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcceptButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AcceptButtonActionPerformed
 
     /**
      * @param args the command line arguments
