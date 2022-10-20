@@ -84,6 +84,7 @@ public class ControladorLogin implements ActionListener {
             case "Salir":{
                 vc.mensajeConsola("Se ha salido con exito");
                 vLogin.dispose();
+                this.conexion.desconexion();
                 System.exit(0);
                 break;
             }
