@@ -25,10 +25,6 @@ public class FrameApp extends java.awt.Frame {
     private void initComponents() {
 
         CheckSalir = new java.awt.Checkbox();
-        label1 = new java.awt.Label();
-        label2 = new java.awt.Label();
-        label3 = new java.awt.Label();
-        label4 = new java.awt.Label();
 
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -50,14 +46,6 @@ public class FrameApp extends java.awt.Frame {
             }
         });
 
-        label1.setText("Contador1");
-
-        label2.setText("Contador2");
-
-        label3.setText("label3");
-
-        label4.setText("label4");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -66,32 +54,11 @@ public class FrameApp extends java.awt.Frame {
                 .addContainerGap(369, Short.MAX_VALUE)
                 .addComponent(CheckSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(72, 72, 72))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(23, 23, 23)
-                        .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 232, Short.MAX_VALUE)
+                .addContainerGap(326, Short.MAX_VALUE)
                 .addComponent(CheckSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -111,7 +78,6 @@ public class FrameApp extends java.awt.Frame {
 
     private void CheckSalirPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_CheckSalirPropertyChange
         // TODO add your handling code here:
-        System.out.println("-> " + evt.getNewValue());
     }//GEN-LAST:event_CheckSalirPropertyChange
 
     private void CheckSalirItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CheckSalirItemStateChanged
@@ -125,13 +91,11 @@ public class FrameApp extends java.awt.Frame {
     public static void main(String args[]) throws InterruptedException {
         
         FrameApp framesito = new FrameApp();
-        MiCanvas caravana = new MiCanvas(framesito.getSize());
-
         framesito.setSize(800, 600);
+        
+        MiCanvas caravana = new MiCanvas(framesito.getSize());
         framesito.add(caravana);
         
-        
-        Thread.sleep(1000);
         framesito.setVisible(true);
         
         
@@ -170,9 +134,5 @@ public class FrameApp extends java.awt.Frame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Checkbox CheckSalir;
-    private java.awt.Label label1;
-    private java.awt.Label label2;
-    private java.awt.Label label3;
-    private java.awt.Label label4;
     // End of variables declaration//GEN-END:variables
 }

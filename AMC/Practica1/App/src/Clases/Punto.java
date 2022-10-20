@@ -19,7 +19,7 @@ public class Punto {
     }
 
     public double Distancia(Punto a) {
-        return Math.sqrt(Math.pow(a.x - x, 2) + Math.pow(a.y - y, 2));
+        return Math.sqrt(Math.pow(a.x - this.x, 2) + Math.pow(a.y - this.y, 2));
     }
 
     /**

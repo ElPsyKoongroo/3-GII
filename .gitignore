@@ -32,3 +32,5 @@ hs_err_pid*
 
 ignore_manager
 log.txt
+/PCD/Practica3/nbproject/private/
+/PCD/Practica3/build/

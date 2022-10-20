@@ -9,7 +9,7 @@
  */
 public class Sumador implements Runnable{
     
-    private final int N_INCREMENTOS = 1000;
+    private final int N_INCREMENTOS = 10_000;
     private Recurso r;
     private int posicion;
     public Sumador(Recurso r, int cual){
@@ -22,7 +22,7 @@ public class Sumador implements Runnable{
         for (int i=0; i < N_INCREMENTOS; i++){
             r.incrementa(this.posicion);
             try {
-                Thread.sleep(2);
+                Thread.sleep(0, 10);
             } catch (Exception ex) {}
         }
     }
