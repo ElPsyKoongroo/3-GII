@@ -22,10 +22,19 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
+*/bin/
+*/bin/*
+*/obj/
+*/obj/*
+
 */.vs/
+*/.vs/*
 */.idea/
+*/.idea/*
 */.settings/
+*/.settings/*
 */.vscode/
+*/.vscode/*
 /PCD/Practica2/PCD_Practica2/nbproject/private/
 /PCD/Practica2/PCD_Practica2/build/
 /DDSI/Practica2/App/target/
