@@ -6,7 +6,7 @@ package Vista;
 
 /**
  *
- * @author OMEN
+ * @author ElPsy
  */
 public class VistaLogin extends javax.swing.JFrame {
 
