@@ -12,8 +12,17 @@ import java.sql.*;
 public class Conexion {
     public Connection conexion;
     
-    public Conexion(String sgbd, String ip, String servicio_bd, String usuario, String password) {
+    public Conexion(String sgbd, String ip, String servicio_bd, String usuario, String password) throws SQLException {
         String url = "";
+        if("mariadb".equals(sgbd)){
+                url = "jdbc:" + sgbd + "://" + ip + "/" + servicio_bd;
+            }
+            else{
+                url = "jdbc:" + sgbd + ":thin:@" + ip + ":" + servicio_bd; 
+            }
+            System.out.println("URL: " + url + "\nUser: " + usuario + "\nPassword: " + password);
+            conexion = DriverManager.getConnection(url, usuario, password);
+        /*
         try{
             if("mariadb".equals(sgbd)){
                 url = "jdbc:" + sgbd + "://" + ip + "/" + servicio_bd;
@@ -28,7 +37,7 @@ public class Conexion {
             System.out.println("Error catastrofico: " + e.getMessage());
             System.out.println(e.getSQLState());
             System.out.println(e.getErrorCode());
-        }         
+        }  */       
     }
     
     public void desconexion() {

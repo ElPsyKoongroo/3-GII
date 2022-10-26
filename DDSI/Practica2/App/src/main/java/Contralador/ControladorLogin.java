@@ -18,10 +18,12 @@ public class ControladorLogin implements ActionListener {
     public Conexion conexion;
     public VistaConsola vc;
     private VistaLogin vLogin;
+    private VistaMensajes vMensajes;
     
     public ControladorLogin() {
         this.vc = new VistaConsola();
         this.vLogin = new VistaLogin();
+        this.vMensajes = new VistaMensajes();
         
         this.addListeners();
         this.vLogin.setLocationRelativeTo(null);
@@ -29,7 +31,7 @@ public class ControladorLogin implements ActionListener {
         //this.Conectar();
     }
 
-    private void Conectar() {
+    private void Conectar() throws SQLException {
         String ip = this.vLogin.IpTextBox.getText().trim();         
         String server = ((String) this.vLogin.ServerComboBox.getSelectedItem()).trim();
         String server_bd = this.vLogin.BDTextBox.getText().trim();
@@ -55,6 +57,8 @@ public class ControladorLogin implements ActionListener {
     private void addListeners() {
         vLogin.TwitterButton.addActionListener(this);
         vLogin.AcceptButton.addActionListener(this);
+        
+        vMensajes.OkButton.addActionListener(this);
     }
     
     /*
@@ -74,18 +78,31 @@ public class ControladorLogin implements ActionListener {
         switch(e.getActionCommand()){
             case "Conectar": {
                 //this.conexion.desconexion();
-                Conectar();
-                if (this.conexion != null) {
+                try {
+                    Conectar();
                     this.vc.mensajeConsola("Se ha conectado con exito");
-                    this.vLogin.dispose();
-                    break;
-                }
+                    //this.vLogin.dispose();
+                    this.vMensajes.Informasio.setText("Conexión Correcta");
+                } catch (SQLException exception) {
+                     this.vMensajes.Informasio.setText("Error en la conexión: " + exception);
+                } finally {
+                     this.vMensajes.setVisible(true);                    
+                };
+                break;
             }
             case "Salir":{
                 vc.mensajeConsola("Se ha salido con exito");
                 vLogin.dispose();
-                this.conexion.desconexion();
+                try {
+                    this.conexion.desconexion();
+                } catch (Exception _unused) {
+                }
                 System.exit(0);
+                break;
+            }
+            
+            case "OK": {
+                this.vMensajes.dispose();
                 break;
             }
         }
