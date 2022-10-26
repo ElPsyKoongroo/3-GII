@@ -1,0 +1,15 @@
+X:\GitHub\3-GII\AMC\Closest3PointsApp\Closest3Points\bin\Release\net7.0\Closest3Points.exe
+X:\GitHub\3-GII\AMC\Closest3PointsApp\Closest3Points\bin\Release\net7.0\Closest3Points.deps.json
+X:\GitHub\3-GII\AMC\Closest3PointsApp\Closest3Points\bin\Release\net7.0\Closest3Points.runtimeconfig.json
+X:\GitHub\3-GII\AMC\Closest3PointsApp\Closest3Points\bin\Release\net7.0\Closest3Points.dll
+X:\GitHub\3-GII\AMC\Closest3PointsApp\Closest3Points\bin\Release\net7.0\Closest3Points.pdb
+X:\GitHub\3-GII\AMC\Closest3PointsApp\Closest3Points\obj\Release\net7.0\Closest3Points.csproj.AssemblyReference.cache
+X:\GitHub\3-GII\AMC\Closest3PointsApp\Closest3Points\obj\Release\net7.0\Closest3Points.GeneratedMSBuildEditorConfig.editorconfig
+X:\GitHub\3-GII\AMC\Closest3PointsApp\Closest3Points\obj\Release\net7.0\Closest3Points.AssemblyInfoInputs.cache
+X:\GitHub\3-GII\AMC\Closest3PointsApp\Closest3Points\obj\Release\net7.0\Closest3Points.AssemblyInfo.cs
+X:\GitHub\3-GII\AMC\Closest3PointsApp\Closest3Points\obj\Release\net7.0\Closest3Points.csproj.CoreCompileInputs.cache
+X:\GitHub\3-GII\AMC\Closest3PointsApp\Closest3Points\obj\Release\net7.0\Closest3Points.dll
+X:\GitHub\3-GII\AMC\Closest3PointsApp\Closest3Points\obj\Release\net7.0\refint\Closest3Points.dll
+X:\GitHub\3-GII\AMC\Closest3PointsApp\Closest3Points\obj\Release\net7.0\Closest3Points.pdb
+X:\GitHub\3-GII\AMC\Closest3PointsApp\Closest3Points\obj\Release\net7.0\Closest3Points.genruntimeconfig.cache
+X:\GitHub\3-GII\AMC\Closest3PointsApp\Closest3Points\obj\Release\net7.0\ref\Closest3Points.dll

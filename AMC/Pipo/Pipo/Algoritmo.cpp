@@ -36,7 +36,7 @@ class Algoritmo
                 if (j == i)
                     continue;
 
-                for (int k = start; k < end; k++) {
+                for (int k = start; k < end ; k++) {
                     if (i >= k || j == k)
                         continue;
 

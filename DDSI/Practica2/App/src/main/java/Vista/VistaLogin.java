@@ -52,9 +52,7 @@ public class VistaLogin extends javax.swing.JFrame {
 
         jLabel5.setText("Pass");
 
-        IpTextBox.setText(" ");
-
-        ServerComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "mariadb", "oracle", " " }));
+        ServerComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "mariadb", "oracle" }));
         ServerComboBox.setMaximumSize(new java.awt.Dimension(90, 164));
         ServerComboBox.setMinimumSize(new java.awt.Dimension(9, 16));
         ServerComboBox.setPreferredSize(new java.awt.Dimension(4, 164));

@@ -1,0 +1,2 @@
+X:\GitHub\3-GII\AMC\Closest3PointsApp\Closest3Points\bin\Release\net7.0\win-x64\publish\Closest3Points.exe
+X:\GitHub\3-GII\AMC\Closest3PointsApp\Closest3Points\bin\Release\net7.0\win-x64\publish\Closest3Points.pdb

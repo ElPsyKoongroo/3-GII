@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Contralador;
+
 import Modelo.*;
 import Vista.*;
 import java.awt.event.ActionEvent;
@@ -10,100 +11,133 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.sql.DatabaseMetaData;
 import javax.swing.*;
+
 /**
  *
  * @author ElPsy
  */
 public class ControladorLogin implements ActionListener {
+
     public Conexion conexion;
     public VistaConsola vc;
     private VistaLogin vLogin;
     private VistaMensajes vMensajes;
-    
+
     public ControladorLogin() {
         this.vc = new VistaConsola();
         this.vLogin = new VistaLogin();
         this.vMensajes = new VistaMensajes();
-        
+
         this.addListeners();
         this.vLogin.setLocationRelativeTo(null);
+        FillStandardInputs(true);
         this.vLogin.setVisible(true);
         //this.Conectar();
     }
 
     private void Conectar() throws SQLException {
-        String ip = this.vLogin.IpTextBox.getText().trim();         
+        String ip = this.vLogin.IpTextBox.getText().trim();
         String server = ((String) this.vLogin.ServerComboBox.getSelectedItem()).trim();
         String server_bd = this.vLogin.BDTextBox.getText().trim();
         String user = this.vLogin.UserTextBox.getText().trim();
-        String password = new String (this.vLogin.PassTextBox.getPassword()).trim();
-        this.conexion = new Conexion(server, ip, server_bd, user, password);   
+        String password = new String(this.vLogin.PassTextBox.getPassword()).trim();
+        this.conexion = new Conexion(server, ip, server_bd, user, password);
 
-	this.showMetaData();
+        this.showMetaData();
     }
 
     public void Desconectar() {
         conexion.desconexion();
     }
-	
-    DatabaseMetaData getMetaData(){
-            return this.conexion.informacionDB();
+
+    DatabaseMetaData getMetaData() {
+        return this.conexion.informacionDB();
     }
 
-    void showMetaData(){
+    void showMetaData() {
         this.vc.mensajeMetadatos(this.getMetaData());
     }
-    
+
     private void addListeners() {
         vLogin.TwitterButton.addActionListener(this);
         vLogin.AcceptButton.addActionListener(this);
-        
-        vMensajes.OkButton.addActionListener(this);
+        vLogin.ServerComboBox.addActionListener(this);
     }
-    
+
     /*
     private void () throws Exception {
         // "mariadb", "172.18.1.241:3306", "DDSI_022", "DDSI_022", "DDSI_022"
-        String ip = this.vLogin.IpTextBox.getText();         
+        String ip = this.vLogin.IpTextBox.getText();
         String server = (String) this.vLogin.ServerComboBox.getSelectedItem();
         String server_bd = this.vLogin.BDTextBox.getText();
         String user = this.vLogin.UserTextBox.getText();
         String password = new String (this.vLogin.PassTextBox.getPassword());
         this.conexion = new Conexion(server, ip, server_bd, user, password);
     }
-    */
+     */
+    
+    private void FillStandardInputs(boolean initializate)
+    {
+        if(!initializate)
+        {
+            int result = JOptionPane.showConfirmDialog(
+                    vLogin,
+                    "¿Rellenar con datos predeterminados?",
+                    "Elige una opcion",
+                    JOptionPane.OK_CANCEL_OPTION,
+                    JOptionPane.PLAIN_MESSAGE);
+
+            if(result != JOptionPane.OK_OPTION) return;
+        }
+        
+        switch((String)vLogin.ServerComboBox.getSelectedItem())
+                {
+                    case "mariadb":
+                    {
+                        vLogin.IpTextBox.setText("172.18.1.241:3306");
+                        vLogin.BDTextBox.setText("DDSI_");
+                        vLogin.UserTextBox.setText("DDSI_");
+                        break;
+                    }
+                    case "oracle":
+                    {
+                        vLogin.IpTextBox.setText("172.17.20.39:1521");
+                        vLogin.BDTextBox.setText("etsi");
+                        vLogin.UserTextBox.setText("DDSI_");
+                        break;
+                    }
+                }
+                vLogin.PassTextBox.setText("");
+    }
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        switch(e.getActionCommand()){
+        switch (e.getActionCommand()) {
             case "Conectar": {
-                //this.conexion.desconexion();
                 try {
                     Conectar();
                     this.vc.mensajeConsola("Se ha conectado con exito");
-                    //this.vLogin.dispose();
-                    this.vMensajes.Informasio.setText("Conexión Correcta");
+                    this.vMensajes.ShowConectionMessage("Conectado con exito", JOptionPane.INFORMATION_MESSAGE);
+                    vLogin.dispose();
+
                 } catch (SQLException exception) {
-                     this.vMensajes.Informasio.setText("Error en la conexión: " + exception);
-                } finally {
-                     this.vMensajes.setVisible(true);                    
-                };
+                    this.vc.mensajeConsola("Error al conectarse");
+                    this.vMensajes.ShowConectionMessage(exception.getMessage(), JOptionPane.ERROR_MESSAGE);
+                }
                 break;
             }
-            case "Salir":{
+            case "Salir": {
                 vc.mensajeConsola("Se ha salido con exito");
-                vLogin.dispose();
                 try {
                     this.conexion.desconexion();
-                } catch (Exception _unused) {
-                }
+                } catch (Exception _unused) {}
+                
+                vLogin.dispose();
                 System.exit(0);
-                break;
             }
-            
-            case "OK": {
-                this.vMensajes.dispose();
-                break;
+            case "comboBoxChanged":
+            {
+                FillStandardInputs(false);
             }
         }
     }
