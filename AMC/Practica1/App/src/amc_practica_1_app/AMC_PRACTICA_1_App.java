@@ -43,7 +43,7 @@ public class AMC_PRACTICA_1_App {
 
 
 
-        //in = Algoritmo.GeneraPuntos(2_000, 1000, 0);
+        //in = Algoritmo.GeneraPuntos(10_000, 100, 0);
         QuickSort.Ordena(in, 0, in.size()-1);
         ArrayList<Punto> DyB;
         //long start = System.currentTimeMillis();

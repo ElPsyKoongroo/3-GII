@@ -1,7 +1,12 @@
 #include "algoritmo.cpp"
+<<<<<<< Updated upstream
 #include <fstream>
 #define SIZE 20'000
 #define MEDIA 50
+=======
+#define SIZE 100'000
+#define MEDIA 10 
+>>>>>>> Stashed changes
 
 class index{
 public:
@@ -41,12 +46,25 @@ int main()
     // int num = 10; // Combinaciones
     // while(num--){
 
+<<<<<<< Updated upstream
     // }
+=======
+    uint64_t med = 0;
+    for(int i = 0 ; i < MEDIA ; ++i){
+        Punto* p = Algoritmo::GeneraPuntos(SIZE, 1000, 0);
+>>>>>>> Stashed changes
 
 
 
 
 
+<<<<<<< Updated upstream
+=======
+		std::cout << time << "\n";
+
+        med += time;
+        delete p;
+>>>>>>> Stashed changes
 
 
 
