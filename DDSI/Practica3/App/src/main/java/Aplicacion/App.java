@@ -1,4 +1,4 @@
-  package Aplicacion;
+package Aplicacion;
 
 import Contralador.ControladorLogin;
 

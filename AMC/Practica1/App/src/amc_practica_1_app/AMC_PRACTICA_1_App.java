@@ -16,8 +16,14 @@ import java.awt.Button;
 
 public class AMC_PRACTICA_1_App {
     
-    public static void main(String[] args) {
-
+    public static void main(String[] args)
+    {
+        //Calcular();
+        ControladorPrincipal f = new ControladorPrincipal();
+    }
+    
+    public static void Calcular()
+    {
         Visualizer neovi = new Visualizer();
         neovi.setSize(1000, 1000);
         neovi.setVisible(true);
