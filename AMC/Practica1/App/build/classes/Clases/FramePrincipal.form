@@ -69,6 +69,13 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="ZoomInButton" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+              <Component id="ZoomOutButton" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="229" max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -78,7 +85,12 @@
               <Component id="rB_Exh" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="rB_DyV" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="ZoomInButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="ZoomOutButton" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="rB_PuntosAle" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="s_NumPuntos" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -182,6 +194,27 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="DesDes_Calcular"/>
         <Property name="actionCommand" type="java.lang.String" value="b_Calcular_Comm"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JButton" name="ZoomInButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Zoom In"/>
+        <Property name="actionCommand" type="java.lang.String" value="ZoomIn"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ZoomInButtonActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JButton" name="ZoomOutButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Zoom Out"/>
+        <Property name="actionCommand" type="java.lang.String" value="ZoomOut"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

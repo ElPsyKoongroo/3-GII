@@ -37,6 +37,8 @@ public class FramePrincipal extends javax.swing.JFrame {
         s_NumPuntos = new javax.swing.JSlider();
         t_NumPuntos = new javax.swing.JTextField();
         b_Calcular = new javax.swing.JButton();
+        ZoomInButton = new javax.swing.JButton();
+        ZoomOutButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -69,6 +71,17 @@ public class FramePrincipal extends javax.swing.JFrame {
         b_Calcular.setText("DesDes_Calcular");
         b_Calcular.setActionCommand("b_Calcular_Comm");
 
+        ZoomInButton.setText("Zoom In");
+        ZoomInButton.setActionCommand("ZoomIn");
+        ZoomInButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ZoomInButtonActionPerformed(evt);
+            }
+        });
+
+        ZoomOutButton.setText("Zoom Out");
+        ZoomOutButton.setActionCommand("ZoomOut");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -97,6 +110,12 @@ public class FramePrincipal extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(b_Calcular, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(ZoomInButton)
+                .addGap(40, 40, 40)
+                .addComponent(ZoomOutButton)
+                .addGap(229, 229, 229))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -105,7 +124,11 @@ public class FramePrincipal extends javax.swing.JFrame {
                 .addComponent(rB_Exh)
                 .addGap(18, 18, 18)
                 .addComponent(rB_DyV)
-                .addGap(79, 79, 79)
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ZoomInButton)
+                    .addComponent(ZoomOutButton))
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rB_PuntosAle)
                     .addComponent(s_NumPuntos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -123,8 +146,13 @@ public class FramePrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void ZoomInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ZoomInButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ZoomInButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton ZoomInButton;
+    public javax.swing.JButton ZoomOutButton;
     public javax.swing.JButton b_Buscar;
     public javax.swing.JButton b_Calcular;
     public javax.swing.ButtonGroup rBG_TipoAlgoritmo;
