@@ -32,7 +32,6 @@ public class ControladorLogin implements ActionListener {
         this.vLogin.setLocationRelativeTo(null);
         FillStandardInputs(true);
         this.vLogin.setVisible(true);
-        //this.Conectar();
     }
 
     private void Conectar() throws SQLException {
@@ -63,18 +62,6 @@ public class ControladorLogin implements ActionListener {
         vLogin.AcceptButton.addActionListener(this);
         vLogin.ServerComboBox.addActionListener(this);
     }
-
-    /*
-    private void () throws Exception {
-        // "mariadb", "172.18.1.241:3306", "DDSI_022", "DDSI_022", "DDSI_022"
-        String ip = this.vLogin.IpTextBox.getText();
-        String server = (String) this.vLogin.ServerComboBox.getSelectedItem();
-        String server_bd = this.vLogin.BDTextBox.getText();
-        String user = this.vLogin.UserTextBox.getText();
-        String password = new String (this.vLogin.PassTextBox.getPassword());
-        this.conexion = new Conexion(server, ip, server_bd, user, password);
-    }
-     */
     
     private void FillStandardInputs(boolean initializate)
     {
@@ -119,6 +106,7 @@ public class ControladorLogin implements ActionListener {
                     this.vc.mensajeConsola("Se ha conectado con exito");
                     this.vMensajes.ShowConectionMessage("Conectado con exito", JOptionPane.INFORMATION_MESSAGE);
                     vLogin.dispose();
+                    new ControladorPrincipal(this.conexion);
 
                 } catch (SQLException exception) {
                     this.vc.mensajeConsola("Error al conectarse");
