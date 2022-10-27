@@ -28,7 +28,6 @@ public class FramePrincipal extends javax.swing.JFrame {
 
         rBG_TipoPuntos = new javax.swing.ButtonGroup();
         rBG_TipoAlgoritmo = new javax.swing.ButtonGroup();
-        canvasPuntos = new java.awt.Canvas();
         rB_Exh = new javax.swing.JRadioButton();
         rB_DyV = new javax.swing.JRadioButton();
         rB_PuntosAle = new javax.swing.JRadioButton();
@@ -41,10 +40,6 @@ public class FramePrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
-
-        canvasPuntos.setBackground(new java.awt.Color(0, 0, 0));
-        canvasPuntos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        canvasPuntos.setPreferredSize(new java.awt.Dimension(800, 800));
 
         rB_Exh.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         rB_Exh.setText("Exhaustivo");
@@ -79,9 +74,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(canvasPuntos, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(820, 820, 820)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -109,24 +102,21 @@ public class FramePrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(rB_Exh)
-                        .addGap(18, 18, 18)
-                        .addComponent(rB_DyV)
-                        .addGap(79, 79, 79)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rB_PuntosAle)
-                            .addComponent(s_NumPuntos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(t_NumPuntos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rB_PuntosFic)
-                            .addComponent(t_Fichero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(b_Buscar))
-                        .addGap(18, 18, 18)
-                        .addComponent(b_Calcular, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(canvasPuntos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(rB_Exh)
+                .addGap(18, 18, 18)
+                .addComponent(rB_DyV)
+                .addGap(79, 79, 79)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rB_PuntosAle)
+                    .addComponent(s_NumPuntos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(t_NumPuntos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rB_PuntosFic)
+                    .addComponent(t_Fichero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(b_Buscar))
+                .addGap(18, 18, 18)
+                .addComponent(b_Calcular, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -137,7 +127,6 @@ public class FramePrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton b_Buscar;
     public javax.swing.JButton b_Calcular;
-    public java.awt.Canvas canvasPuntos;
     public javax.swing.ButtonGroup rBG_TipoAlgoritmo;
     public javax.swing.ButtonGroup rBG_TipoPuntos;
     public javax.swing.JRadioButton rB_DyV;

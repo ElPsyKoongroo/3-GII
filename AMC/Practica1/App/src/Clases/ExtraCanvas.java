@@ -9,8 +9,15 @@ public class ExtraCanvas extends Canvas {
     private ArrayList<Punto> puntos;
     private ArrayList<Punto> solucion;
     private int size_mult = 2;
-    private double mult = 1;
     private int point_size = 3;
+    private double mult = 1;
+    
+    private double scale_x = 0.0;
+    private double scale_y = 0.0;
+    private double offset_x;
+    private double offset_y;
+    
+    
     
     public ExtraCanvas(Dimension dimension){
         super();
@@ -35,10 +42,8 @@ public class ExtraCanvas extends Canvas {
     }
     
     public void drawSolution(){
-        Graphics g = this.getGraphics();
-        g.setColor(Color.RED);
         for(Punto p : this.solucion){
-            g.fillOval((int)p.x, (int)p.y, point_size*size_mult, point_size*size_mult);
+           this.drawPoint((int)p.x, (int)p.y, Color.RED);
         }
     }
 
@@ -54,6 +59,13 @@ public class ExtraCanvas extends Canvas {
         this.mult -= q;
         
         zoom();
+    }
+    
+    public void setRange(double range_x, double range_y, double min_x, double min_y){
+        this.scale_x = this.getSize().height/range_x;
+        this.scale_y = this.getSize().height/range_y;
+        this.offset_x = min_x;
+        this.offset_y = min_y;
     }
     
     private void fixSize()
@@ -81,8 +93,8 @@ public class ExtraCanvas extends Canvas {
 
         Graphics g = this.getGraphics();
 
-        int x_offset = (500 - (int) (solucion.get(0).x * mult)); 
-        int y_offset = (500 - (int) (solucion.get(0).y * mult)); 
+        int x_offset = (this.getSize().height/2 - (int) (solucion.get(0).x * mult)); 
+        int y_offset = (this.getSize().height/2 - (int) (solucion.get(0).y * mult)); 
         
         for (Punto p : this.puntos) {
             this.drawPoint((int)(p.x*mult+x_offset), (int)(p.y*mult + y_offset), Color.BLACK);
@@ -99,7 +111,7 @@ public class ExtraCanvas extends Canvas {
         }
 
         //Fixed center
-        this.drawPoint(500, 500, Color.RED);
+        this.drawPoint(this.getSize().width/2, this.getSize().width/2, Color.RED);
     }
 
     public void drawPoints(){
@@ -107,11 +119,11 @@ public class ExtraCanvas extends Canvas {
             this.drawPoint((int)p.x, (int)p.y, Color.BLACK);
         }
     }
-
+    
     private void drawPoint(int x, int y, Color c){
         Graphics g = this.getGraphics();
         g.setColor(c);
-        g.fillOval(x, y, point_size*this.size_mult, point_size*this.size_mult);
+        g.fillOval((int)((x-offset_x)*this.scale_x), (int)((y-offset_y)*this.scale_y), point_size*this.size_mult, point_size*this.size_mult);
     }
 
 }
