@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package amc_practica_1_app;
+import Controlador.ControladorPrincipal;
 import Clases.*;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -16,8 +17,14 @@ import java.awt.Button;
 
 public class AMC_PRACTICA_1_App {
     
-    public static void main(String[] args) {
-
+    public static void main(String[] args)
+    {
+        //Calcular();
+        ControladorPrincipal f = new ControladorPrincipal();
+    }
+    
+    public static void Calcular()
+    {
         Visualizer neovi = new Visualizer();
         neovi.setSize(1000, 1000);
         neovi.setVisible(true);
@@ -43,7 +50,7 @@ public class AMC_PRACTICA_1_App {
 
 
 
-        //in = Algoritmo.GeneraPuntos(2_000, 1000, 0);
+        //in = Algoritmo.GeneraPuntos(10_000, 100, 0);
         QuickSort.Ordena(in, 0, in.size()-1);
         ArrayList<Punto> DyB;
         //long start = System.currentTimeMillis();

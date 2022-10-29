@@ -1,33 +1,31 @@
-#pragma once
 #include <ctime>
 #include <iostream>
 #include <limits>
 #include <cmath>
-typedef struct Punto
+#include <algorithm>
+#include <cfloat>
+#include <chrono>
+struct Punto
 {
 public:
     double x, y;
-//    std::ostream& operator<<(std::ostream& os)
-//{
-//    os << "x: " << this->x << " y: " << this->y << "\n";
-//    return os;
-//}
 };
 
-double Distancia(const Punto& a, const Punto& b) {
-    return sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2));
-}
 
-double Distancia3(const Punto& a, const Punto& b,const Punto& c) {
-    return Distancia(a,b) + Distancia(b, c);
-}
 
-static class Algoritmo
+class Algoritmo
 {
     static const int START = 0;
     static const int END = 1;
-    static int totalPuntos;
+    inline static int totalPuntos;
 
+    static double Distancia(const Punto& a, const Punto& b) {
+        return sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2));
+    }
+
+    static double Distancia3(const Punto& a, const Punto& b,const Punto& c) {
+        return Distancia(a,b) + Distancia(b, c);
+    }
     static double CalculaFixed(const Punto * const puntos, const int &start, int end)
     {
         double distanciaMinima = DBL_MAX;
@@ -38,8 +36,8 @@ static class Algoritmo
                 if (j == i)
                     continue;
 
-                for (int k = start; k < end; k++) {
-                    if (i == k || j == k)
+                for (int k = start; k < end ; k++) {
+                    if (i >= k || j == k)
                         continue;
 
                     double distancia = Distancia3(puntos[i], puntos[j], puntos[k]);
@@ -56,6 +54,7 @@ static class Algoritmo
                 }
             }
         }
+        return distanciaMinima;
     }
 
     static int* GetPointsBetween(const Punto* const puntos, double start, double end){
@@ -68,8 +67,7 @@ static class Algoritmo
         if (!drc) --end_index;
         // while (puntos.get(++end_index).x <= end && end_index+1 < puntos.size()) {};
         
-        int indices[] = {start_index, end_index};
-        return indices;
+        return new int[2]{start_index, end_index};
     }
 
     static bool PuntosRepetidos(const Punto* const puntos, const int& start, const int& end)
@@ -113,8 +111,8 @@ static class Algoritmo
     }
 
 public:
-    static Punto mejoresPuntos[3];
-    static double mejorDistancia;
+    inline static Punto mejoresPuntos[3];
+    inline static double mejorDistancia;
     static Punto* GeneraPuntos(const int& numPuntos, const int& maximo, const int& minimo)
     {
         //rand()
@@ -131,6 +129,9 @@ public:
             puntos[i].x = (rand() % ((maximo + minimo) * 100)) / 100.0;
             puntos[i].y = (rand() % ((maximo + minimo) * 100)) / 100.0;
         }
+
+        std::sort(puntos, puntos+numPuntos, [](Punto a, Punto b) {return a.x < b.x;});
+
         return puntos;
     }
 

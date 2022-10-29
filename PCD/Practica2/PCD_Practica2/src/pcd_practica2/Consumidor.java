@@ -18,7 +18,7 @@ public class Consumidor implements Runnable {
         for(int i = 0; i<10; ++i){
             Object random = colita.Desacola();
             System.out.println(
-                    "\nNumero extraido: " + random
+                    "Numero extraido: " + random
                     + "\nId: " + Thread.currentThread().getId()
                     + "\n\n"
             );

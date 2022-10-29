@@ -99,8 +99,8 @@ public class Algoritmo {
                 if (j == i)
                     continue;
 
-                for (int k = start; k < end; k++) {
-                    if (i == k || j == k)
+                for (int k = i+1; k < end; k++) {
+                    if (j == k)
                         continue;
 
                     double distancia = puntos.get(i).Distancia3(puntos.get(j), puntos.get(k));
@@ -164,7 +164,11 @@ public class Algoritmo {
         if (indices[END] - indices[START] + 1 < 3)
             return -1;
         
-        if(PuntosRepetidos(puntos, indices[START], indices[END])) return -1;
+        if (PuntosRepetidos(puntos, indices[START], indices[END])) return -1;
+  
+        if (indices[END] - indices[START] + 1 < 6) {
+            CalculaFixed(puntos, indices[START], indices[END]);
+        }
         
         double izq = DivideVenceras(puntos, start, mitad, it + 1);
         double drc = DivideVenceras(puntos, mitad, end, it + 1);
