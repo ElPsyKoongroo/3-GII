@@ -2,33 +2,31 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package pcd_practica2;
+package pcd_practica3;
 
 /**
  *
  * @author ElPsy
  */
-public class Consumidor implements Runnable {
-    ColaLenta colita;
+public class Consumidor extends Thread {
+    ColaLenta lacola;
     public Consumidor(ColaLenta c){
-        this.colita = c;
+        this.lacola = c;
     }
     
-    public void Extraer() throws Exception{
-        for(int i = 0; i<10; ++i){
-            Object random = colita.Desacola();
-            System.out.println(
-                    "Numero extraido: " + random
-                    + "\nId: " + Thread.currentThread().getId()
-                    + "\n\n"
-            );
+    public void Consumir() throws Exception{
+        java.util.Random rand = new java.util.Random();
+        for(int i = 0; i<100; ++i){
+            System.out.println("Desacola");
+            Object random = lacola.Desacola();
+            Thread.sleep(rand.nextInt(100, 1000));
         }
     }
     
     @Override
     public void run(){
         try{
-            this.Extraer();
+            this.Consumir();
         } catch (Exception e) {
             System.err.println("Ocurrio una excepcion: " + e);
         }
