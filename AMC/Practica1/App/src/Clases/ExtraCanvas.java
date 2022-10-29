@@ -47,20 +47,25 @@ public class ExtraCanvas extends Canvas {
 
     public void zoomIn(double q) {
         this.mult += q;
-        this.scale_x *= 1.05;
-        this.scale_y *= 1.05;
+        this.scale_x *= 1.15;
+        this.scale_y *= 1.15;
 
         zoom();
     }
 
     public void zoomOut(double q) {
         this.mult -= q;
-        this.scale_x *= 0.95;
-        this.scale_y *= 0.95;
+        this.scale_x *= 0.85;
+        this.scale_y *= 0.85;
 
         zoom();
     }
 
+    public void resetZoom(){
+        this.zoom_x = 0;
+        this.zoom_y = 0;
+    }
+    
     public void setRange(double range_x, double range_y, double min_x, double min_y) {
         this.scale_x = this.getHeight() / range_x;
         this.scale_y = this.getHeight() / range_y;
@@ -78,7 +83,7 @@ public class ExtraCanvas extends Canvas {
         }
     }
 
-    private void resetCanvas() {
+    public void resetCanvas() {
         Graphics g = this.getGraphics();
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, this.getHeight(), this.getHeight());
@@ -109,6 +114,19 @@ public class ExtraCanvas extends Canvas {
         for (Punto p : this.solucion) {
             this.drawPoint((int) (p.x), (int) (p.y), Color.RED);
         }
+        
+        for (int i = 0; i < 2; i++) {
+            this.drawLine(
+                    (int)this.solucion.get(i).x, 
+                    (int)this.solucion.get(i).y, 
+                    (int)this.solucion.get(i+1).x, 
+                    (int)this.solucion.get(i+1).y,
+                    Color.RED
+            );
+            
+        }
+        
+        
 
     }
 
@@ -118,6 +136,17 @@ public class ExtraCanvas extends Canvas {
         }
     }
 
+    private void drawLine(int x1, int y1, int x2, int y2, Color c) {
+        Graphics g = this.getGraphics();
+        g.setColor(c);
+        g.drawLine(
+                (int) ((x1 - offset_x) * this.scale_x + this.zoom_x), 
+                (int) ((y1 - offset_y) * this.scale_y + this.zoom_y), 
+                (int) ((x2 - offset_x) * this.scale_x + this.zoom_x), 
+                (int) ((y2 - offset_y) * this.scale_y + this.zoom_y) 
+        );
+    }
+    
     private void drawPoint(int x, int y, Color c) {
         Graphics g = this.getGraphics();
         g.setColor(c);

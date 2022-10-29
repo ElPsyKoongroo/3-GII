@@ -39,6 +39,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="820" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="b_Calcular" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Group type="102" attributes="0">
@@ -59,22 +60,22 @@
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">
+                      <Component id="ZoomInButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="ZoomOutButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                      <Component id="l_Time" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="b_ResetMedia" min="-2" max="-2" attributes="0"/>
                           <Component id="rB_Exh" min="-2" max="-2" attributes="0"/>
                           <Component id="rB_DyV" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="b_Calcular" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="ZoomInButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-              <Component id="ZoomOutButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="229" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -89,6 +90,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="ZoomInButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="ZoomOutButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="l_Time" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -102,8 +104,10 @@
                   <Component id="t_Fichero" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="b_Buscar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="b_Calcular" min="-2" pref="571" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+              <Component id="b_ResetMedia" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="112" max="32767" attributes="0"/>
+              <Component id="b_Calcular" min="-2" pref="410" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -162,6 +166,9 @@
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="t_FicheroActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
@@ -186,6 +193,9 @@
       </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="t_NumPuntos">
+      <Properties>
+        <Property name="actionCommand" type="java.lang.String" value="t_NumPuntos"/>
+      </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
@@ -215,6 +225,23 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Zoom Out"/>
         <Property name="actionCommand" type="java.lang.String" value="ZoomOut"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="l_Time">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Time: "/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JButton" name="b_ResetMedia">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Reset Media"/>
+        <Property name="actionCommand" type="java.lang.String" value="b_ResetMedia_Comm"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

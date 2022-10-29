@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package amc_practica_1_app;
+import Controlador.ControladorPrincipal;
 import Clases.*;
 import java.util.ArrayList;
 import java.util.Scanner;

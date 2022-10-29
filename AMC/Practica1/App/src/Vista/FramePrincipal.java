@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Clases;
+package Vista;
 
 /**
  *
@@ -39,6 +39,8 @@ public class FramePrincipal extends javax.swing.JFrame {
         b_Calcular = new javax.swing.JButton();
         ZoomInButton = new javax.swing.JButton();
         ZoomOutButton = new javax.swing.JButton();
+        l_Time = new javax.swing.JLabel();
+        b_ResetMedia = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -60,6 +62,11 @@ public class FramePrincipal extends javax.swing.JFrame {
         rB_PuntosFic.setActionCommand("rB_PuntosFic_Comm");
 
         t_Fichero.setEditable(false);
+        t_Fichero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t_FicheroActionPerformed(evt);
+            }
+        });
 
         b_Buscar.setText("Buscar");
         b_Buscar.setActionCommand("b_Buscar_Comm");
@@ -67,6 +74,8 @@ public class FramePrincipal extends javax.swing.JFrame {
         s_NumPuntos.setMaximum(50000);
         s_NumPuntos.setMinimum(100);
         s_NumPuntos.setSnapToTicks(true);
+
+        t_NumPuntos.setActionCommand("t_NumPuntos");
 
         b_Calcular.setText("DesDes_Calcular");
         b_Calcular.setActionCommand("b_Calcular_Comm");
@@ -82,6 +91,11 @@ public class FramePrincipal extends javax.swing.JFrame {
         ZoomOutButton.setText("Zoom Out");
         ZoomOutButton.setActionCommand("ZoomOut");
 
+        l_Time.setText("Time: ");
+
+        b_ResetMedia.setText("Reset Media");
+        b_ResetMedia.setActionCommand("b_ResetMedia_Comm");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -89,6 +103,7 @@ public class FramePrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(820, 820, 820)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(b_Calcular, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
@@ -104,18 +119,18 @@ public class FramePrincipal extends javax.swing.JFrame {
                             .addComponent(b_Buscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(t_NumPuntos)))
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(ZoomInButton)
+                        .addGap(40, 40, 40)
+                        .addComponent(ZoomOutButton)
+                        .addGap(51, 51, 51)
+                        .addComponent(l_Time, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(b_ResetMedia)
                             .addComponent(rB_Exh)
                             .addComponent(rB_DyV))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(b_Calcular, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(ZoomInButton)
-                .addGap(40, 40, 40)
-                .addComponent(ZoomOutButton)
-                .addGap(229, 229, 229))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,7 +142,8 @@ public class FramePrincipal extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ZoomInButton)
-                    .addComponent(ZoomOutButton))
+                    .addComponent(ZoomOutButton)
+                    .addComponent(l_Time))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rB_PuntosAle)
@@ -138,8 +154,10 @@ public class FramePrincipal extends javax.swing.JFrame {
                     .addComponent(rB_PuntosFic)
                     .addComponent(t_Fichero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(b_Buscar))
-                .addGap(18, 18, 18)
-                .addComponent(b_Calcular, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
+                .addComponent(b_ResetMedia)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
+                .addComponent(b_Calcular, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -150,11 +168,17 @@ public class FramePrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ZoomInButtonActionPerformed
 
+    private void t_FicheroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_FicheroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t_FicheroActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton ZoomInButton;
     public javax.swing.JButton ZoomOutButton;
     public javax.swing.JButton b_Buscar;
     public javax.swing.JButton b_Calcular;
+    public javax.swing.JButton b_ResetMedia;
+    public javax.swing.JLabel l_Time;
     public javax.swing.ButtonGroup rBG_TipoAlgoritmo;
     public javax.swing.ButtonGroup rBG_TipoPuntos;
     public javax.swing.JRadioButton rB_DyV;
