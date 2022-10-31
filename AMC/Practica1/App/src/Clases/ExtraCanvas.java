@@ -61,11 +61,12 @@ public class ExtraCanvas extends Canvas {
         zoom();
     }
 
-    public void resetZoom(){
+    public void resetZoom() {
         this.zoom_x = 0;
         this.zoom_y = 0;
+        this.mult = 0;
     }
-    
+
     public void setRange(double range_x, double range_y, double min_x, double min_y) {
         this.scale_x = this.getHeight() / range_x;
         this.scale_y = this.getHeight() / range_y;
@@ -114,19 +115,17 @@ public class ExtraCanvas extends Canvas {
         for (Punto p : this.solucion) {
             this.drawPoint((int) (p.x), (int) (p.y), Color.RED);
         }
-        
+
         for (int i = 0; i < 2; i++) {
             this.drawLine(
-                    (int)this.solucion.get(i).x, 
-                    (int)this.solucion.get(i).y, 
-                    (int)this.solucion.get(i+1).x, 
-                    (int)this.solucion.get(i+1).y,
+                    (int) this.solucion.get(i).x,
+                    (int) this.solucion.get(i).y,
+                    (int) this.solucion.get(i + 1).x,
+                    (int) this.solucion.get(i + 1).y,
                     Color.RED
             );
-            
+
         }
-        
-        
 
     }
 
@@ -140,13 +139,13 @@ public class ExtraCanvas extends Canvas {
         Graphics g = this.getGraphics();
         g.setColor(c);
         g.drawLine(
-                (int) ((x1 - offset_x) * this.scale_x + this.zoom_x), 
-                (int) ((y1 - offset_y) * this.scale_y + this.zoom_y), 
-                (int) ((x2 - offset_x) * this.scale_x + this.zoom_x), 
-                (int) ((y2 - offset_y) * this.scale_y + this.zoom_y) 
+                (int) ((x1 - offset_x) * this.scale_x + this.zoom_x),
+                (int) ((y1 - offset_y) * this.scale_y + this.zoom_y),
+                (int) ((x2 - offset_x) * this.scale_x + this.zoom_x),
+                (int) ((y2 - offset_y) * this.scale_y + this.zoom_y)
         );
     }
-    
+
     private void drawPoint(int x, int y, Color c) {
         Graphics g = this.getGraphics();
         g.setColor(c);
