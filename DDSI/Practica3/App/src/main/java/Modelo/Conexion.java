@@ -25,6 +25,10 @@ public class Conexion {
         conexion = DriverManager.getConnection(url, usuario, password);
     }
 
+    public Connection getConexion(){
+        return this.conexion;
+    }
+    
     public void desconexion() {
         try {
             conexion.close();
