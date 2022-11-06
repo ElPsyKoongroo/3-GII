@@ -6,7 +6,7 @@
 
 public class Furgo extends Thread{
     private Tunel tunelsito;
-    private final int MAX = 3000;
+    private final int MAX = 5000;
     private final int MIN = 1000;
 
     public Furgo(Tunel _tunel){

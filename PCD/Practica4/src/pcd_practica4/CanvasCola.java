@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package pcd_practica3;
+package pcd_practica4;
 
 import java.awt.Canvas;
 import java.awt.Color;
@@ -13,7 +13,7 @@ import java.awt.Image;
 
 /**
  *
- * @author ElPsy
+ * @author Sergio
  */
 public class CanvasCola extends Canvas {
     

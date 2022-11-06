@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package pcd_practica3;
+package pcd_practica4;
 
 /**
  *
- * @author ElPsy
+ * @author Sergio
  */
 public interface ICola {
     int GetNum();

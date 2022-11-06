@@ -4,7 +4,7 @@
  * @author ElPsy
  */
 public class Tunel {
-    private enum Estado {
+    public enum Estado {
         VACIO, 
         COCHE, 
         FURGO  
@@ -12,24 +12,21 @@ public class Tunel {
     public static final int TUNELES = 3;
     private int tuneles_libres = TUNELES;
     private Estado[] tuneles;
+    private MiCanvas canvas;
 
-    public Tunel() {
+    public Tunel(MiCanvas _canvas) {
         tuneles = new Estado[TUNELES];
         for (int i = 0; i < TUNELES; i++) {
             tuneles[i] = Estado.VACIO;
         }
         tuneles_libres = TUNELES;
+        canvas = _canvas;
     }
 
-    // Funcion para debuggear, se puede eliminar mas tarde
-    private synchronized void muestraEstados(){
-        for (Estado e : tuneles) {
-            System.out.print(e + ", ");
-        }
-        System.out.println();
-    }
-
-    public synchronized int EntraCoche() throws InterruptedException {
+    public synchronized int EntraCoche() throws InterruptedException
+    {
+        int id = canvas.AddCola(Estado.COCHE);
+        
         while (this.tuneles_libres == 0) {
             wait();
         }
@@ -41,18 +38,18 @@ public class Tunel {
         this.tuneles_libres--;
         this.tuneles[i] = Estado.COCHE;
         System.out.println("Coche entra a posicion: " + i);
+        canvas.AddTunel(Estado.COCHE, i, id);
         return i;
     }
 
     public synchronized void SaleCoche(int posicion) {
-        // en que momento va a llegar una posicion menor que 0 ?
-        // por si acaso
         if (posicion < 0 || posicion >= TUNELES) {
             return;
         }
         this.tuneles_libres++;
         this.tuneles[posicion] = Estado.VACIO;
         System.out.println("Coche sale de posicion: " + posicion);
+        canvas.RemoveTunel(posicion);
         notify();
     }
 
@@ -84,11 +81,13 @@ public class Tunel {
     }
 
     public synchronized int EntraFurgo() throws InterruptedException {
+        int id = canvas.AddCola(Estado.FURGO);
+        
         int posicion = generalSolution();
         this.tuneles[posicion] = Estado.FURGO;
         this.tuneles_libres--;
         System.out.println("Furgoneta entra a posicion: " + posicion);
-        this.muestraEstados();
+        canvas.AddTunel(Estado.FURGO, posicion, id);
         return posicion;
     }
 
@@ -96,7 +95,7 @@ public class Tunel {
         this.tuneles[posicion] = Estado.VACIO;
         tuneles_libres++;
         System.out.println("Furgoneta sale de posicion: " + posicion);
-        this.muestraEstados();
+        canvas.RemoveTunel(posicion);
         notify();
     }
 
