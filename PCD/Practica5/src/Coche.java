@@ -6,7 +6,7 @@
 
 public class Coche extends Thread{
     private Tunel tunelsito;
-    private final int MAX = 3000;
+    private final int MAX = 5000;
     private final int MIN = 1000;
 
     public Coche(Tunel _tunel){

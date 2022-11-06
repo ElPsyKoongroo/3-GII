@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package pcd_practica3;
+package pcd_practica4;
 
-import static pcd_practica3.Constants.MAX_TRIES;
+import static pcd_practica4.Constants.MAX_TRIES;
 
 /**
  *
- * @author ElPsy
+ * @author Sergio
  */
 public class ColaLenta implements ICola {
 

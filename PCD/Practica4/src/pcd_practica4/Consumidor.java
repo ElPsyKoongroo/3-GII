@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package pcd_practica3;
+package pcd_practica4;
 
-import static pcd_practica3.Constants.*;
+import static pcd_practica4.Constants.*;
 
 /**
  *
- * @author ElPsy
+ * @author Sergio
  */
 public class Consumidor extends Thread {
 
