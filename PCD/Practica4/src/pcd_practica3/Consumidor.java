@@ -22,7 +22,12 @@ public class Consumidor extends Thread {
         java.util.Random rand = new java.util.Random();
         for (int i = 0; i < USOS; ++i) {
             System.out.println("Desacola n: " + i);
-            Object random = lacola.Desacola();
+			try{
+	            Object random = lacola.Desacola();
+			} catch (Exception e) {
+				System.out.println(e + " en el consumidor: " + Thread.currentThread().getName());
+                return;
+			}
             Thread.sleep(rand.nextInt(MIN_WAIT, MAX_WAIT));
         }
         System.out.println("El consumidor acabo sus " + USOS + " usos. Deteniendo el programa...");

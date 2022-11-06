@@ -56,6 +56,7 @@ public class ColaLenta implements ICola {
         if (colallena()) {
             canvas.avisa("COLA LLENA");
         }
+		notifyAll();
         return;
     }
 
@@ -63,9 +64,15 @@ public class ColaLenta implements ICola {
     public synchronized Object Desacola() throws Exception {
 
         //if(colavacia()) throw new Exception("La cola está vacia");
-        while (colavacia()) {
-            Thread.sleep(10);
+		int intentos = 0;
+        while (colavacia() && intentos < MAX_TRIES) {
+            wait();
+			intentos++;
         }
+
+		if (intentos >= MAX_TRIES) {
+			throw new Exception("Intentos agotados");
+		}
 
         numelementos--;
         int actualHead = head;
