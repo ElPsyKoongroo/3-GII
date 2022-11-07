@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.sql.DatabaseMetaData;
 /**
  *
- * @author ElPsy
+* @author ElPsy
  */
 public class ControladorLogin {
     public Conexion conexion;

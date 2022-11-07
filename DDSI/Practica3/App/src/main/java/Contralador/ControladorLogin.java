@@ -14,7 +14,7 @@ import javax.swing.*;
 
 /**
  *
- * @author ElPsy
+* @author ElPsy
  */
 public class ControladorLogin implements ActionListener {
 

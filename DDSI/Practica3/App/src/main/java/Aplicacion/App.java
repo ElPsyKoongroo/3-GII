@@ -4,7 +4,7 @@ import Contralador.ControladorLogin;
 
 /**
  *
- * @author ElPsy
+* @author ElPsy
  */
 public class App {
     

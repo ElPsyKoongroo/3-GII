@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 
 /**
  *
- * @author ElPsy
+* @author ElPsy
  */
 public class ControladorPrincipal implements ActionListener {
     private Conexion con;

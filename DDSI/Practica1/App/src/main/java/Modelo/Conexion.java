@@ -7,7 +7,7 @@ import java.sql.*;
 
 /**
  *
- * @author ElPsy
+* @author ElPsy
  */
 public class Conexion {
     public Connection conexion;

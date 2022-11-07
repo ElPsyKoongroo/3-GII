@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 /**
  *
- * @author ElPsy
+* @author ElPsy
  */
 public class VistaConsola {
     

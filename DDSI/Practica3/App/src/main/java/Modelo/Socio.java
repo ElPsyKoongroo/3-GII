@@ -6,7 +6,7 @@ package Modelo;
 
 /**
  *
- * @author ElPsy
+* @author ElPsy
  */
 
 public class Socio {
