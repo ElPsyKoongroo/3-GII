@@ -12,7 +12,7 @@ import java.awt.Button;
 
 /**
  *
- * @author ElPsy 
+* @author ElPsy
  */
 
 public class AMC_PRACTICA_1_App {

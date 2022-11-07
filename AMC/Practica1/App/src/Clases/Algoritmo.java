@@ -9,7 +9,7 @@ import java.util.Random;
 
 /**
  *
- * @author ElPsy
+* @author ElPsy
  */
 public class Algoritmo {
 

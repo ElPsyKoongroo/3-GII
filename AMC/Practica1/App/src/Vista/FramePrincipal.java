@@ -6,7 +6,7 @@ package Vista;
 
 /**
  *
- * @author usuario
+* @author ElPsy
  */
 public class FramePrincipal extends javax.swing.JFrame {
 

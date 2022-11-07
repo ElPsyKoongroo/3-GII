@@ -20,7 +20,7 @@ import java.util.*;
 
 /**
  *
- * @author ElPsy
+* @author ElPsy
  */
 public class ControladorPrincipal {
 

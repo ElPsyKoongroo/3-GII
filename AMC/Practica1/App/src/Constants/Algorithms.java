@@ -6,7 +6,7 @@ package Constants;
 
 /**
  *
- * @author ElPsy
+* @author ElPsy
  */
 public class Algorithms {
     public static enum Types {

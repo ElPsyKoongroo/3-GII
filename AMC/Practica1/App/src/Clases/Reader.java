@@ -1,7 +1,7 @@
-/** 
+/**
  *
- * @author ElPsy
- * */
+* @author ElPsy
+ */
 
 package Clases;
 import java.io.*;

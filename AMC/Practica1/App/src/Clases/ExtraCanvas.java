@@ -1,3 +1,7 @@
+/*
+*
+* @author ElPsy
+*/
 package Clases;
 
 import java.awt.Canvas;

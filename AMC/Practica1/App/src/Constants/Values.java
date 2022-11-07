@@ -6,7 +6,7 @@ package Constants;
 
 /**
  *
- * @author ElPsy
+* @author ElPsy
  */
 public class Values {
     public static final int N_DEFAULT_POINTS = 2_000;

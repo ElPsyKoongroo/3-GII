@@ -10,6 +10,7 @@ import java.util.*;
  *
  * @author ElPsy
  */
+
 public class Punto {
     public double x, y;
 
