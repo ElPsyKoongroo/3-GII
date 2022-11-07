@@ -68,6 +68,7 @@
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="b_Repite" min="-2" pref="102" max="-2" attributes="0"/>
                           <Component id="b_ResetMedia" min="-2" max="-2" attributes="0"/>
                           <Component id="rB_Exh" min="-2" max="-2" attributes="0"/>
                           <Component id="rB_DyV" min="-2" max="-2" attributes="0"/>
@@ -106,8 +107,10 @@
               </Group>
               <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
               <Component id="b_ResetMedia" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="112" max="32767" attributes="0"/>
-              <Component id="b_Calcular" min="-2" pref="410" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+              <Component id="b_Repite" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="356" max="32767" attributes="0"/>
+              <Component id="b_Calcular" min="-2" pref="110" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -242,6 +245,15 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Reset Media"/>
         <Property name="actionCommand" type="java.lang.String" value="b_ResetMedia_Comm"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JButton" name="b_Repite">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Repite"/>
+        <Property name="actionCommand" type="java.lang.String" value="b_Repite_comm"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

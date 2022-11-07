@@ -6,19 +6,21 @@ package pcd_practica2;
 
 /**
  *
- * @author ElPsy
+* @author ElPsy
  */
-public class Consumidor implements Runnable {
+public class Productor extends Thread {
     ColaLenta colita;
-    public Consumidor(ColaLenta c){
+    public Productor(ColaLenta c){
         this.colita = c;
     }
     
-    public void Extraer() throws Exception{
+    public void Insertar() throws Exception{
         for(int i = 0; i<10; ++i){
-            Object random = colita.Desacola();
+            double random = Math.random();
+            colita.Acola(random);
+            
             System.out.println(
-                    "Numero extraido: " + random
+                    "Numero añadido: " + random
                     + "\nId: " + Thread.currentThread().getId()
                     + "\n\n"
             );
@@ -27,11 +29,16 @@ public class Consumidor implements Runnable {
     
     @Override
     public void run(){
+        
+        System.out.println(
+            "Id: " + Thread.currentThread().getId()
+        );
+        
+        
         try{
-            this.Extraer();
+            this.Insertar();
         } catch (Exception e) {
             System.err.println("Ocurrio una excepcion: " + e);
         }
     }
 }
-

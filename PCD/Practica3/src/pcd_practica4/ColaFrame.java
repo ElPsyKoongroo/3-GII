@@ -9,7 +9,7 @@ import java.awt.Dimension;
 
 /**
  *
- * @author Adrian
+* @author ElPsy
  */
 public class ColaFrame extends java.awt.Frame {
 

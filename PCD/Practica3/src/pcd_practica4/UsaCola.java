@@ -2,14 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package pcd_practica2;
+package pcd_practica4;
 
 /**
  *
- * @author ElPsy
+* @author ElPsy
  */
 public class UsaCola {
-    public static void main(String[] args) throws Exception {
+    /*public static void main(String[] args) throws Exception {
         ColaLenta colita = new ColaLenta(10);
         Productor p = new Productor(colita);
         
@@ -30,5 +30,5 @@ public class UsaCola {
         t3.join();
         
         
-    }
+    }*/
 }

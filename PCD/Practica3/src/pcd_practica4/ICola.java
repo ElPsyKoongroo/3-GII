@@ -6,7 +6,7 @@ package pcd_practica4;
 
 /**
  *
- * @author ElPsy
+* @author ElPsy
  */
 public interface ICola {
     int GetNum();

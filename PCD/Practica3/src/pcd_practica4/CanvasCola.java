@@ -13,7 +13,7 @@ import java.awt.Image;
 
 /**
  *
- * @author ElPsy
+* @author ElPsy
  */
 public class CanvasCola extends Canvas {
     

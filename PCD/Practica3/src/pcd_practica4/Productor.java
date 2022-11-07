@@ -6,19 +6,20 @@ package pcd_practica4;
 
 /**
  *
- * @author ElPsy
+* @author ElPsy
  */
-public class Consumidor extends Thread {
+public class Productor extends Thread {
     ColaLenta lacola;
-    public Consumidor(ColaLenta c){
+    public Productor(ColaLenta c){
         this.lacola = c;
     }
     
-    public void Consumir() throws Exception{
+    public void Producir() throws Exception{
         java.util.Random rand = new java.util.Random();
         for(int i = 0; i<100; ++i){
-            System.out.println("Desacola");
-            Object random = lacola.Desacola();
+            int random = (int)(rand.nextInt(10));
+            System.out.println("Acola");
+            lacola.Acola(random);
             Thread.sleep(rand.nextInt(100, 1000));
         }
     }
@@ -26,10 +27,9 @@ public class Consumidor extends Thread {
     @Override
     public void run(){
         try{
-            this.Consumir();
+            this.Producir();
         } catch (Exception e) {
             System.err.println("Ocurrio una excepcion: " + e);
         }
     }
 }
-

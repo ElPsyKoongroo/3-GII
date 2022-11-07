@@ -35,8 +35,6 @@ hs_err_pid*
 */.settings/*
 */.vscode/
 */.vscode/*
-/PCD/Practica2/PCD_Practica2/nbproject/private/
-/PCD/Practica2/PCD_Practica2/build/
 /DDSI/Practica2/App/target/
 
 ignore_manager
@@ -44,8 +42,6 @@ log.txt
 /PCD/Practica3/nbproject/private/
 /PCD/Practica3/build/
 /AMC/Practica1/App/dist/
-/PCD/Practica3/PCD_Practica3/nbproject/private/
-/PCD/Practica3/PCD_Practica3/build/
 /PCD/Practica4/build/
 /PCD/Practica5/nbproject/private/
 /PCD/Practica5/dist/

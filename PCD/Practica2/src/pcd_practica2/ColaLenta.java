@@ -7,7 +7,7 @@ import java.util.*;
 
 /**
  *
- * @author ElPsy
+* @author ElPsy
  */
 public class ColaLenta implements ICola {
     private Object[] datos;

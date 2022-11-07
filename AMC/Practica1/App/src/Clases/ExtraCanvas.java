@@ -31,6 +31,13 @@ public class ExtraCanvas extends Canvas {
         paint(g);
     }
 
+    public void paint() {
+        resetCanvas();
+        this.drawPoints();
+        this.drawSolution();
+        this.drawSolutionLines();
+    }
+
     public void addSolucion(ArrayList<Punto> s) {
         this.solucion = s;
     }
@@ -39,10 +46,15 @@ public class ExtraCanvas extends Canvas {
         this.puntos = s;
     }
 
+    public void setPointSize(int ps) {
+        this.point_size = ps;
+    }
+
     public void drawSolution() {
         for (Punto p : this.solucion) {
             this.drawPoint((int) p.x, (int) p.y, Color.RED);
         }
+
     }
 
     public void zoomIn(double q) {
@@ -116,6 +128,9 @@ public class ExtraCanvas extends Canvas {
             this.drawPoint((int) (p.x), (int) (p.y), Color.RED);
         }
 
+    }
+
+    private void drawSolutionLines() {
         for (int i = 0; i < 2; i++) {
             this.drawLine(
                     (int) this.solucion.get(i).x,
@@ -126,7 +141,6 @@ public class ExtraCanvas extends Canvas {
             );
 
         }
-
     }
 
     public void drawPoints() {
@@ -135,7 +149,7 @@ public class ExtraCanvas extends Canvas {
         }
     }
 
-    private void drawLine(int x1, int y1, int x2, int y2, Color c) {
+    public void drawLine(int x1, int y1, int x2, int y2, Color c) {
         Graphics g = this.getGraphics();
         g.setColor(c);
         g.drawLine(

@@ -41,6 +41,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         ZoomOutButton = new javax.swing.JButton();
         l_Time = new javax.swing.JLabel();
         b_ResetMedia = new javax.swing.JButton();
+        b_Repite = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -96,6 +97,9 @@ public class FramePrincipal extends javax.swing.JFrame {
         b_ResetMedia.setText("Reset Media");
         b_ResetMedia.setActionCommand("b_ResetMedia_Comm");
 
+        b_Repite.setText("Repite");
+        b_Repite.setActionCommand("b_Repite_comm");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -126,6 +130,7 @@ public class FramePrincipal extends javax.swing.JFrame {
                         .addComponent(l_Time, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(b_Repite, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(b_ResetMedia)
                             .addComponent(rB_Exh)
                             .addComponent(rB_DyV))
@@ -156,8 +161,10 @@ public class FramePrincipal extends javax.swing.JFrame {
                     .addComponent(b_Buscar))
                 .addGap(44, 44, 44)
                 .addComponent(b_ResetMedia)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
-                .addComponent(b_Calcular, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(b_Repite)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 356, Short.MAX_VALUE)
+                .addComponent(b_Calcular, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -177,6 +184,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     public javax.swing.JButton ZoomOutButton;
     public javax.swing.JButton b_Buscar;
     public javax.swing.JButton b_Calcular;
+    public javax.swing.JButton b_Repite;
     public javax.swing.JButton b_ResetMedia;
     public javax.swing.JLabel l_Time;
     public javax.swing.ButtonGroup rBG_TipoAlgoritmo;

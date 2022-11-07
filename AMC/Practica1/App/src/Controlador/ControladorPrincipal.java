@@ -5,6 +5,7 @@
 package Controlador;
 
 import Clases.Algoritmo;
+import Clases.AlgoritmoVisual;
 import Clases.ExtraCanvas;
 import Clases.Punto;
 import Clases.QuickSort;
@@ -25,7 +26,7 @@ public class ControladorPrincipal {
 
     private int times_calculed;
     private long total_time;
-    
+
     private FramePrincipal frame_principal;
     private ActionListener al_radio_buttons;
     private ActionListener al_all;
@@ -41,11 +42,11 @@ public class ControladorPrincipal {
         this.canvas = new ExtraCanvas(
                 new Dimension(Values.DEFAULT_WIDTH, Values.DEFAULT_HEIGHT)
         );
-        
+
         this.frame_principal.add(this.canvas);
         this.times_calculed = 0;
         this.total_time = 0;
-        
+
         this.al_radio_buttons = (ActionEvent e) -> {
             actionPerformedRadioButtons(e);
         };
@@ -69,8 +70,9 @@ public class ControladorPrincipal {
         frame_principal.b_Calcular.addActionListener(this.al_all);
         frame_principal.ZoomOutButton.addActionListener(this.al_all);
         frame_principal.ZoomInButton.addActionListener(this.al_all);
-        
+
         frame_principal.b_ResetMedia.addActionListener(this.al_all);
+        frame_principal.b_Repite.addActionListener(this.al_all);
     }
 
     private void ConfigureFrame() {
@@ -117,7 +119,7 @@ public class ControladorPrincipal {
         switch (e.getActionCommand()) {
             case "b_Calcular_Comm": {
                 this.canvas.resetCanvas();
-                this.canvas.resetZoom();
+                //this.canvas.resetZoom();
                 if (this.random_points) {
                     this.GeneraPuntos(this.getNPoints());
                 } else {
@@ -126,6 +128,11 @@ public class ControladorPrincipal {
                 }
                 this.OrdenaPuntos();
                 CalcularPuntos();
+                break;
+            }
+            case "b_Repite_comm": {
+                this.canvas.resetCanvas();
+                reCalculaSolucion();
                 break;
             }
             case "ZoomIn": {
@@ -165,7 +172,7 @@ public class ControladorPrincipal {
     private void LoadFile(String path) {
         // TODO! Change fixed file for path
         try {
-            Reader r = new Reader("d657.tsp");
+            Reader r = new Reader("10p.tsp");
             this.input_points = r.getPuntos();
         } catch (Exception e) {
             System.exit(1);
@@ -173,11 +180,40 @@ public class ControladorPrincipal {
     }
 
     private void CalcularPuntos() {
-        ArrayList<Punto> solucion = new ArrayList<Punto>();
-        double min_y = Double.MAX_VALUE;
-        double max_y = Double.MIN_VALUE;
+        this.getPointsRange();
         long start;
         long end;
+        ArrayList<Punto> solucion = new ArrayList<Punto>();
+        this.canvas.addPuntos(this.input_points);
+
+        AlgoritmoVisual a = new AlgoritmoVisual(this.canvas);
+        if (this.algo_method == Algorithms.Types.DyV) {
+            if (this.input_points.size() <= 20) {
+                this.canvas.setPointSize(5);
+            }
+
+            start = System.currentTimeMillis();
+            solucion = Algoritmo.DivideVenceras(this.input_points);
+            end = System.currentTimeMillis();
+
+        } else {
+            start = System.currentTimeMillis();
+            solucion = Algoritmo.SolucionExhaustiva(this.input_points);
+            end = System.currentTimeMillis();
+        }
+        this.times_calculed++;
+        this.total_time += end - start;
+        this.frame_principal.l_Time.setText(
+                ("Time: " + (end - start) + "ms" + " Mean: " + (this.total_time / this.times_calculed) + "ms")
+        );
+
+        this.canvas.addSolucion(solucion);
+        this.canvas.paint();
+    }
+
+    private void getPointsRange() {
+        double min_y = Double.MAX_VALUE;
+        double max_y = Double.MIN_VALUE;
 
         for (Punto punto : this.input_points) {
             if (punto.y < min_y) {
@@ -192,10 +228,22 @@ public class ControladorPrincipal {
         double rango_y = max_y - min_y;
 
         this.canvas.setRange(rango_x, rango_y, this.input_points.get(0).x, min_y);
-        
+    }
+
+    private void reCalculaSolucion() {
+        long start;
+        long end;
+        ArrayList<Punto> solucion = new ArrayList<Punto>();
+        this.canvas.addPuntos(this.input_points);
+
+        AlgoritmoVisual a = new AlgoritmoVisual(this.canvas);
         if (this.algo_method == Algorithms.Types.DyV) {
+            if (this.input_points.size() <= 20) {
+                this.canvas.setPointSize(5);
+            }
+
             start = System.currentTimeMillis();
-            solucion = Algoritmo.DivideVenceras(this.input_points);
+            solucion = a.DivideVenceras(this.input_points);
             end = System.currentTimeMillis();
 
         } else {
@@ -203,18 +251,13 @@ public class ControladorPrincipal {
             solucion = Algoritmo.SolucionExhaustiva(this.input_points);
             end = System.currentTimeMillis();
         }
-
         this.times_calculed++;
         this.total_time += end - start;
         this.frame_principal.l_Time.setText(
-            ("Time: " + (end - start) + "ms" + " Mean: " + (this.total_time / this.times_calculed) + "ms")
+                ("Time: " + (end - start) + "ms" + " Mean: " + (this.total_time / this.times_calculed) + "ms")
         );
 
-        this.canvas.addPuntos(this.input_points);
-        this.canvas.drawPoints();
-
         this.canvas.addSolucion(solucion);
-        this.canvas.drawSolution();
-
+        this.canvas.paint();
     }
 }
