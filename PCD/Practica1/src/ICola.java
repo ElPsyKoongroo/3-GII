@@ -1,3 +1,7 @@
+/**
+*
+* @author ElPsy
+*/
 public interface ICola
 {
     int GetNum();

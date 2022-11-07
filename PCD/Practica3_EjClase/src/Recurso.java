@@ -5,7 +5,7 @@
 
 /**
  *
- * @author ElPsy
+* @author ElPsy
  */
 public class Recurso {
     private int[] contadores = {0,0};

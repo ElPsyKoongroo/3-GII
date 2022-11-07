@@ -8,7 +8,7 @@ import static pcd_practica4.Constants.MAX_TRIES;
 
 /**
  *
- * @author Sergio
+* @author ElPsy
  */
 public class ColaLenta implements ICola {
 

@@ -9,7 +9,7 @@ import static pcd_practica4.Constants.N_PRODUCTORES;
 
 /**
  *
- * @author Sergio
+* @author ElPsy
  */
 public class ColaFrame extends java.awt.Frame {
 

@@ -5,7 +5,7 @@
 
 /**
  *
- * @author ElPsy
+* @author ElPsy
  */
 public class Sumador implements Runnable{
     

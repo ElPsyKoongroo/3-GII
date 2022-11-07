@@ -8,7 +8,7 @@ import static pcd_practica4.Constants.*;
 
 /**
  *
- * @author Sergio
+* @author ElPsy
  */
 public class Productor extends Thread {
 

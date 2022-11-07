@@ -6,7 +6,7 @@ package pcd_practica4;
 
 /**
  *
- * @author Sergio
+* @author ElPsy
  */
 public class Constants {
 

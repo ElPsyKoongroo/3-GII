@@ -8,7 +8,7 @@ import java.awt.Frame;
 
 /**
  *
- * @author ElPsy
+* @author ElPsy
  */
 public class Main {
     private final static int N_VEHICULOS = 30;

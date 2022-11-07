@@ -5,7 +5,7 @@
 
 /**
  *
- * @author ElPsy
+* @author ElPsy
  */
 public class FrameApp extends java.awt.Frame {
 

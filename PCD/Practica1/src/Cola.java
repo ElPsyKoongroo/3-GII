@@ -1,5 +1,5 @@
 /**
- * @author ElPsy
+* @author ElPsy
  */
 import java.util.*;
 

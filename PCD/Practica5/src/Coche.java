@@ -1,7 +1,7 @@
 
 /**
  *
- * @author ElPsy
+* @author ElPsy
  */
 
 public class Coche extends Thread{
