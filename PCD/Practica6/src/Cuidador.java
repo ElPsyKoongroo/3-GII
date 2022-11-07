@@ -24,7 +24,7 @@ public class Cuidador extends Thread
             boolean adquirido = false;
             try
             {
-                cuidador.wait();
+                cuidador.acquire();
                 adquirido = true;
                 int time = ThreadLocalRandom.current().nextInt() % (MAX_RANDOM_TIME - MIN_RANDOM_TIME) + MIN_RANDOM_TIME;
                 Thread.sleep(time);
