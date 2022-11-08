@@ -109,16 +109,18 @@ public class AlgoritmoVisual {
                     calculating.add(puntos.get(j));
                     calculating.add(puntos.get(k));
                     this.canvas.addSolucion(calculating);
-                    this.canvas.Rust();
-                    
+                    this.canvas.addPuntos(puntos);
+                    this.canvas.paint_by_steps((int)puntos.get(start).x, (int)puntos.get(end).x);
+
+                
+                    //this.canvas.drawLine(this.canvas.getGraphics() ,(int) puntos.get(start).x, 1000, (int) puntos.get(start).x, -1000, Color.GREEN);
+                    //this.canvas.drawLine(this.canvas.getGraphics(), (int) (int) puntos.get(end).x, 1000, (int) (int) puntos.get(end).x, -1000, Color.GREEN);
+
                     try {
                         Thread.sleep(100);
                     } catch(Exception e){
                         System.out.println("No pude dormir bien");
                     }
-                    //this.canvas.drawLine((int) puntos.get(start).x, 1000, (int) puntos.get(start).x, -1000, Color.GREEN);
-                    //this.canvas.drawLine((int) (int) puntos.get(end).x, 1000, (int) (int) puntos.get(end).x, -1000, Color.GREEN);
-
                     
 
                     double distancia = puntos.get(i).Distancia3(puntos.get(j), puntos.get(k));
