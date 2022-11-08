@@ -2,13 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package pcd_practica4;
-
-import static pcd_practica4.Constants.*;
 
 /**
  *
-* @author ElPsy
+ * @author ElPsy
  */
 public class Consumidor extends Thread {
 
@@ -20,17 +17,17 @@ public class Consumidor extends Thread {
 
     public void Consumir() throws Exception {
         java.util.Random rand = new java.util.Random();
-        for (int i = 0; i < USOS; ++i) {
+        for (int i = 0; i < Constants.USOS; ++i) {
             System.out.println("Desacola n: " + i);
-			try{
-	            Object random = lacola.Desacola();
-			} catch (Exception e) {
-				System.out.println(e + " en el consumidor: " + Thread.currentThread().getName());
+            try {
+                Object random = lacola.Desacola();
+            } catch (Exception e) {
+                System.out.println(e + " en el consumidor: " + Thread.currentThread().getName());
                 return;
-			}
-            Thread.sleep(rand.nextInt(MIN_WAIT, MAX_WAIT));
+            }
+            Thread.sleep(rand.nextInt(Constants.MIN_WAIT, Constants.MAX_WAIT));
         }
-        System.out.println("El consumidor acabo sus " + USOS + " usos. Deteniendo el programa...");
+        System.out.println("El consumidor acabo sus " + Constants.USOS + " Constants.USOS. Deteniendo el programa...");
         System.exit(1);
     }
 

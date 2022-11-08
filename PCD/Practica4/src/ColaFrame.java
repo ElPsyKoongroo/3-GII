@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/AWTForms/Frame.java to edit this template
  */
-package pcd_practica4;
+
 
 import java.awt.Color;
-import static pcd_practica4.Constants.N_PRODUCTORES;
+
 
 /**
  *
@@ -62,13 +62,13 @@ public class ColaFrame extends java.awt.Frame {
 
         ColaLenta cola = new ColaLenta(sizeCola, canvas);
 
-        Thread[] productores = new Thread[N_PRODUCTORES];
+        Thread[] productores = new Thread[Constants.N_PRODUCTORES];
         Thread consumidor = new Consumidor(cola);
 
-        for (int i = 0; i < N_PRODUCTORES; ++i) {
+        for (int i = 0; i < Constants.N_PRODUCTORES; ++i) {
             productores[i] = new Productor(cola);
         }
-        for (int i = 0; i < N_PRODUCTORES; ++i) {
+        for (int i = 0; i < Constants.N_PRODUCTORES; ++i) {
             productores[i].start();
         }
 

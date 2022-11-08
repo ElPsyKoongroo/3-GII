@@ -2,19 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package pcd_practica4;
 
-import static pcd_practica4.Constants.*;
 
 /**
  *
-* @author ElPsy
+ * @author ElPsy
  */
 public class Productor extends Thread {
 
     private ColaLenta lacola;
-    private int tries = 0;
-    private final int max_tries = 3;
 
     public Productor(ColaLenta c) {
         this.lacola = c;
@@ -22,7 +18,7 @@ public class Productor extends Thread {
 
     public void Producir() throws Exception {
         java.util.Random rand = new java.util.Random();
-        for (int i = 0; i < USOS; ++i) {
+        for (int i = 0; i < Constants.USOS; ++i) {
             int random = (int) (rand.nextInt(10));
             System.out.println("Acola");
             try {
@@ -31,7 +27,7 @@ public class Productor extends Thread {
                 System.out.println(e + " en el productor: " + Thread.currentThread().getName());
                 return;
             }
-            Thread.sleep(rand.nextInt(MIN_WAIT, MAX_WAIT));
+            Thread.sleep(rand.nextInt(Constants.MIN_WAIT, Constants.MAX_WAIT));
         }
     }
 

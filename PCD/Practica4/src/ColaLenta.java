@@ -2,9 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package pcd_practica4;
-
-import static pcd_practica4.Constants.MAX_TRIES;
 
 /**
  *
@@ -38,12 +35,12 @@ public class ColaLenta implements ICola {
     public synchronized void Acola(Object elemento) throws Exception {
 
         int tries = 0;
-        while (colallena() && tries < MAX_TRIES) {
+        while (colallena() && tries < Constants.MAX_TRIES) {
             wait();
             tries++;
         }
 
-        if (tries >= MAX_TRIES) {
+        if (tries >= Constants.MAX_TRIES) {
             throw new Exception("Intentos agotados");
         }
         datos[tail] = elemento;
@@ -65,12 +62,12 @@ public class ColaLenta implements ICola {
 
         //if(colavacia()) throw new Exception("La cola está vacia");
 		int intentos = 0;
-        while (colavacia() && intentos < MAX_TRIES) {
+        while (colavacia() && intentos < Constants.MAX_TRIES) {
             wait();
 			intentos++;
         }
 
-		if (intentos >= MAX_TRIES) {
+		if (intentos >= Constants.MAX_TRIES) {
 			throw new Exception("Intentos agotados");
 		}
 
