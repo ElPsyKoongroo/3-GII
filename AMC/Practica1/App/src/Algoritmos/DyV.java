@@ -1,88 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package Clases;
+package Algoritmos;
 
-import java.awt.Color;
 import java.util.ArrayList;
-import java.util.Random;
 
-/**
- *
-* @author ElPsy
- */
-public class AlgoritmoVisual {
+import Clases.Punto;
 
+public class DyV {
     private static final int START = 0;
     private static final int END = 1;
     private static ArrayList<Punto> mejoresPuntos;
     private static double mejorDistancia;
-    private ExtraCanvas canvas;
 
-    public AlgoritmoVisual(ExtraCanvas _canvas) {
-        this.canvas = _canvas;
-    }
-
-    /**
-     *
-     * @param numPuntos el numero de puntos aleatorios para generar
-     * @param maximo distancia maxima
-     * @param minimo distancia minima
-     * @return Puntos i,j,k que forman solucion
-     */
-    public static ArrayList<Punto> GeneraPuntos(int numPuntos, double maximo, double minimo) {
-        Random rand = new Random();
-
-        ArrayList<Punto> puntos = new ArrayList<Punto>();
-
-        for (int i = 0; i < numPuntos; i++) {
-            double x = rand.nextDouble() * (maximo - minimo) + minimo;
-            double y = rand.nextDouble() * (maximo - minimo) + minimo;
-
-            puntos.add(new Punto(x, y));
-        }
-
-        return puntos;
-    }
-
-    /**
-     *
-     * @param puntos
-     * @return Puntos i,j,k que forman la mejor solucion
-     */
-    public static ArrayList<Punto> SolucionExhaustiva(ArrayList<Punto> puntos) {
-        double distanciaMinima = Double.MAX_VALUE;
-        ArrayList<Punto> puntosMinimos = new ArrayList<>();
-
-        for (int i = 0; i < puntos.size(); i++) {
-            for (int j = 0; j < puntos.size(); j++) {
-                if (j == i) {
-                    continue;
-                }
-
-                for (int k = 0; k < puntos.size(); k++) {
-                    if (i == k || j == k) {
-                        continue;
-                    }
-
-                    double distancia = puntos.get(i).Distancia3(puntos.get(j), puntos.get(k));
-
-                    if (distancia < distanciaMinima) {
-                        distanciaMinima = distancia;
-
-                        puntosMinimos.clear();
-                        puntosMinimos.add(puntos.get(i));
-                        puntosMinimos.add(puntos.get(j));
-                        puntosMinimos.add(puntos.get(k));
-                    }
-                }
-            }
-        }
-        return puntosMinimos;
-    }
-
-    private double CalculaFixed(ArrayList<Punto> puntos, int start, int end) {
+    private static double CalculaFixed(ArrayList<Punto> puntos, int start, int end) {
         double distanciaMinima = Double.MAX_VALUE;
         //System.out.println((end - start));
         if (end - start + 1 < 3) {
@@ -98,21 +26,6 @@ public class AlgoritmoVisual {
                 for (int k = i + 1; k < end; k++) {
                     if (j == k) {
                         continue;
-                    }
-
-                    ArrayList<Punto> calculating = new ArrayList<>();
-
-                    calculating.add(puntos.get(i));
-                    calculating.add(puntos.get(j));
-                    calculating.add(puntos.get(k));
-                    this.canvas.addSolucion(calculating);
-                    this.canvas.paint();
-                    this.canvas.drawLine((int) puntos.get(start).x, 1000, (int) puntos.get(start).x, -1000, Color.GREEN);
-                    this.canvas.drawLine((int) (int) puntos.get(end).x, 1000, (int) (int) puntos.get(end).x, -1000, Color.GREEN);
-
-                    try {
-                        Thread.sleep(100);
-                    } catch (InterruptedException e) {
                     }
 
                     double distancia = puntos.get(i).Distancia3(puntos.get(j), puntos.get(k));
@@ -133,7 +46,7 @@ public class AlgoritmoVisual {
         return distanciaMinima;
     }
 
-    private int[] GetPointsBetween(ArrayList<Punto> puntos, Double start, Double end) {
+    private static int[] GetPointsBetween(ArrayList<Punto> puntos, Double start, Double end) {
         int start_index = -1;
         while (puntos.get(++start_index).x < start) {
         };
@@ -151,7 +64,7 @@ public class AlgoritmoVisual {
         return indices;
     }
 
-    private boolean PuntosRepetidos(ArrayList<Punto> puntos, int start, int end) {
+    private static boolean PuntosRepetidos(ArrayList<Punto> puntos, int start, int end) {
         for (int i = start; i < end - 1; i++) {
             if (puntos.get(i).x != puntos.get(i + 1).x) {
                 return false;
@@ -167,15 +80,14 @@ public class AlgoritmoVisual {
      * @param puntos
      * @return
      */
-    public ArrayList<Punto> DivideVenceras(ArrayList<Punto> puntos) {
+    public static ArrayList<Punto> Calcula(ArrayList<Punto> puntos) {
         mejorDistancia = Double.MAX_VALUE;
         mejoresPuntos = new ArrayList<>();
-        this.canvas.addPuntos(puntos);
         DivideVenceras(puntos, puntos.get(0).x, puntos.get(puntos.size() - 1).x, 0);
         return mejoresPuntos;
     }
 
-    private double DivideVenceras(ArrayList<Punto> puntos, double start, double end, int it) {
+    private static double DivideVenceras(ArrayList<Punto> puntos, double start, double end, int it) {
 
         double mitad = (start + end) / 2;
         int indices[] = GetPointsBetween(puntos, start, end);
@@ -188,8 +100,8 @@ public class AlgoritmoVisual {
             return -1;
         }
 
-        if (indices[END] - indices[START] + 1 <= 6) {
-            return CalculaFixed(puntos, indices[START], indices[END]);
+        if (indices[END] - indices[START] + 1 < 6) {
+            CalculaFixed(puntos, indices[START], indices[END]);
         }
 
         double izq = DivideVenceras(puntos, start, mitad, it + 1);

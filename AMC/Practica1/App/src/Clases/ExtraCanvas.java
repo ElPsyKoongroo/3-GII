@@ -8,7 +8,10 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.util.ArrayList;
+
+import Constants.Values;
 
 public class ExtraCanvas extends Canvas {
 
@@ -28,6 +31,8 @@ public class ExtraCanvas extends Canvas {
     public ExtraCanvas(Dimension dimension) {
         super();
         this.setSize(dimension);
+        this.solucion = new ArrayList<>();
+        this.puntos = new ArrayList<>();
     }
 
     @Override
@@ -35,11 +40,27 @@ public class ExtraCanvas extends Canvas {
         paint(g);
     }
 
-    public void paint() {
-        resetCanvas();
-        this.drawPoints();
-        this.drawSolution();
-        this.drawSolutionLines();
+    @Override
+    public void paint(Graphics g) {
+        Image img = createImage(Values.DEFAULT_WIDTH, Values.DEFAULT_HEIGHT);
+        Graphics og = img.getGraphics();
+        System.out.println("Me voy a pintar");
+        resetCanvas(og);
+        if (this.puntos.size() != 0) {
+            System.out.println("Pintando");
+            if (this.mult == 0) {
+                this.drawPoints(og);
+                this.drawSolution(og);
+                this.drawSolutionLines(og);
+            } else {
+                this.zoom(og);
+            }
+        }
+        g.drawImage(img, 0, 0, null);
+    }
+
+    public void Rust(){
+        this.paint(this.getGraphics());
     }
 
     public void addSolucion(ArrayList<Punto> s) {
@@ -54,9 +75,9 @@ public class ExtraCanvas extends Canvas {
         this.point_size = ps;
     }
 
-    public void drawSolution() {
+    public void drawSolution(Graphics g) {
         for (Punto p : this.solucion) {
-            this.drawPoint((int) p.x, (int) p.y, Color.RED);
+            this.drawPoint(g, (int) p.x, (int) p.y, Color.RED);
         }
 
     }
@@ -66,7 +87,7 @@ public class ExtraCanvas extends Canvas {
         this.scale_x *= 1.15;
         this.scale_y *= 1.15;
 
-        zoom();
+        repaint();
     }
 
     public void zoomOut(double q) {
@@ -74,7 +95,7 @@ public class ExtraCanvas extends Canvas {
         this.scale_x *= 0.85;
         this.scale_y *= 0.85;
 
-        zoom();
+        repaint();
     }
 
     public void resetZoom() {
@@ -90,83 +111,60 @@ public class ExtraCanvas extends Canvas {
         this.offset_y = min_y;
     }
 
-    private void fixSize() {
-        if (this.mult >= 10) {
-            this.size_mult = 5;
-        } else if (this.mult < 5) {
-            this.size_mult = 2;
-        } else {
-            this.size_mult = 4;
-        }
-    }
-
-    public void resetCanvas() {
-        Graphics g = this.getGraphics();
+    public void resetCanvas(Graphics g) {
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, this.getHeight(), this.getHeight());
     }
 
-    private void zoom() {
-        resetCanvas();
-
-        System.out.println("Actual zoom = " + mult);
-        if (this.mult == 0) {
-            this.zoom_x = 0;
-            this.zoom_y = 0;
-            drawPoints();
-            drawSolution();
-            return;
-        }
-
-        Graphics g = this.getGraphics();
+    private void zoom(Graphics g) {
 
         this.zoom_x = (int) (this.getWidth() / 2 - (int) ((solucion.get(0).x - this.offset_x) * this.scale_x));
         this.zoom_y = (int) (this.getHeight() / 2 - (int) ((solucion.get(0).y - this.offset_y) * this.scale_y));
 
         for (Punto p : this.puntos) {
-            this.drawPoint((int) (p.x), (int) (p.y), Color.BLACK);
+            this.drawPoint(g, (int) (p.x), (int) (p.y), Color.BLACK);
         }
 
-        //Puntos de la solucion 
+        // Puntos de la solucion
         for (Punto p : this.solucion) {
-            this.drawPoint((int) (p.x), (int) (p.y), Color.RED);
+            this.drawPoint(g, (int) (p.x), (int) (p.y), Color.RED);
         }
 
+        this.drawSolutionLines(g);
     }
 
-    private void drawSolutionLines() {
+    private void drawSolutionLines(Graphics g) {
         for (int i = 0; i < 2; i++) {
             this.drawLine(
+                    g,
                     (int) this.solucion.get(i).x,
                     (int) this.solucion.get(i).y,
                     (int) this.solucion.get(i + 1).x,
                     (int) this.solucion.get(i + 1).y,
-                    Color.RED
-            );
+                    Color.RED);
 
         }
     }
 
-    public void drawPoints() {
+    public void drawPoints(Graphics g) {
         for (Punto p : this.puntos) {
-            this.drawPoint((int) p.x, (int) p.y, Color.BLACK);
+            this.drawPoint(g, (int) p.x, (int) p.y, Color.BLACK);
         }
     }
 
-    public void drawLine(int x1, int y1, int x2, int y2, Color c) {
-        Graphics g = this.getGraphics();
+    public void drawLine(Graphics g, int x1, int y1, int x2, int y2, Color c) {
         g.setColor(c);
         g.drawLine(
                 (int) ((x1 - offset_x) * this.scale_x + this.zoom_x),
                 (int) ((y1 - offset_y) * this.scale_y + this.zoom_y),
                 (int) ((x2 - offset_x) * this.scale_x + this.zoom_x),
-                (int) ((y2 - offset_y) * this.scale_y + this.zoom_y)
-        );
+                (int) ((y2 - offset_y) * this.scale_y + this.zoom_y));
     }
 
-    private void drawPoint(int x, int y, Color c) {
-        Graphics g = this.getGraphics();
+    private void drawPoint(Graphics g, int x, int y, Color c) {
         g.setColor(c);
-        g.fillOval((int) ((x - offset_x) * this.scale_x + this.zoom_x), (int) ((y - offset_y) * this.scale_y + this.zoom_y), point_size * this.size_mult, point_size * this.size_mult);
+        g.fillOval((int) ((x - offset_x) * this.scale_x + this.zoom_x),
+                (int) ((y - offset_y) * this.scale_y + this.zoom_y), point_size * this.size_mult,
+                point_size * this.size_mult);
     }
 }

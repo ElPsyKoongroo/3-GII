@@ -2,7 +2,7 @@
   *
 * @author ElPsy
   */
-package Clases;
+package Algoritmos;
 
 import java.util.ArrayList;
 import Clases.Punto;

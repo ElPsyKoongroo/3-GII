@@ -4,11 +4,9 @@
  */
 package Controlador;
 
-import Clases.Algoritmo;
-import Clases.AlgoritmoVisual;
+import Algoritmos.*;
 import Clases.ExtraCanvas;
 import Clases.Punto;
-import Clases.QuickSort;
 import Clases.Reader;
 import Constants.Algorithms;
 import Constants.Values;
@@ -118,8 +116,6 @@ public class ControladorPrincipal {
     public void actionPerformedAll(ActionEvent e) {
         switch (e.getActionCommand()) {
             case "b_Calcular_Comm": {
-                this.canvas.resetCanvas();
-                //this.canvas.resetZoom();
                 if (this.random_points) {
                     this.GeneraPuntos(this.getNPoints());
                 } else {
@@ -131,7 +127,7 @@ public class ControladorPrincipal {
                 break;
             }
             case "b_Repite_comm": {
-                this.canvas.resetCanvas();
+                //this.canvas.resetCanvas();
                 reCalculaSolucion();
                 break;
             }
@@ -162,7 +158,7 @@ public class ControladorPrincipal {
     }
 
     private void GeneraPuntos(int n_points) {
-        this.input_points = Algoritmo.GeneraPuntos(n_points, Values.MAX_RANGE, Values.MIN_RANGE);
+        this.input_points = Generador.GeneraPuntos(n_points, Values.MAX_RANGE, Values.MIN_RANGE);
     }
 
     private void OrdenaPuntos() {
@@ -184,7 +180,7 @@ public class ControladorPrincipal {
         long start;
         long end;
         ArrayList<Punto> solucion = new ArrayList<Punto>();
-        this.canvas.addPuntos(this.input_points);
+        
 
         AlgoritmoVisual a = new AlgoritmoVisual(this.canvas);
         if (this.algo_method == Algorithms.Types.DyV) {
@@ -193,12 +189,12 @@ public class ControladorPrincipal {
             }
 
             start = System.currentTimeMillis();
-            solucion = Algoritmo.DivideVenceras(this.input_points);
+            solucion = DyV.Calcula(this.input_points);
             end = System.currentTimeMillis();
 
         } else {
             start = System.currentTimeMillis();
-            solucion = Algoritmo.SolucionExhaustiva(this.input_points);
+            solucion = Exhaustivo.Calcula(this.input_points);
             end = System.currentTimeMillis();
         }
         this.times_calculed++;
@@ -207,8 +203,9 @@ public class ControladorPrincipal {
                 ("Time: " + (end - start) + "ms" + " Mean: " + (this.total_time / this.times_calculed) + "ms")
         );
 
+        this.canvas.addPuntos(this.input_points);
         this.canvas.addSolucion(solucion);
-        this.canvas.paint();
+        this.canvas.repaint();
     }
 
     private void getPointsRange() {
@@ -234,7 +231,6 @@ public class ControladorPrincipal {
         long start;
         long end;
         ArrayList<Punto> solucion = new ArrayList<Punto>();
-        this.canvas.addPuntos(this.input_points);
 
         AlgoritmoVisual a = new AlgoritmoVisual(this.canvas);
         if (this.algo_method == Algorithms.Types.DyV) {
@@ -248,7 +244,7 @@ public class ControladorPrincipal {
 
         } else {
             start = System.currentTimeMillis();
-            solucion = Algoritmo.SolucionExhaustiva(this.input_points);
+            solucion = Exhaustivo.Calcula(this.input_points);
             end = System.currentTimeMillis();
         }
         this.times_calculed++;
@@ -257,7 +253,8 @@ public class ControladorPrincipal {
                 ("Time: " + (end - start) + "ms" + " Mean: " + (this.total_time / this.times_calculed) + "ms")
         );
 
+        this.canvas.addPuntos(this.input_points);
         this.canvas.addSolucion(solucion);
-        this.canvas.paint();
+        this.canvas.repaint();
     }
 }
