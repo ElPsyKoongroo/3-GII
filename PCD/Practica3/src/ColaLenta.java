@@ -2,14 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package pcd_practica4;
-import java.util.*;
+ 
 
 /**
  *
-* @author ElPsy
+ * @author ElPsy
  */
 public class ColaLenta implements ICola {
+
     private Object[] datos;
     private int head;
     private int tail;
@@ -28,22 +28,28 @@ public class ColaLenta implements ICola {
     }
 
     @Override
-    public int GetNum() { return numelementos; }
+    public int GetNum() {
+        return numelementos;
+    }
 
     @Override
     public synchronized void Acola(Object elemento) throws Exception {
 
         //if(colallena()) throw new Exception("La cola está llena");
-        if(colallena()) return;
+        if (colallena()) {
+            return;
+        }
         Thread.sleep(100);
         datos[tail] = elemento;
         Thread.sleep(100);
-        tail = (tail+1)%capacidad;
+        tail = (tail + 1) % capacidad;
         Thread.sleep(100);
         numelementos++;
         Thread.sleep(100);
         canvas.representa(datos, head, tail, numelementos);
-        if(colallena()) canvas.avisa("COLA LLENA");
+        if (colallena()) {
+            canvas.avisa("COLA LLENA");
+        }
         return;
     }
 
@@ -51,16 +57,20 @@ public class ColaLenta implements ICola {
     public synchronized Object Desacola() throws Exception {
 
         //if(colavacia()) throw new Exception("La cola está vacia");
-        if(colavacia()) return new Object();
+        if (colavacia()) {
+            return new Object();
+        }
         Thread.sleep(100);
         numelementos--;
         Thread.sleep(100);
         int actualHead = head;
         Thread.sleep(100);
-        head = (head+1)%capacidad;
+        head = (head + 1) % capacidad;
         Thread.sleep(100);
         canvas.representa(datos, head, tail, numelementos);
-        if(colavacia()) canvas.avisa("COLA VACIA");
+        if (colavacia()) {
+            canvas.avisa("COLA VACIA");
+        }
         return datos[actualHead];
 
     }
@@ -68,12 +78,18 @@ public class ColaLenta implements ICola {
     @Override
     public Object Primero() throws Exception {
 
-        if (colavacia()) throw new Exception("La cola está vacia");
+        if (colavacia()) {
+            throw new Exception("La cola está vacia");
+        }
 
         return datos[head];
     }
 
-    private boolean colavacia() { return numelementos == 0; }
+    private boolean colavacia() {
+        return numelementos == 0;
+    }
 
-    private boolean colallena() { return numelementos == capacidad; }
+    private boolean colallena() {
+        return numelementos == capacidad;
+    }
 }

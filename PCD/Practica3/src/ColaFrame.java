@@ -2,14 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/AWTForms/Frame.java to edit this template
  */
-package pcd_practica4;
+ 
 
 import java.awt.Color;
-import java.awt.Dimension;
 
 /**
  *
-* @author ElPsy
+ * @author ElPsy
  */
 public class ColaFrame extends java.awt.Frame {
 
@@ -47,32 +46,31 @@ public class ColaFrame extends java.awt.Frame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) throws InterruptedException, Exception{
+    public static void main(String args[]) throws InterruptedException, Exception {
         int sizeCola = 10;
-        
+
         ColaFrame frame = new ColaFrame();
-        
+
         frame.setSize(800, 600);
         frame.setBackground(Color.BLACK);
-        
+
         CanvasCola canvas = new CanvasCola(frame.getSize(), sizeCola);
         frame.add(canvas);
-        
+
         frame.setVisible(true);
-        
+
         ColaLenta cola = new ColaLenta(sizeCola, canvas);
-        
+
         Thread consumidor = new Consumidor(cola);
         Thread productor = new Productor(cola);
-        
+
         productor.start();
         Thread.sleep(5000);
         consumidor.start();
-        
+
         productor.join();
         consumidor.join();
     }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables

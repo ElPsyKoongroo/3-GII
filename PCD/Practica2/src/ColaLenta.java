@@ -2,14 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package pcd_practica2;
-import java.util.*;
 
 /**
  *
-* @author ElPsy
+ * @author ElPsy
  */
 public class ColaLenta implements ICola {
+
     private Object[] datos;
     private int head;
     private int tail;
@@ -26,12 +25,16 @@ public class ColaLenta implements ICola {
     }
 
     @Override
-    public int GetNum() { return numelementos; }
+    public int GetNum() {
+        return numelementos;
+    }
 
     @Override
     public void Acola(Object elemento) throws Exception {
 
-        if(colallena()) throw new Exception("La cola está llena");
+        if (colallena()) {
+            throw new Exception("La cola está llena");
+        }
         Thread.sleep(100);
         datos[(tail++) % capacidad] = elemento;
         Thread.sleep(100);
@@ -41,10 +44,12 @@ public class ColaLenta implements ICola {
     @Override
     public Object Desacola() throws Exception {
 
-        if(colavacia()) throw new Exception("La cola está vacia");
+        if (colavacia()) {
+            throw new Exception("La cola está vacia");
+        }
         Thread.sleep(100);
         numelementos--;
-        
+
         Thread.sleep(100);
         return datos[(head++) % capacidad];
 
@@ -53,12 +58,18 @@ public class ColaLenta implements ICola {
     @Override
     public Object Primero() throws Exception {
 
-        if (colavacia()) throw new Exception("La cola está vacia");
+        if (colavacia()) {
+            throw new Exception("La cola está vacia");
+        }
 
         return datos[head];
     }
 
-    private boolean colavacia() { return numelementos == 0; }
+    private boolean colavacia() {
+        return numelementos == 0;
+    }
 
-    private boolean colallena() { return numelementos == capacidad; }
+    private boolean colallena() {
+        return numelementos == capacidad;
+    }
 }
