@@ -3,7 +3,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 /**
  *
- * @author ElPsy
+* @author ElPsy
  */
 
 public class ViajeroMaleta extends Thread {
