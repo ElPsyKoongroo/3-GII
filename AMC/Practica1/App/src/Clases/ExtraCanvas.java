@@ -59,8 +59,17 @@ public class ExtraCanvas extends Canvas {
         g.drawImage(img, 0, 0, null);
     }
 
-    public void Rust(){
-        this.paint(this.getGraphics());
+    public void paint_by_steps(int left_limit, int right_limit){
+        Image img = createImage(Values.DEFAULT_WIDTH, Values.DEFAULT_HEIGHT);
+        Graphics og = img.getGraphics();
+        resetCanvas(og);
+        this.drawPoints(og);
+        this.drawSolution(og);
+        this.drawSolutionLines(og);
+        this.drawLine(og ,(int) left_limit, 1000, (int) left_limit, 0, Color.GREEN);
+        this.drawLine(og, (int) (int) right_limit, 1000, (int) (int) right_limit, 0, Color.GREEN);
+        this.getGraphics().drawImage(img, 0, 0, null);
+
     }
 
     public void addSolucion(ArrayList<Punto> s) {
