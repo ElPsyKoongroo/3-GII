@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package Main;
+import java.util.ArrayList;
+
+import Algoritmos.Generador;
 import Controlador.ControladorPrincipal;
 
 /**
@@ -16,4 +19,8 @@ public class AMC_PRACTICA_1_App {
         ControladorPrincipal f = new ControladorPrincipal();
     }
     
+    public void prueba(){
+        Generador a = new Generador();
+        ArrayList<Punto> = a.GeneraPuntos(500, 800, 0);
+    }
 }

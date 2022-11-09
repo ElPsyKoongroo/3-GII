@@ -7,6 +7,7 @@ package Algoritmos;
 import java.util.ArrayList;
 import java.util.Random;
 
+import Clases.Arista;
 import Clases.Punto;
 
 /**
@@ -35,4 +36,16 @@ public class Generador {
 
         return puntos;
     }  
+
+    public static ArrayList<Arista> GeneraAristas(ArrayList<Punto> puntos){
+		
+		ArrayList<Arista> aristas = new ArrayList<>();
+
+        for(int i = 0; i<puntos.size(); i++){
+            for(int j = i+1; j<puntos.size(); j++){
+				aristas.add(new Arista(puntos.get(i), puntos.get(j)));
+            }
+        }
+        return aristas; 
+    }
 }
