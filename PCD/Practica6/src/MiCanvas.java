@@ -221,7 +221,6 @@ public class MiCanvas extends Canvas {
         g.drawString("Rojo -> PasajeroMaleta", 500, 600);
         g.drawString("Magenta -> PasajeroMano", 500, 625);
         g.drawString("Amarillo -> Cuidador", 500, 650);
-        g.drawString("Naranja (Que es mas mostaza que naranja) -> Perro", 300, 675);
-        g.drawString("Verde -> Maquina Rayos X", 500, 700);
+        g.drawString("Verde -> Maquina Rayos X", 500, 675);
     }
 }
