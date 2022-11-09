@@ -12,9 +12,11 @@ public class Cuidador extends Thread
     private final int MIN_RANDOM_TIME = 1000;
     private Semaphore perro;
     private Semaphore cuidador;
-    public Cuidador(Semaphore _cuidador, Semaphore _perro) {
+    private MiCanvas canvas;
+    public Cuidador(Semaphore _cuidador, Semaphore _perro, MiCanvas _canvas) {
         perro = _perro;
         cuidador = _cuidador;
+        canvas = _canvas;
     }
 
     @Override
@@ -22,22 +24,24 @@ public class Cuidador extends Thread
     {
         while (true) {
             boolean adquirido = false;
-            try
-            {
+            try{
                 cuidador.acquire();
+                this.canvas.cuidadorEntra();
+                System.out.println("Cuidador le da regalo a chikene");
                 adquirido = true;
-                int time = ThreadLocalRandom.current().nextInt() % (MAX_RANDOM_TIME - MIN_RANDOM_TIME) + MIN_RANDOM_TIME;
+                int time = ThreadLocalRandom.current().nextInt(MIN_RANDOM_TIME, MAX_RANDOM_TIME);
                 Thread.sleep(time);
             }
             catch(Exception e)
             {
-                System.out.println("Error en el cuidador");
+                System.out.println("Error en el cuidador " + e);
             }
             finally
             {
+                this.canvas.cuidadorSale();
                 perro.release();
-
-                if(adquirido) cuidador.release();
+                System.out.println("Chikene contento");
+                //if(adquirido) perro.release();
             }
         }
     }
