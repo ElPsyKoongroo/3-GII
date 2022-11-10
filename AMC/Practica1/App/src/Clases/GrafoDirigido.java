@@ -56,6 +56,15 @@ public class GrafoDirigido {
 		}
 		return conjunto;
 	}
+        
+        public ArrayList<Integer> adyacentesIndices(int index){
+		ArrayList<Integer> ad = new ArrayList<>();
+		 
+		for(Punto p: this.adyacencia.get(index)){
+			ad.add(this.getIndexOf(p));
+		}
+		return ad;
+	}
 
 	public Set<Arista> salientes(int index){
 		Set<Arista> salientes = new HashSet<>();	

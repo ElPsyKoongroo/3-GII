@@ -163,11 +163,12 @@ public class ExtraCanvas extends Canvas {
 
     public void drawLine(Graphics g, int x1, int y1, int x2, int y2, Color c) {
         g.setColor(c);
+        int pointOffset = (int)(point_size * this.size_mult / 2);
         g.drawLine(
-                (int) ((x1 - offset_x) * this.scale_x + this.zoom_x),
-                (int) ((y1 - offset_y) * this.scale_y + this.zoom_y),
-                (int) ((x2 - offset_x) * this.scale_x + this.zoom_x),
-                (int) ((y2 - offset_y) * this.scale_y + this.zoom_y));
+                (int) ((x1 - offset_x) * this.scale_x + this.zoom_x) + pointOffset,
+                (int) ((y1 - offset_y) * this.scale_y + this.zoom_y) + pointOffset,
+                (int) ((x2 - offset_x) * this.scale_x + this.zoom_x) + pointOffset,
+                (int) ((y2 - offset_y) * this.scale_y + this.zoom_y) + pointOffset);
     }
 
     private void drawPoint(Graphics g, int x, int y, Color c) {
