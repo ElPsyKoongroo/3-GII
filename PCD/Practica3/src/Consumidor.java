@@ -6,7 +6,7 @@
 
 /**
  *
- * @author ElPsy
+* @author ElPsy
  */
 public class Consumidor extends Thread {
 

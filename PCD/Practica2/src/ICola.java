@@ -5,7 +5,7 @@
 
 /**
  *
- * @author ElPsy
+* @author ElPsy
  */
 public interface ICola {
 

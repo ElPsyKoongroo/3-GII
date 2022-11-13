@@ -30,6 +30,21 @@ public class MonitorDAO {
     public MonitorDAO(Conexion _con){
         this.con = _con;
     }
+
+    public void añadeMonitor(Monitor m) throws SQLException {
+        String consulta = String.format(
+            "insert into MONITOR VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s')",
+            m.getcodigoMonitor(),
+            m.getnombre(),
+            m.getdni(),
+            m.gettelefono(),
+            m.getcorreo(),
+            m.getfechaEntrada(),
+            m.getnick() 
+        );
+        ps = this.con.getConexion().prepareStatement(consulta);
+        ResultSet rs = ps.executeQuery(); 
+    }
     
     public ArrayList<Monitor> listaMonitores() throws SQLException {
         ArrayList<Monitor> listaMonitores = new ArrayList<Monitor>();

@@ -6,7 +6,7 @@ package Vista;
 
 /**
  *
-* @author ElPsy
+ * @author ElPsy
  */
 public class VistaPrincipal extends javax.swing.JFrame {
 
@@ -27,38 +27,99 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         ButtonCerrar = new javax.swing.JButton();
+        jInternalFrame = new javax.swing.JInternalFrame();
+        jGestionLabel = new javax.swing.JLabel();
+        ButtonNuevo = new javax.swing.JButton();
+        ButtonBaja = new javax.swing.JButton();
+        ButtonUpdate = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         ButtonCerrar.setText("Cerrar");
         ButtonCerrar.setActionCommand("CerrarCommand");
+        ButtonCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        ButtonCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonCerrarActionPerformed(evt);
+            }
+        });
+
+        jInternalFrame.setVisible(true);
+
+        javax.swing.GroupLayout jInternalFrameLayout = new javax.swing.GroupLayout(jInternalFrame.getContentPane());
+        jInternalFrame.getContentPane().setLayout(jInternalFrameLayout);
+        jInternalFrameLayout.setHorizontalGroup(
+            jInternalFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 588, Short.MAX_VALUE)
+        );
+        jInternalFrameLayout.setVerticalGroup(
+            jInternalFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 308, Short.MAX_VALUE)
+        );
+
+        jGestionLabel.setText("Gestion De");
+
+        ButtonNuevo.setText("jButton1");
+
+        ButtonBaja.setText("jButton2");
+
+        ButtonUpdate.setText("jButton3");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(588, Short.MAX_VALUE)
-                .addComponent(ButtonCerrar)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(ButtonNuevo)
+                        .addGap(44, 44, 44)
+                        .addComponent(ButtonBaja)
+                        .addGap(43, 43, 43)
+                        .addComponent(ButtonUpdate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ButtonCerrar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jGestionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jInternalFrame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 46, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(361, Short.MAX_VALUE)
-                .addComponent(ButtonCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addComponent(jGestionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jInternalFrame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ButtonNuevo)
+                    .addComponent(ButtonBaja)
+                    .addComponent(ButtonUpdate)
+                    .addComponent(ButtonCerrar))
+                .addGap(15, 15, 15))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void ButtonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCerrarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ButtonCerrarActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ButtonBaja;
     public javax.swing.JButton ButtonCerrar;
+    private javax.swing.JButton ButtonNuevo;
+    private javax.swing.JButton ButtonUpdate;
+    public javax.swing.JLabel jGestionLabel;
+    public javax.swing.JInternalFrame jInternalFrame;
     // End of variables declaration//GEN-END:variables
 }

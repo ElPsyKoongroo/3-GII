@@ -8,7 +8,7 @@ import java.awt.Color;
 
 /**
  *
- * @author ElPsy
+* @author ElPsy
  */
 public class ColaFrame extends java.awt.Frame {
 

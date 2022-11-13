@@ -1,3 +1,7 @@
+/**
+*
+* @author ElPsy
+*/
 package Algoritmos;
 
 import java.util.ArrayList;

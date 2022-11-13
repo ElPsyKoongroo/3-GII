@@ -8,13 +8,13 @@ import Modelo.*;
 import Vista.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 import java.sql.DatabaseMetaData;
+import java.sql.SQLException;
 import javax.swing.*;
 
 /**
  *
-* @author ElPsy
+ * @author ElPsy
  */
 public class ControladorLogin implements ActionListener {
 
@@ -62,11 +62,9 @@ public class ControladorLogin implements ActionListener {
         vLogin.AcceptButton.addActionListener(this);
         vLogin.ServerComboBox.addActionListener(this);
     }
-    
-    private void FillStandardInputs(boolean initializate)
-    {
-        if(!initializate)
-        {
+
+    private void FillStandardInputs(boolean initializate) {
+        if (!initializate) {
             int result = JOptionPane.showConfirmDialog(
                     vLogin,
                     "¿Rellenar con datos predeterminados?",
@@ -74,29 +72,29 @@ public class ControladorLogin implements ActionListener {
                     JOptionPane.OK_CANCEL_OPTION,
                     JOptionPane.PLAIN_MESSAGE);
 
-            if(result != JOptionPane.OK_OPTION) return;
+            if (result != JOptionPane.OK_OPTION) {
+                return;
+            }
         }
-        
-        switch((String)vLogin.ServerComboBox.getSelectedItem())
-                {
-                    case "mariadb":
-                    {
-                        vLogin.IpTextBox.setText("172.18.1.241:3306");
-                        vLogin.BDTextBox.setText("DDSI_");
-                        vLogin.UserTextBox.setText("DDSI_");
-                        break;
-                    }
-                    case "oracle":
-                    {
-                        vLogin.IpTextBox.setText("172.17.20.39:1521");
-                        vLogin.BDTextBox.setText("etsi");
-                        vLogin.UserTextBox.setText("DDSI_");
-                        break;
-                    }
-                }
-                vLogin.PassTextBox.setText("");
+
+        switch ((String) vLogin.ServerComboBox.getSelectedItem()) {
+            case "mariadb": {
+                vLogin.IpTextBox.setText("172.18.1.241:3306");
+                vLogin.BDTextBox.setText("DDSI_022");
+                vLogin.UserTextBox.setText("DDSI_022");
+                vLogin.PassTextBox.setText("95AS3E");
+                break;
+            }
+            case "oracle": {
+                vLogin.IpTextBox.setText("172.17.20.39:1521");
+                vLogin.BDTextBox.setText("etsi");
+                vLogin.UserTextBox.setText("DDSI_");
+                break;
+            }
+        }
+        vLogin.PassTextBox.setText("");
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
@@ -118,13 +116,13 @@ public class ControladorLogin implements ActionListener {
                 vc.mensajeConsola("Se ha salido con exito");
                 try {
                     this.conexion.desconexion();
-                } catch (Exception _unused) {}
-                
+                } catch (Exception _unused) {
+                }
+
                 vLogin.dispose();
                 System.exit(0);
             }
-            case "comboBoxChanged":
-            {
+            case "comboBoxChanged": {
                 FillStandardInputs(false);
             }
         }
