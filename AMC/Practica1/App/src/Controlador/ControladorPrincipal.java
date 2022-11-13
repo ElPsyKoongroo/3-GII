@@ -5,6 +5,7 @@
 package Controlador;
 
 import Algoritmos.*;
+import Clases.Arista;
 import Clases.ExtraCanvas;
 import Clases.Punto;
 import Clases.Reader;
@@ -18,7 +19,7 @@ import java.util.*;
 
 /**
  *
-* @author ElPsy
+ * @author ElPsy
  */
 public class ControladorPrincipal {
 
@@ -61,6 +62,7 @@ public class ControladorPrincipal {
     private void addListeners() {
         frame_principal.rB_Exh.addActionListener(this.al_radio_buttons);
         frame_principal.rB_DyV.addActionListener(this.al_radio_buttons);
+        frame_principal.rB_Dij.addActionListener(this.al_radio_buttons);
 
         frame_principal.rB_PuntosAle.addActionListener(this.al_radio_buttons);
         frame_principal.rB_PuntosFic.addActionListener(this.al_radio_buttons);
@@ -82,6 +84,7 @@ public class ControladorPrincipal {
 
         frame_principal.rBG_TipoAlgoritmo.add(frame_principal.rB_DyV);
         frame_principal.rBG_TipoAlgoritmo.add(frame_principal.rB_Exh);
+        frame_principal.rBG_TipoAlgoritmo.add(frame_principal.rB_Dij);
 
         frame_principal.rBG_TipoPuntos.add(frame_principal.rB_PuntosFic);
         frame_principal.rBG_TipoPuntos.add(frame_principal.rB_PuntosAle);
@@ -90,62 +93,6 @@ public class ControladorPrincipal {
         frame_principal.setVisible(true);
 
         addListeners();
-    }
-
-    public void actionPerformedRadioButtons(ActionEvent e) {
-        switch (e.getActionCommand()) {
-            case "rB_Exhaust_Comm": {
-                this.algo_method = Algorithms.Types.Exhaustivo;
-                break;
-            }
-            case "rB_DyV_Comm": {
-                this.algo_method = Algorithms.Types.DyV;
-                break;
-            }
-            case "rB_PuntosAle_Comm": {
-                this.random_points = true;
-                break;
-            }
-            case "rB_PuntosFic_Comm": {
-                this.random_points = false;
-                break;
-            }
-        }
-    }
-
-    public void actionPerformedAll(ActionEvent e) {
-        switch (e.getActionCommand()) {
-            case "b_Calcular_Comm": {
-                if (this.random_points) {
-                    this.GeneraPuntos(this.getNPoints());
-                } else {
-                    String path = frame_principal.t_Fichero.getText();
-                    this.LoadFile(path);
-                }
-                this.OrdenaPuntos();
-                CalcularPuntos();
-                break;
-            }
-            case "b_Repite_comm": {
-                //this.canvas.resetCanvas();
-                reCalculaSolucion();
-                break;
-            }
-            case "ZoomIn": {
-                this.canvas.zoomIn(1);
-                break;
-            }
-            case "ZoomOut": {
-                this.canvas.zoomOut(1);
-                break;
-            }
-            case "b_ResetMedia_Comm": {
-                this.total_time = 0;
-                this.times_calculed = 0;
-                this.frame_principal.l_Time.setText("Time: 0ms Mean: 0ms");
-                break;
-            }
-        }
     }
 
     private int getNPoints() {
@@ -168,7 +115,7 @@ public class ControladorPrincipal {
     private void LoadFile(String path) {
         // TODO! Change fixed file for path
         try {
-            Reader r = new Reader("10p.tsp");
+            var r = new Reader("10p.tsp");
             this.input_points = r.getPuntos();
         } catch (Exception e) {
             System.exit(1);
@@ -177,26 +124,60 @@ public class ControladorPrincipal {
 
     private void CalcularPuntos() {
         this.getPointsRange();
-        long start;
-        long end;
+        long start = 0;
+        long end = 0;
         ArrayList<Punto> solucion = new ArrayList<Punto>();
-        
 
         AlgoritmoVisual a = new AlgoritmoVisual(this.canvas);
-        if (this.algo_method == Algorithms.Types.DyV) {
-            if (this.input_points.size() <= 20) {
-                this.canvas.setPointSize(5);
+        switch (this.algo_method) {
+            case DyV: {
+                if (this.input_points.size() <= 20) {
+                    this.canvas.setPointSize(5);
+                }
+                start = System.currentTimeMillis();
+                solucion = DyV.Calcula(this.input_points);
+                end = System.currentTimeMillis();
+                pintaSolucion(solucion);
+                break;
             }
-
-            start = System.currentTimeMillis();
-            solucion = DyV.Calcula(this.input_points);
-            end = System.currentTimeMillis();
-
-        } else {
-            start = System.currentTimeMillis();
-            solucion = Exhaustivo.Calcula(this.input_points);
-            end = System.currentTimeMillis();
+            case Exhaustivo: {
+                start = System.currentTimeMillis();
+                solucion = Exhaustivo.Calcula(this.input_points);
+                end = System.currentTimeMillis();
+                pintaSolucion(solucion);
+                break;
+            }
+            case Dijsktra: {
+                calculaDijkstra();
+            }
         }
+
+        this.times_calculed++;
+        this.total_time += end - start;
+        this.frame_principal.l_Time.setText(
+                ("Time: " + (end - start) + "ms" + " Mean: " + (this.total_time / this.times_calculed) + "ms")
+        );
+
+    }
+
+    private void pintaSolucion(ArrayList<Punto> solucion) {
+        this.canvas.addPuntos(this.input_points);
+        this.canvas.addSolucion(solucion);
+        this.canvas.repaint();
+    }
+
+    private void calculaDijkstra() {
+        long start = 0;
+        long end = 0;
+        ArrayList<Arista> aristas = Generador.GeneraAristas(this.input_points);
+        Dijkstra d = new Dijkstra(aristas, this.input_points);
+
+        start = System.currentTimeMillis();
+        d.CalculaBien();
+        end = System.currentTimeMillis();
+
+        System.out.println("DikstraCalculado");
+
         this.times_calculed++;
         this.total_time += end - start;
         this.frame_principal.l_Time.setText(
@@ -204,7 +185,7 @@ public class ControladorPrincipal {
         );
 
         this.canvas.addPuntos(this.input_points);
-        this.canvas.addSolucion(solucion);
+        this.canvas.addPrevs(d.prev);
         this.canvas.repaint();
     }
 
@@ -257,4 +238,68 @@ public class ControladorPrincipal {
         this.canvas.addSolucion(solucion);
         this.canvas.repaint();
     }
+       
+    public void actionPerformedRadioButtons(ActionEvent e) {
+        switch (e.getActionCommand()) {
+            case "rB_Exhaust_Comm": {
+                this.algo_method = Algorithms.Types.Exhaustivo;
+                break;
+            }
+            case "rB_DyV_Comm": {
+                this.algo_method = Algorithms.Types.DyV;
+                break;
+            }
+
+            case "rB_Dijkstra_Comm": {
+                System.out.println("Set Dijkstra");
+                this.algo_method = Algorithms.Types.Dijsktra;
+                break;
+            }
+
+            case "rB_PuntosAle_Comm": {
+                this.random_points = true;
+                break;
+            }
+            case "rB_PuntosFic_Comm": {
+                this.random_points = false;
+                break;
+            }
+        }
+    }
+
+    public void actionPerformedAll(ActionEvent e) {
+        switch (e.getActionCommand()) {
+            case "b_Calcular_Comm": {
+                if (this.random_points) {
+                    this.GeneraPuntos(this.getNPoints());
+                } else {
+                    String path = frame_principal.t_Fichero.getText();
+                    this.LoadFile(path);
+                }
+                this.OrdenaPuntos();
+                CalcularPuntos();
+                break;
+            }
+            case "b_Repite_comm": {
+                //this.canvas.resetCanvas();
+                reCalculaSolucion();
+                break;
+            }
+            case "ZoomIn": {
+                this.canvas.zoomIn(1);
+                break;
+            }
+            case "ZoomOut": {
+                this.canvas.zoomOut(1);
+                break;
+            }
+            case "b_ResetMedia_Comm": {
+                this.total_time = 0;
+                this.times_calculed = 0;
+                this.frame_principal.l_Time.setText("Time: 0ms Mean: 0ms");
+                break;
+            }
+        }
+    }
+
 }

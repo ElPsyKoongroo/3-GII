@@ -1,9 +1,10 @@
 /*
 *
 * @author ElPsy
-*/
+ */
 package Clases;
 
+import Constants.Values;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -11,12 +12,11 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
 
-import Constants.Values;
-
 public class ExtraCanvas extends Canvas {
 
     private ArrayList<Punto> puntos;
     private ArrayList<Punto> solucion;
+    private ArrayList<Integer> prev;
     private int size_mult = 2;
     private int point_size = 3;
     private double mult = 0;
@@ -33,6 +33,7 @@ public class ExtraCanvas extends Canvas {
         this.setSize(dimension);
         this.solucion = new ArrayList<>();
         this.puntos = new ArrayList<>();
+        this.prev = new ArrayList<>();
     }
 
     @Override
@@ -44,14 +45,14 @@ public class ExtraCanvas extends Canvas {
     public void paint(Graphics g) {
         Image img = createImage(Values.DEFAULT_WIDTH, Values.DEFAULT_HEIGHT);
         Graphics og = img.getGraphics();
-        System.out.println("Me voy a pintar");
         resetCanvas(og);
         if (this.puntos.size() != 0) {
-            System.out.println("Pintando");
-            if (this.mult == 0) {
-                this.drawPoints(og);
+            this.drawPoints(og);
+            if (this.mult == 0 && !this.solucion.isEmpty()) {
                 this.drawSolution(og);
                 this.drawSolutionLines(og);
+            } else if (!this.prev.isEmpty()) {
+                this.drawDijkstraLines(og);
             } else {
                 this.zoom(og);
             }
@@ -59,14 +60,14 @@ public class ExtraCanvas extends Canvas {
         g.drawImage(img, 0, 0, null);
     }
 
-    public void paint_by_steps(int left_limit, int right_limit){
+    public void paint_by_steps(int left_limit, int right_limit) {
         Image img = createImage(Values.DEFAULT_WIDTH, Values.DEFAULT_HEIGHT);
         Graphics og = img.getGraphics();
         resetCanvas(og);
         this.drawPoints(og);
         this.drawSolution(og);
         this.drawSolutionLines(og);
-        this.drawLine(og ,(int) left_limit, 1000, (int) left_limit, 0, Color.GREEN);
+        this.drawLine(og, (int) left_limit, 1000, (int) left_limit, 0, Color.GREEN);
         this.drawLine(og, (int) (int) right_limit, 1000, (int) (int) right_limit, 0, Color.GREEN);
         this.getGraphics().drawImage(img, 0, 0, null);
 
@@ -89,6 +90,29 @@ public class ExtraCanvas extends Canvas {
             this.drawPoint(g, (int) p.x, (int) p.y, Color.RED);
         }
 
+    }
+
+    public void addPrevs(ArrayList<Integer> _prev) {
+        this.prev = _prev;
+    }
+
+    private void drawDijkstraLines(Graphics og) {
+
+        for (int i = (prev.size() - 1); i > 0; i--) {
+            Punto destino = this.puntos.get(i);
+            Punto previo = this.puntos.get(prev.get(i));
+
+            this.drawLine(
+                    og,
+                    (int) destino.x,
+                    (int) destino.y,
+                    (int) previo.x,
+                    (int) previo.y,
+                    Color.BLUE
+            );
+        }
+
+        return;
     }
 
     public void zoomIn(double q) {
@@ -163,7 +187,7 @@ public class ExtraCanvas extends Canvas {
 
     public void drawLine(Graphics g, int x1, int y1, int x2, int y2, Color c) {
         g.setColor(c);
-        int pointOffset = (int)(point_size * this.size_mult / 2);
+        int pointOffset = (int) (point_size * this.size_mult / 2);
         g.drawLine(
                 (int) ((x1 - offset_x) * this.scale_x + this.zoom_x) + pointOffset,
                 (int) ((y1 - offset_y) * this.scale_y + this.zoom_y) + pointOffset,

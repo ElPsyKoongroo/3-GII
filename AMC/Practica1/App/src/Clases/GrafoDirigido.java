@@ -16,7 +16,19 @@ public class GrafoDirigido {
 		this.puntos = _puntos;
 		this.aristas = _aristas;
 		this.adyacencia = new ArrayList<>();
+		this.generaAdyacentes();
 	}
+
+    public void generaAdyacentes(){
+        
+        for(int i = 0; i<this.puntos.size(); i++){
+            this.adyacencia.add(new ArrayList<>());
+        }
+        
+        for(int i = 0; i<this.aristas.size(); i++){
+            this.adyacencia.get(this.getIndexOf(this.aristas.get(i).getPuntoInicio())).add(this.aristas.get(i).getPuntoFin());
+        }
+    }
 
 	public int getIndexOf(Punto p){
 		return this.puntos.indexOf(p);
@@ -57,7 +69,7 @@ public class GrafoDirigido {
 		return conjunto;
 	}
         
-        public ArrayList<Integer> adyacentesIndices(int index){
+	public ArrayList<Integer> adyacentesIndices(int index){
 		ArrayList<Integer> ad = new ArrayList<>();
 		 
 		for(Punto p: this.adyacencia.get(index)){

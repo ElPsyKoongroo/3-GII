@@ -6,7 +6,7 @@ package Vista;
 
 /**
  *
-* @author ElPsy
+ * @author ElPsy
  */
 public class FramePrincipal extends javax.swing.JFrame {
 
@@ -28,6 +28,7 @@ public class FramePrincipal extends javax.swing.JFrame {
 
         rBG_TipoPuntos = new javax.swing.ButtonGroup();
         rBG_TipoAlgoritmo = new javax.swing.ButtonGroup();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         rB_Exh = new javax.swing.JRadioButton();
         rB_DyV = new javax.swing.JRadioButton();
         rB_PuntosAle = new javax.swing.JRadioButton();
@@ -42,6 +43,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         l_Time = new javax.swing.JLabel();
         b_ResetMedia = new javax.swing.JButton();
         b_Repite = new javax.swing.JButton();
+        rB_Dij = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -53,6 +55,11 @@ public class FramePrincipal extends javax.swing.JFrame {
         rB_DyV.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         rB_DyV.setText("Divide y Venceras");
         rB_DyV.setActionCommand("rB_DyV_Comm");
+        rB_DyV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rB_DyVActionPerformed(evt);
+            }
+        });
 
         rB_PuntosAle.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         rB_PuntosAle.setText("Puntos aleatorios");
@@ -100,6 +107,14 @@ public class FramePrincipal extends javax.swing.JFrame {
         b_Repite.setText("Repite");
         b_Repite.setActionCommand("b_Repite_comm");
 
+        rB_Dij.setText("Dijkstra");
+        rB_Dij.setActionCommand("rB_Dijkstra_Comm");
+        rB_Dij.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rB_DijActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -107,41 +122,49 @@ public class FramePrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(820, 820, 820)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(b_Calcular, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(rB_PuntosAle)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(s_NumPuntos, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(rB_PuntosFic)
-                                .addGap(33, 33, 33)
-                                .addComponent(t_Fichero, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(b_Buscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(t_NumPuntos)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(ZoomInButton)
-                        .addGap(40, 40, 40)
-                        .addComponent(ZoomOutButton)
-                        .addGap(51, 51, 51)
-                        .addComponent(l_Time, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(b_Repite, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(b_ResetMedia)
-                            .addComponent(rB_Exh)
-                            .addComponent(rB_DyV))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                            .addComponent(b_Calcular, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(rB_PuntosAle)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(s_NumPuntos, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(rB_PuntosFic)
+                                        .addGap(33, 33, 33)
+                                        .addComponent(t_Fichero, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(b_Buscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(t_NumPuntos)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(ZoomInButton)
+                                .addGap(40, 40, 40)
+                                .addComponent(ZoomOutButton)
+                                .addGap(51, 51, 51)
+                                .addComponent(l_Time, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(b_Repite, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(b_ResetMedia)
+                                    .addComponent(rB_DyV))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(rB_Exh)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(rB_Dij)
+                        .addGap(116, 116, 116))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(rB_Exh)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rB_Exh)
+                    .addComponent(rB_Dij))
                 .addGap(18, 18, 18)
                 .addComponent(rB_DyV)
                 .addGap(29, 29, 29)
@@ -179,6 +202,14 @@ public class FramePrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_t_FicheroActionPerformed
 
+    private void rB_DyVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rB_DyVActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rB_DyVActionPerformed
+
+    private void rB_DijActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rB_DijActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rB_DijActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton ZoomInButton;
     public javax.swing.JButton ZoomOutButton;
@@ -186,9 +217,11 @@ public class FramePrincipal extends javax.swing.JFrame {
     public javax.swing.JButton b_Calcular;
     public javax.swing.JButton b_Repite;
     public javax.swing.JButton b_ResetMedia;
+    private javax.swing.ButtonGroup buttonGroup1;
     public javax.swing.JLabel l_Time;
     public javax.swing.ButtonGroup rBG_TipoAlgoritmo;
     public javax.swing.ButtonGroup rBG_TipoPuntos;
+    public javax.swing.JRadioButton rB_Dij;
     public javax.swing.JRadioButton rB_DyV;
     public javax.swing.JRadioButton rB_Exh;
     public javax.swing.JRadioButton rB_PuntosAle;

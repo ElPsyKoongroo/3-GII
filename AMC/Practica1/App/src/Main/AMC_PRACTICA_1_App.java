@@ -18,8 +18,8 @@ import Clases.*;
 public class AMC_PRACTICA_1_App {
     
     public static void main(String[] args){
-        //ControladorPrincipal f = new ControladorPrincipal();
-        prueba();
+        ControladorPrincipal f = new ControladorPrincipal();
+        //prueba();
     }
     
     public static void prueba(){
@@ -29,9 +29,8 @@ public class AMC_PRACTICA_1_App {
         Dijkstra c = new Dijkstra(b, a);
         c.CalculaBien();
         
-        for (int i : c.prev)
-        {
-            System.out.println(i);
+        for(int i = 0; i< c.dist.size(); i++){
+            System.out.println(c.prev.get(i) + " -- " + c.dist.get(i));
         }
     }
 }
