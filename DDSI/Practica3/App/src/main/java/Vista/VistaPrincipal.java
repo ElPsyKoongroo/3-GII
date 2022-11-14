@@ -26,100 +26,208 @@ public class VistaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMonitoresPanel = new javax.swing.JPanel();
+        ButtonNuevo2 = new javax.swing.JButton();
+        ButtonBaja2 = new javax.swing.JButton();
+        ButtonUpdate2 = new javax.swing.JButton();
         ButtonCerrar = new javax.swing.JButton();
-        jInternalFrame = new javax.swing.JInternalFrame();
-        jGestionLabel = new javax.swing.JLabel();
-        ButtonNuevo = new javax.swing.JButton();
-        ButtonBaja = new javax.swing.JButton();
-        ButtonUpdate = new javax.swing.JButton();
+        jGestionLabel2 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTableMonitores = new javax.swing.JTable();
+        jSociosPanel = new javax.swing.JPanel();
+        ButtonNuevo1 = new javax.swing.JButton();
+        ButtonBaja1 = new javax.swing.JButton();
+        ButtonUpdate1 = new javax.swing.JButton();
+        ButtonCerrar1 = new javax.swing.JButton();
+        jGestionLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableSocios = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        ButtonCerrar.setText("Cerrar");
+        jMonitoresPanel.setPreferredSize(new java.awt.Dimension(955, 370));
+
+        ButtonNuevo2.setText("jButton1");
+
+        ButtonBaja2.setText("jButton2");
+
+        ButtonUpdate2.setText("jButton3");
+
+        ButtonCerrar.setText("jButton1");
         ButtonCerrar.setActionCommand("CerrarCommand");
-        ButtonCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        ButtonCerrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonCerrarActionPerformed(evt);
+
+        jGestionLabel2.setText("Gestion De Monitores");
+        jGestionLabel2.setPreferredSize(new java.awt.Dimension(124, 16));
+
+        jTableMonitores.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7"
             }
-        });
+        ));
+        jScrollPane3.setViewportView(jTableMonitores);
 
-        jInternalFrame.setVisible(true);
-
-        javax.swing.GroupLayout jInternalFrameLayout = new javax.swing.GroupLayout(jInternalFrame.getContentPane());
-        jInternalFrame.getContentPane().setLayout(jInternalFrameLayout);
-        jInternalFrameLayout.setHorizontalGroup(
-            jInternalFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 588, Short.MAX_VALUE)
+        javax.swing.GroupLayout jMonitoresPanelLayout = new javax.swing.GroupLayout(jMonitoresPanel);
+        jMonitoresPanel.setLayout(jMonitoresPanelLayout);
+        jMonitoresPanelLayout.setHorizontalGroup(
+            jMonitoresPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jMonitoresPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jMonitoresPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jMonitoresPanelLayout.createSequentialGroup()
+                        .addComponent(ButtonNuevo2)
+                        .addGap(18, 18, 18)
+                        .addComponent(ButtonBaja2)
+                        .addGap(18, 18, 18)
+                        .addComponent(ButtonUpdate2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 589, Short.MAX_VALUE)
+                        .addComponent(ButtonCerrar)
+                        .addGap(16, 16, 16))
+                    .addComponent(jScrollPane3)
+                    .addGroup(jMonitoresPanelLayout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(jGestionLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
-        jInternalFrameLayout.setVerticalGroup(
-            jInternalFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 308, Short.MAX_VALUE)
+        jMonitoresPanelLayout.setVerticalGroup(
+            jMonitoresPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jMonitoresPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jGestionLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addGroup(jMonitoresPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ButtonNuevo2)
+                    .addComponent(ButtonBaja2)
+                    .addComponent(ButtonUpdate2)
+                    .addComponent(ButtonCerrar))
+                .addGap(22, 22, 22))
         );
 
-        jGestionLabel.setText("Gestion De");
+        jSociosPanel.setPreferredSize(new java.awt.Dimension(955, 370));
 
-        ButtonNuevo.setText("jButton1");
+        ButtonNuevo1.setText("jButton1");
 
-        ButtonBaja.setText("jButton2");
+        ButtonBaja1.setText("jButton2");
 
-        ButtonUpdate.setText("jButton3");
+        ButtonUpdate1.setText("jButton3");
+
+        ButtonCerrar1.setText("jButton1");
+        ButtonCerrar1.setActionCommand("CerrarCommand");
+
+        jGestionLabel1.setText("Gestion De Socios");
+        jGestionLabel1.setPreferredSize(new java.awt.Dimension(124, 16));
+
+        jTableSocios.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7"
+            }
+        ));
+        jScrollPane1.setViewportView(jTableSocios);
+
+        javax.swing.GroupLayout jSociosPanelLayout = new javax.swing.GroupLayout(jSociosPanel);
+        jSociosPanel.setLayout(jSociosPanelLayout);
+        jSociosPanelLayout.setHorizontalGroup(
+            jSociosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jSociosPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jSociosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jSociosPanelLayout.createSequentialGroup()
+                        .addComponent(ButtonNuevo1)
+                        .addGap(18, 18, 18)
+                        .addComponent(ButtonBaja1)
+                        .addGap(18, 18, 18)
+                        .addComponent(ButtonUpdate1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 589, Short.MAX_VALUE)
+                        .addComponent(ButtonCerrar1)
+                        .addGap(16, 16, 16))
+                    .addComponent(jScrollPane1)
+                    .addGroup(jSociosPanelLayout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(jGestionLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+        jSociosPanelLayout.setVerticalGroup(
+            jSociosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jSociosPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jGestionLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addGroup(jSociosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ButtonNuevo1)
+                    .addComponent(ButtonBaja1)
+                    .addComponent(ButtonUpdate1)
+                    .addComponent(ButtonCerrar1))
+                .addGap(22, 22, 22))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(ButtonNuevo)
-                        .addGap(44, 44, 44)
-                        .addComponent(ButtonBaja)
-                        .addGap(43, 43, 43)
-                        .addComponent(ButtonUpdate)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(ButtonCerrar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jGestionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jInternalFrame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 46, Short.MAX_VALUE)))
-                .addContainerGap())
+            .addGap(0, 1420, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(156, 156, 156)
+                    .addComponent(jSociosPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(157, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jMonitoresPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(459, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jGestionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jInternalFrame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ButtonNuevo)
-                    .addComponent(ButtonBaja)
-                    .addComponent(ButtonUpdate)
-                    .addComponent(ButtonCerrar))
-                .addGap(15, 15, 15))
+            .addGap(0, 573, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(70, 70, 70)
+                    .addComponent(jSociosPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(71, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jMonitoresPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(197, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ButtonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCerrarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ButtonCerrarActionPerformed
-
     /**
      * @param args the command line arguments
      */
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ButtonBaja;
+    private javax.swing.JButton ButtonBaja1;
+    private javax.swing.JButton ButtonBaja2;
     public javax.swing.JButton ButtonCerrar;
-    private javax.swing.JButton ButtonNuevo;
-    private javax.swing.JButton ButtonUpdate;
-    public javax.swing.JLabel jGestionLabel;
-    public javax.swing.JInternalFrame jInternalFrame;
+    public javax.swing.JButton ButtonCerrar1;
+    private javax.swing.JButton ButtonNuevo1;
+    private javax.swing.JButton ButtonNuevo2;
+    private javax.swing.JButton ButtonUpdate1;
+    private javax.swing.JButton ButtonUpdate2;
+    public javax.swing.JLabel jGestionLabel1;
+    public javax.swing.JLabel jGestionLabel2;
+    public javax.swing.JPanel jMonitoresPanel;
+    public javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JScrollPane jScrollPane3;
+    public javax.swing.JPanel jSociosPanel;
+    public javax.swing.JTable jTableMonitores;
+    public javax.swing.JTable jTableSocios;
     // End of variables declaration//GEN-END:variables
 }

@@ -19,7 +19,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
-import javax.swing.JRootPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -39,8 +38,8 @@ public class ControladorPrincipal implements ActionListener {
     private final String actionMonitores = "Gestión de monitores";
     private final String actionSocios = "Gestión de socios";
 
-    private DefaultTableModel modeloTablaMonitores;
-    private DefaultTableModel modeloTablaSocios;
+    private DefaultTableModel modeloTablaMonitores = new DefaultTableModel();
+    private DefaultTableModel modeloTablaSocios = new DefaultTableModel();
 
     private CardLayout crd;
 
@@ -52,20 +51,19 @@ public class ControladorPrincipal implements ActionListener {
 
         this.vMonitor = new VistaMonitor();
         this.vSocio = new VistaSocio();
+        this.vSocio.setVisible(true);
+        this.vMonitor.setVisible(true);
+        this.vMonitor.jTableMonitores.setVisible(true);
 
-        this.vPrincipal.jGestionLabel.setText(this.actionMonitores);
+        //this.vPrincipal.jGestionLabel.setText(this.actionMonitores);
         this.vPrincipal.setLocationRelativeTo(null);
         this.vPrincipal.setJMenuBar(this.barrita);
 
         this.crd = new CardLayout();
 
-        this.vPrincipal.jInternalFrame.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
-        this.vPrincipal.jInternalFrame.putClientProperty("JInternalFrame.isPalette", Boolean.TRUE);
-        this.vPrincipal.jInternalFrame.getContentPane().setLayout(crd);
-        this.vPrincipal.jInternalFrame.add(this.vMonitor);
-        this.vPrincipal.jInternalFrame.add(this.vSocio);
-        this.vMonitor.setVisible(true);
+        this.vPrincipal.getContentPane().setLayout(crd);
 
+        this.drawSociosTable();
         this.modeloTablaMonitores = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -96,6 +94,7 @@ public class ControladorPrincipal implements ActionListener {
 
     private void addListeners() {
         this.vPrincipal.ButtonCerrar.addActionListener(this);
+        this.vPrincipal.ButtonCerrar1.addActionListener(this);
         for (int i = 0; i < this.monitores.getItemCount(); i++) {
             this.monitores.getItem(i).addActionListener(this);
         }
@@ -111,13 +110,16 @@ public class ControladorPrincipal implements ActionListener {
 
         this.modeloTablaMonitores.setColumnIdentifiers(columns);
 
-        this.vMonitor.jTableMonitores.getTableHeader().setReorderingAllowed(false);
-        this.vMonitor.jTableMonitores.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+        this.vPrincipal.jTableMonitores.getTableHeader().setReorderingAllowed(false);
+        this.vPrincipal.jTableMonitores.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+        //this.vMonitor.jTableMonitores.getTableHeader().setReorderingAllowed(false);
+        //this.vMonitor.jTableMonitores.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
 
         int[] column_sizes = {40, 240, 70, 70, 200, 150, 60};
 
         for (int i = 0; i < column_sizes.length; i++) {
-            this.vMonitor.jTableMonitores.getColumnModel().getColumn(i).setPreferredWidth(column_sizes[i]);
+            //this.vMonitor.jTableMonitores.getColumnModel().getColumn(i).setPreferredWidth(column_sizes[i]);
+            this.vPrincipal.jTableMonitores.getColumnModel().getColumn(i).setPreferredWidth(column_sizes[i]);
         }
     }
 
@@ -127,13 +129,15 @@ public class ControladorPrincipal implements ActionListener {
 
         this.modeloTablaSocios.setColumnIdentifiers(columns);
 
-        this.vSocio.jTableSocios.getTableHeader().setReorderingAllowed(false);
-        this.vSocio.jTableSocios.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
-
+        this.vPrincipal.jTableSocios.getTableHeader().setReorderingAllowed(false);
+        this.vPrincipal.jTableSocios.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+        //this.vSocio.jTableSocios.getTableHeader().setReorderingAllowed(false);
+        //this.vSocio.jTableSocios.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
         int[] column_sizes = {40, 240, 70, 70, 200, 150, 60};
 
         for (int i = 0; i < column_sizes.length; i++) {
-            this.vSocio.jTableSocios.getColumnModel().getColumn(i).setPreferredWidth(column_sizes[i]);
+            this.vPrincipal.jTableSocios.getColumnModel().getColumn(i).setPreferredWidth(column_sizes[i]);
+            //this.vSocio.jTableSocios.getColumnModel().getColumn(i).setPreferredWidth(column_sizes[i]);
         }
     }
 
@@ -195,8 +199,8 @@ public class ControladorPrincipal implements ActionListener {
                 break;
             }
             case actionMonitores: {
-                this.vPrincipal.jGestionLabel.setText(this.actionMonitores);
-                this.vMonitor.setVisible(true);
+                //this.vPrincipal.jGestionLabel.setText(this.actionMonitores);
+                System.out.println("Cambiando estilo");
                 this.drawMonitoresTable(this.vMonitor);
 
                 try {
@@ -204,22 +208,21 @@ public class ControladorPrincipal implements ActionListener {
                 } catch (SQLException ex) {
                     System.out.println("Error al obtener los monitores");
                 }
-                this.vMonitor.jTableMonitores.setModel(this.modeloTablaMonitores);
-                this.crd.first(this.vPrincipal.jInternalFrame.getContentPane());
+                this.vPrincipal.jTableMonitores.setModel(this.modeloTablaMonitores);
+                this.crd.last(this.vPrincipal.getContentPane());
                 break;
             }
 
             case actionSocios: {
-                this.vPrincipal.jGestionLabel.setText(this.actionSocios);
-                this.crd.last(this.vPrincipal.jInternalFrame.getContentPane());
-                this.vSocio.setVisible(true);
+                //this.vPrincipal.jGestionLabel.setText(this.actionSocios);
                 this.drawSociosTable();
                 try {
                     this.getSocios();
                 } catch (SQLException ex) {
                     System.out.println("Error al obtener los socios");
                 }
-                this.vSocio.jTableSocios.setModel(this.modeloTablaSocios);
+                this.vPrincipal.jTableSocios.setModel(this.modeloTablaSocios);
+                this.crd.first(this.vPrincipal.getContentPane());
                 break;
             }
 
