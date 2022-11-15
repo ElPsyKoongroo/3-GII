@@ -37,7 +37,7 @@ public class Main {
         for(int i = 0; i<N_VEHICULOS; i++){
             int numero_random = (int) (Math.random() * (100 - 0 + 1) + 0);
             if (numero_random < 50) vehiculos[i] = new Coche(tunelsito);
-            else vehiculos[i] = new Furgo(tunelsito);
+            else vehiculos[i] = new Thread(new Furgo(tunelsito));
             vehiculos[i].start();
 
             int sleep_time = (int) Math.random() * (MAX_WAIT - MIN_WAIT + 1) + MIN_WAIT;

@@ -4,7 +4,7 @@
  *
  */
 
-public class Furgo extends Thread{
+public class Furgo implements Runnable{
     private Tunel tunelsito;
     private final int MAX = 5000;
     private final int MIN = 1000;
