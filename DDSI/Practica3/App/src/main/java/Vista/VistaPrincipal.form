@@ -78,12 +78,12 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="ButtonNuevo2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonNewMonitor" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="ButtonBaja2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonUpdateMonitor" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="ButtonUpdate2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="589" max="32767" attributes="0"/>
+                          <Component id="jButtonDeleteMonitor" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="465" max="32767" attributes="0"/>
                           <Component id="ButtonCerrar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                       </Group>
@@ -106,9 +106,9 @@
                   <Component id="jScrollPane3" min="-2" pref="250" max="-2" attributes="0"/>
                   <EmptySpace pref="22" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="ButtonNuevo2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="ButtonBaja2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="ButtonUpdate2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonNewMonitor" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonUpdateMonitor" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonDeleteMonitor" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="ButtonCerrar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
@@ -117,24 +117,28 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="ButtonNuevo2">
+        <Component class="javax.swing.JButton" name="jButtonNewMonitor">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jButton1"/>
+            <Property name="text" type="java.lang.String" value="Nuevo Monitor"/>
+            <Property name="actionCommand" type="java.lang.String" value="ButtonNewMonitor"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="ButtonBaja2">
+        <Component class="javax.swing.JButton" name="jButtonUpdateMonitor">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jButton2"/>
+            <Property name="text" type="java.lang.String" value="Actualiza Monitor"/>
+            <Property name="actionCommand" type="java.lang.String" value="ButtonUpdateMonitor"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="ButtonUpdate2">
+        <Component class="javax.swing.JButton" name="jButtonDeleteMonitor">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jButton3"/>
+            <Property name="text" type="java.lang.String" value="Elimina Monitor"/>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
+            <Property name="actionCommand" type="java.lang.String" value="ButtonRemoveMonitor"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="ButtonCerrar">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jButton1"/>
+            <Property name="text" type="java.lang.String" value="Salir"/>
             <Property name="actionCommand" type="java.lang.String" value="CerrarCommand"/>
           </Properties>
           <AuxValues>
@@ -246,7 +250,7 @@
                           <Component id="ButtonBaja1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="ButtonUpdate1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="589" max="32767" attributes="0"/>
+                          <EmptySpace pref="594" max="32767" attributes="0"/>
                           <Component id="ButtonCerrar1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                       </Group>
@@ -297,7 +301,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="ButtonCerrar1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jButton1"/>
+            <Property name="text" type="java.lang.String" value="Salir"/>
             <Property name="actionCommand" type="java.lang.String" value="CerrarCommand"/>
           </Properties>
           <AuxValues>
