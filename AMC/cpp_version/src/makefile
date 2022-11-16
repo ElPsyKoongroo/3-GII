@@ -1,4 +1,4 @@
-all: pipo.o
+all: main 
 
-pipo.o:
-	g++ .\main.cpp .\Algoritmo.cpp -O2 -march=native -o main.bin
+main:
+	g++ ./main.cpp ./algoritmo.cpp -O2 -march=native -o main.bin
