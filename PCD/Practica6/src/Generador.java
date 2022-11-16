@@ -27,10 +27,10 @@ public class Generador {
         Semaphore rayoMaleta = new Semaphore(2);
         Semaphore rayoMano = new Semaphore(1);
         /*
-        MiCanvas 
-        */ 
+         * MiCanvas
+         */
         Frame f = new Frame();
-        f.setSize(800,800);
+        f.setSize(800, 800);
         MiCanvas canvita = new MiCanvas();
 
         f.add(canvita);
@@ -39,8 +39,8 @@ public class Generador {
         Thread[] Viajeros = new Thread[N_HILOS];
         Thread Cuidador = new Cuidador(cuidador, chikene, canvita);
         Cuidador.start();
-        
-        for(int i = 0; i< N_HILOS; ++i){
+
+        for (int i = 0; i < N_HILOS; ++i) {
             int aux = ThreadLocalRandom.current().nextInt() % 100;
             if (aux >= PROB_VIAJERO) {
                 ViajeroMano viajeroMano = new ViajeroMano(rayoMano, chikene, cuidador, canvita);
@@ -53,14 +53,13 @@ public class Generador {
             Thread.sleep(PASAJEROS_DELAY);
         }
 
-        for(Thread viajero : Viajeros){
+        for (Thread viajero : Viajeros) {
             viajero.join();
         }
 
         Cuidador.interrupt();
         System.exit(0);
-        
 
     }
-    
+
 }
