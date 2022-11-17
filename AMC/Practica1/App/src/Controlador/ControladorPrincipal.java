@@ -116,7 +116,7 @@ public class ControladorPrincipal {
     private void LoadFile(String path) {
         // TODO! Change fixed file for path
         try {
-            var r = new Reader("10p.tsp");
+            Reader r = new Reader("10p.tsp");
             this.input_points = r.getPuntos();
         } catch (Exception e) {
             System.exit(1);
@@ -130,6 +130,7 @@ public class ControladorPrincipal {
         ArrayList<Punto> solucion = new ArrayList<Punto>();
 
         AlgoritmoVisual a = new AlgoritmoVisual(this.canvas);
+        this.canvas.unsetDijkstra();
         switch (this.algo_method) {
             case DyV: {
                 if (this.input_points.size() <= 20) {
@@ -149,6 +150,7 @@ public class ControladorPrincipal {
                 break;
             }
             case Dijsktra: {
+                this.canvas.setDijkstra();
                 calculaDijkstra();
             }
         }

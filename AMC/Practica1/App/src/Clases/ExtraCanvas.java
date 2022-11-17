@@ -17,10 +17,14 @@ public class ExtraCanvas extends Canvas {
     private ArrayList<Punto> puntos;
     private ArrayList<Punto> solucion;
     private ArrayList<Integer> prev;
+
+
     private int size_mult = 2;
     private int point_size = 3;
-    private double mult = 0;
 
+    private boolean dijkstra = false;
+
+    private double mult = 0;
     private double scale_x = 0.0;
     private double scale_y = 0.0;
     private double offset_x;
@@ -46,12 +50,16 @@ public class ExtraCanvas extends Canvas {
         Image img = createImage(Values.DEFAULT_WIDTH, Values.DEFAULT_HEIGHT);
         Graphics og = img.getGraphics();
         resetCanvas(og);
+        try{
+        Thread.sleep(100);
+        } catch (Exception e_){}
+
         if (this.puntos.size() != 0) {
             this.drawPoints(og);
-            if (this.mult == 0 && !this.solucion.isEmpty()) {
+            if (this.mult == 0 && !this.dijkstra) {
                 this.drawSolution(og);
                 this.drawSolutionLines(og);
-            } else if (!this.prev.isEmpty()) {
+            } else if (this.dijkstra) {
                 this.drawDijkstraLines(og);
             } else {
                 this.zoom(og);
@@ -90,6 +98,14 @@ public class ExtraCanvas extends Canvas {
             this.drawPoint(g, (int) p.x, (int) p.y, Color.RED);
         }
 
+    }
+
+    public void setDijkstra(){
+        this.dijkstra = true;
+    }
+
+    public void unsetDijkstra(){
+        this.dijkstra = false;
     }
 
     public void addPrevs(ArrayList<Integer> _prevs) {
@@ -218,12 +234,13 @@ public class ExtraCanvas extends Canvas {
     private void drawSolutionLines(Graphics g) {
         for (int i = 0; i < 2; i++) {
             this.drawLine(
-                    g,
-                    (int) this.solucion.get(i).x,
-                    (int) this.solucion.get(i).y,
-                    (int) this.solucion.get(i + 1).x,
-                    (int) this.solucion.get(i + 1).y,
-                    Color.RED);
+                g,
+                (int) this.solucion.get(i).x,
+                (int) this.solucion.get(i).y,
+                (int) this.solucion.get(i + 1).x,
+                (int) this.solucion.get(i + 1).y,
+                Color.RED
+            );
 
         }
     }
@@ -246,8 +263,11 @@ public class ExtraCanvas extends Canvas {
 
     private void drawPoint(Graphics g, int x, int y, Color c) {
         g.setColor(c);
-        g.fillOval((int) ((x - offset_x) * this.scale_x + this.zoom_x),
-                (int) ((y - offset_y) * this.scale_y + this.zoom_y), point_size * this.size_mult,
-                point_size * this.size_mult);
+        g.fillOval(
+            (int) ((x - offset_x) * this.scale_x + this.zoom_x),
+            (int) ((y - offset_y) * this.scale_y + this.zoom_y), 
+            point_size * this.size_mult,
+            point_size * this.size_mult
+        );
     }
 }
