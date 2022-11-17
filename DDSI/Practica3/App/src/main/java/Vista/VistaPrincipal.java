@@ -89,7 +89,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                         .addComponent(jButtonUpdateMonitor)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonDeleteMonitor)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 465, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 369, Short.MAX_VALUE)
                         .addComponent(ButtonCerrar)
                         .addGap(16, 16, 16))
                     .addComponent(jScrollPane3)
@@ -105,7 +105,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 .addComponent(jGestionLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(jMonitoresPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonNewMonitor)
                     .addComponent(jButtonUpdateMonitor)
@@ -157,7 +157,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 594, Short.MAX_VALUE)
                         .addComponent(ButtonCerrar1)
                         .addGap(16, 16, 16))
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 949, Short.MAX_VALUE)
                     .addGroup(jSociosPanelLayout.createSequentialGroup()
                         .addGap(8, 8, 8)
                         .addComponent(jGestionLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -170,7 +170,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 .addComponent(jGestionLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(jSociosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ButtonNuevo1)
                     .addComponent(ButtonBaja1)
@@ -223,7 +223,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton ButtonNuevo1;
     private javax.swing.JButton ButtonUpdate1;
     private javax.swing.JButton jButtonDeleteMonitor;
-    private javax.swing.JButton jButtonNewMonitor;
+    public javax.swing.JButton jButtonNewMonitor;
     private javax.swing.JButton jButtonUpdateMonitor;
     public javax.swing.JLabel jGestionLabel1;
     public javax.swing.JLabel jGestionLabel2;
