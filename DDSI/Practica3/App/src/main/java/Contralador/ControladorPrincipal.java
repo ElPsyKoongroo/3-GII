@@ -9,9 +9,7 @@ import Modelo.Monitor;
 import Modelo.MonitorDAO;
 import Modelo.Socio;
 import Modelo.SocioDAO;
-import Vista.VistaMonitor;
-import Vista.VistaPrincipal;
-import Vista.VistaSocio;
+import Vista.*;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author ElPsy
  */
-public class ControladorPrincipal implements ActionListener {
+public class ControladorPrincipal  {
 
     private Conexion con;
     private VistaPrincipal vPrincipal;
@@ -37,6 +35,9 @@ public class ControladorPrincipal implements ActionListener {
     private JMenu monitores;
     private final String actionMonitores = "Gestión de monitores";
     private final String actionSocios = "Gestión de socios";
+    private ActionListener vPrinListener;
+    private ActionListener vSocioListener;
+    private ActionListener vMonitorListener;
 
     private DefaultTableModel modeloTablaMonitores = new DefaultTableModel();
     private DefaultTableModel modeloTablaSocios = new DefaultTableModel();
@@ -44,6 +45,9 @@ public class ControladorPrincipal implements ActionListener {
     private CardLayout crd;
 
     public ControladorPrincipal(Conexion con) {
+        this.vMonitorListener = (ActionEvent e) -> actionPerformedMonitor(e);
+        this.vSocioListener = (ActionEvent e) -> actionPerformedSocio(e);
+        this.vPrinListener = (ActionEvent e) -> actionPerformedPrincipal(e);
         this.con = con;
         this.vPrincipal = new VistaPrincipal();
 
@@ -93,14 +97,15 @@ public class ControladorPrincipal implements ActionListener {
     }
 
     private void addListeners() {
-        this.vPrincipal.ButtonCerrar.addActionListener(this);
-        this.vPrincipal.ButtonCerrar1.addActionListener(this);
+        this.vPrincipal.jButtonNewMonitor.addActionListener(vMonitorListener);
+        this.vPrincipal.ButtonCerrar.addActionListener(vPrinListener);
+        this.vPrincipal.ButtonCerrar1.addActionListener(vPrinListener);
         for (int i = 0; i < this.monitores.getItemCount(); i++) {
-            this.monitores.getItem(i).addActionListener(this);
+            this.monitores.getItem(i).addActionListener(vPrinListener);
         }
 
         for (int i = 0; i < this.socios.getItemCount(); i++) {
-            this.socios.getItem(i).addActionListener(this);
+            this.socios.getItem(i).addActionListener(vPrinListener);
         }
     }
 
@@ -190,8 +195,8 @@ public class ControladorPrincipal implements ActionListener {
         }
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
+    
+    public void actionPerformedPrincipal(ActionEvent e) {
         switch (e.getActionCommand()) {
             case "CerrarCommand": {
                 this.vPrincipal.dispose();
@@ -224,13 +229,28 @@ public class ControladorPrincipal implements ActionListener {
                 this.vPrincipal.jTableSocios.setModel(this.modeloTablaSocios);
                 this.crd.first(this.vPrincipal.getContentPane());
                 break;
-            }
-
+            }       
             default: {
                 System.out.println(e.getActionCommand());
                 System.out.println("¿ Qué has hecho para llegar aqui viajero ?");
             }
         }
     }
+    public void actionPerformedMonitor(ActionEvent e){
+        switch (e.getActionCommand()) {
+            case "ButtonNewMonitor":{
+                VistaAddMonitor addMonitor = new VistaAddMonitor(vPrincipal, true);
+                addMonitor.setVisible(true);
+            }
+        }
+    }
+
+    public void actionPerformedSocio(ActionEvent e) {
+        switch (e.getActionCommand()) {
+            
+        }
+    }
+
+    
 
 }
