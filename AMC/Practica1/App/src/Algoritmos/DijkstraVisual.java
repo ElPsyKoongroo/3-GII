@@ -10,27 +10,32 @@ import java.util.Queue;
 import java.util.Set;
 
 import Clases.Arista;
+import Clases.ExtraCanvas;
 import Clases.GrafoDirigido;
 import Clases.Punto;
 import java.util.PriorityQueue;
 
-public class Dijkstra {
+public class DijkstraVisual {
 
     private GrafoDirigido grafo;
+    private ExtraCanvas canvitas;
     public ArrayList<Double> dist;
     public ArrayList<Integer> prev;
     
 
-    public Dijkstra(ArrayList<Arista> _aristas, ArrayList<Punto> _puntos) {
+    public DijkstraVisual(ArrayList<Arista> _aristas, ArrayList<Punto> _puntos, ExtraCanvas _canvitas) {
         this.grafo = new GrafoDirigido(_puntos, _aristas);
+        this.canvitas = _canvitas;
         this.dist = new ArrayList<>();
         this.prev = new ArrayList<>();
+        this.canvitas.addPuntos(_puntos);
     }
+
+    
 
     public void CalculaBien() {
 
         Queue<Integer> porRecorrer = new PriorityQueue<Integer>();
-
         for (int i = 0; i < grafo.size(); i++) {
             dist.add(Double.MAX_VALUE);
             prev.add(-1);
@@ -46,14 +51,21 @@ public class Dijkstra {
                 if (!porRecorrer.contains(i)) {
                     continue;
                 }
-
+                
                 Arista aux = new Arista(grafo.getPuntoAt(u), grafo.getPuntoAt(i));
+                
+                
+                this.canvitas.dijstra_step_by_step(aux);
+                try{
+                    Thread.sleep(100);
+                } catch (Exception esto_va_a_ser_ignorado_muy_fuertemente){}
 
                 double alt = dist.get(u) + aux.getCoste();
 
                 if (alt < dist.get(i)) {
                     dist.set(i, alt);
                     prev.set(i, u);
+                    this.canvitas.addPrevs(this.prev);
                 }
             }
         }

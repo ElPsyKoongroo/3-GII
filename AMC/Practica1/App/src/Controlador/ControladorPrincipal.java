@@ -11,6 +11,7 @@ import Clases.Punto;
 import Clases.Reader;
 import Constants.Algorithms;
 import Constants.Values;
+import Constants.Algorithms.Types;
 import Vista.FramePrincipal;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -171,6 +172,7 @@ public class ControladorPrincipal {
         long end = 0;
         ArrayList<Arista> aristas = Generador.GeneraAristas(this.input_points);
         Dijkstra d = new Dijkstra(aristas, this.input_points);
+        this.canvas.addSolucion(new ArrayList<>());
 
         start = System.currentTimeMillis();
         d.CalculaBien();
@@ -208,7 +210,7 @@ public class ControladorPrincipal {
         this.canvas.setRange(rango_x, rango_y, this.input_points.get(0).x, min_y);
     }
 
-    private void reCalculaSolucion() {
+    private void step_by_step_DyV(){
         long start;
         long end;
         ArrayList<Punto> solucion = new ArrayList<Punto>();
@@ -237,6 +239,30 @@ public class ControladorPrincipal {
         this.canvas.addPuntos(this.input_points);
         this.canvas.addSolucion(solucion);
         this.canvas.repaint();
+    }
+
+    private void step_by_step_Dijkstra(){
+        long start;
+        long end;
+        ArrayList<Arista> aristas = Generador.GeneraAristas(this.input_points);
+        System.out.println("Dijkstra step by step");
+        DijkstraVisual a = new DijkstraVisual(aristas, this.input_points, this.canvas);
+
+        start = System.currentTimeMillis();
+        a.CalculaBien();
+        end = System.currentTimeMillis();
+
+        this.canvas.addPuntos(this.input_points);
+        this.canvas.addPrevs(a.prev);
+        this.canvas.repaint();
+    }
+
+    private void reCalculaSolucion() {
+        if (this.algo_method == Types.DyV){
+            this.step_by_step_DyV();
+        } else {
+            this.step_by_step_Dijkstra();
+        }
     }
        
     public void actionPerformedRadioButtons(ActionEvent e) {

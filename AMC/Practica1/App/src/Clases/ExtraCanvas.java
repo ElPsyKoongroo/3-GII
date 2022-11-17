@@ -92,16 +92,17 @@ public class ExtraCanvas extends Canvas {
 
     }
 
-    public void addPrevs(ArrayList<Integer> _prev) {
-        this.prev = _prev;
+    public void addPrevs(ArrayList<Integer> _prevs) {
+        this.prev = _prevs;
     }
 
     private void drawDijkstraLines(Graphics og) {
 
         for (int i = (prev.size() - 1); i > 0; i--) {
+            
             Punto destino = this.puntos.get(i);
             Punto previo = this.puntos.get(prev.get(i));
-
+            
             this.drawLine(
                     og,
                     (int) destino.x,
@@ -110,7 +111,55 @@ public class ExtraCanvas extends Canvas {
                     (int) previo.y,
                     Color.BLUE
             );
+            
         }
+        return;
+    }
+
+    public void dijstra_step_by_step(Arista a){
+        Image img = createImage(Values.DEFAULT_WIDTH, Values.DEFAULT_HEIGHT);
+        Graphics og = img.getGraphics();
+        resetCanvas(og);
+        try{
+        Thread.sleep(10);
+        } catch (Exception e_){}
+        this.drawPoints(og);
+        for (int i = (prev.size() - 1); i > 0; i--) {
+            
+            
+
+            Punto destino = new Punto(0, 0);
+            Punto previo = new Punto(0, 0);
+            
+            try {
+                destino = this.puntos.get(i);
+                previo = this.puntos.get(prev.get(i));
+                System.out.println(prev.get(i));
+            } catch (IndexOutOfBoundsException _a){
+                continue;
+            }
+
+            
+            this.drawLine(
+                    og,
+                    (int) destino.x,
+                    (int) destino.y,
+                    (int) previo.x,
+                    (int) previo.y,
+                    Color.BLACK
+            );
+            
+        }
+
+        this.drawLine(
+            og, 
+            (int) a.getPuntoInicio().x, 
+            (int) a.getPuntoInicio().y, 
+            (int) a.getPuntoFin().x, 
+            (int) a.getPuntoFin().y, 
+            Color.RED
+        );
+        this.getGraphics().drawImage(img, 0, 0, null);
 
         return;
     }
