@@ -3,13 +3,13 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class Tunel {
 
-    private final int NUM_TUNELES = 3;
-
-    private enum Estado {
+    public enum Estado {
         VACIO,
         COCHE,
         FURGO
     }
+    private final int NUM_TUNELES = 3;
+
 
     private int numCoches = 0;
     private int numFurgos = 0;
@@ -21,21 +21,21 @@ public class Tunel {
 
     private Estado tuneles[];
 
-    private ReentrantLock lockEntrada;
-    private ReentrantLock lockSalida;
+    private ReentrantLock lock;
     private Condition condEntradaCoche;
     private Condition condEntradaFurgo;
+    private MiCanvas canvas;
 
-    public Tunel(){
+    public Tunel(MiCanvas _canvas){
         this.tuneles = new Estado[NUM_TUNELES];
         for(int i = 0; i<NUM_TUNELES; i++)
             this.tuneles[i] = Estado.VACIO;
     
-        this.lockEntrada = new ReentrantLock();
-        this.lockSalida = new ReentrantLock();
-        this.condEntradaCoche = this.lockEntrada.newCondition();
-        this.condEntradaFurgo = this.lockEntrada.newCondition();
+        this.lock = new ReentrantLock();
+        this.condEntradaCoche = this.lock.newCondition();
+        this.condEntradaFurgo = this.lock.newCondition();
         this.posLibres = NUM_TUNELES;
+        this.canvas = _canvas;
     }
 
     private int huecoLibre() {
@@ -48,53 +48,70 @@ public class Tunel {
     }
 
     public int EntraCoche() throws InterruptedException {
-        this.lockEntrada.lock();
+        
+        this.lock.lock();
+        int id = canvas.AddCola(Estado.COCHE);
         int pos = -1;
         try {
             esperaCoches++;
-            while (numCoches == 2 || posLibres == 0) {
+            while ((numCoches == 2) || posLibres == 0 ) {
                 condEntradaCoche.await();
+                System.out.println("Esperando coche " + Thread.currentThread());
             }
-            System.out.println("Entra coche: " + Thread.currentThread());
-            esperaCoches--;
-            numCoches++;
-            posLibres--;
             pos = this.huecoLibre();
+            posLibres--;
             this.tuneles[pos] = Estado.COCHE;
+            numCoches++;
+            esperaCoches--;
+            System.out.println("Entra coche: " + Thread.currentThread());
+            canvas.AddTunel(Estado.COCHE, pos, id);
         } finally {
-            this.lockEntrada.unlock();
+            this.lock.unlock();
         }
         return pos;
-        // TODO! add id to draw car in canvas
     }
 
     public void Salecoche(int posicion) {
-        this.lockSalida.lock();
+        this.lock.lock();
         try {
             this.numCoches--;
             this.posLibres++;
             this.tuneles[posicion] = Estado.VACIO;
-            if (this.esperaFurgos > 0 && // Si hay furgos esperando Y
-                    (numFurgos < 2 && esperaCoches > 0) || // hay menos de dos furgos y hay coches esperando O
-                    (esperaCoches == 0)) { // si no hay coches esperando
-                this.condEntradaFurgo.signal();
-            } else if (numCoches < 2) {
-                this.condEntradaCoche.signal();
+            System.out.println("Sale coche: " + Thread.currentThread());
+            canvas.RemoveTunel(posicion);
+            if (this.esperaFurgos > 0 &&    // Si hay furgos esperando Y
+                    (numFurgos < 2) ||      // hay menos de dos furgos y hay coches esperando O
+                    (esperaCoches == 0)) {  // si no hay coches esperando
+                try{
+                    System.out.println("LLamando Furgo\n");
+                    this.condEntradaFurgo.signal();
+                }
+                catch(Exception e){
+                    //System.out.println("Explotasion\n");
+                }
+            } else {
+                try{
+                    System.out.println("LLamando Coche\n");
+                    this.condEntradaCoche.signal();
+                    //this.condEntradaCoche.notify();
+                }
+                catch(Exception e){
+                    //System.out.println("Explotasion\n");
+                }
             }
         } finally {
-            this.lockSalida.unlock();
+            this.lock.unlock();
         }
-        // TODO! remove the car from the canvas
     }
 
     public int EntraFurgo() throws InterruptedException {
-        this.lockEntrada.lock();
+        this.lock.lock();
+        int id = canvas.AddCola(Estado.FURGO);
         int pos = -1;
         try{
             this.esperaFurgos++;
-            while(this.posLibres == 0 && 
-            (this.numFurgos == 2 || this.esperaCoches > 0) ||
-            (this.esperaCoches == 0)){
+            while(this.posLibres == 0 || 
+            (this.numFurgos == 2 && this.esperaCoches > 0)){
                 this.condEntradaFurgo.await();
             }
             System.out.println("Entra furgo: " + Thread.currentThread());
@@ -102,29 +119,42 @@ public class Tunel {
             this.numFurgos++;
             posLibres--;
             pos = this.huecoLibre();
+            canvas.AddTunel(Estado.FURGO, pos, id);
             this.tuneles[pos] = Estado.FURGO;
         } finally {
-            this.lockEntrada.unlock();
+            this.lock.unlock();
         }
         return pos;
-        // TODO! add id for painting Furgo in canvas
     }
 
     public void SaleFurgo(int posicion) {
-        this.lockSalida.lock();
+        this.lock.lock();
         try {
+            this.tuneles[posicion] = Estado.VACIO;
             this.numFurgos--;
             this.posLibres++;
-            this.tuneles[posicion] = Estado.VACIO;
+            canvas.RemoveTunel(posicion);
+            System.out.println("Sale furgo: " + Thread.currentThread());
             if (this.esperaFurgos > 0 && // Si hay furgos esperando Y
-                    (numFurgos < 2 && esperaCoches > 0) || // hay menos de dos furgos y hay coches esperando O
+                    (numFurgos < 2) || // hay menos de dos furgos y hay coches esperando O
                     (esperaCoches == 0)) { // si no hay coches esperando
-                this.condEntradaFurgo.signal();
-            } else if (numCoches < 2) {
-                this.condEntradaCoche.signal();
+                    try{
+                        System.out.println("LLamando Furgo\n");
+                        this.condEntradaFurgo.signal();
+                    }
+                    catch(Exception e){
+                    }
+            } else{
+                try{
+                    System.out.println("LLamando Coche\n");
+                    this.condEntradaCoche.signal();
+                }
+                catch(Exception e){
+                    //System.out.println("Explotasion\n");
+                }
             }
         } finally {
-            this.lockSalida.unlock();
+            this.lock.unlock();
         }
     }
 }
