@@ -1,3 +1,7 @@
+/**
+*
+* @author ElPsy
+*/
 public class Furgo implements Runnable {
     private final int MAX_ESPERA = 3000;
     private final int MIN_ESPERA = 1000;
