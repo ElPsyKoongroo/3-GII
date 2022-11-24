@@ -28,23 +28,17 @@ public class ActividadDAO {
         this.con = _con;
     }
     
-    public ArrayList<String[]> getSocioByActividad(String idActividad) throws SQLException {
-        ArrayList<String[2]> socios = new ArrayList<>();
+    public ArrayList<Object[]> getSocioByActividad(String idActividad) throws SQLException {
+        ArrayList<Object[]> socios = new ArrayList<>();
         String consulta = "SELECT * FROM MONITOR";
         ps = this.con.getConexion().prepareStatement(consulta);
         ResultSet rs = ps.executeQuery();
         
         while (rs.next()) {
-            Socio s = new Socio(
-                    rs.getString(CODIGO),
-                    rs.getString(NOMBRE),
-                    rs.getString(DNI),
-                    rs.getString(TEL),
-                    rs.getString(CORREO),
-                    rs.getString(FENTRADA),
-                    rs.getString(NICK)
-            );
-            socios.add(s);
+            Object[] nombre_correo = new Object[2];
+            nombre_correo[0] = rs.getString(0);
+            nombre_correo[1] = rs.getString(1);
+            socios.add(nombre_correo);
         }
         
         return socios;
