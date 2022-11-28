@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
  */
 public class VistaMensajes {
 
-    public void ShowConectionMessage(String text, int messageType) {
+    public void ShowMessage(String text, int messageType) {
         String title;
         switch (messageType) {
             case JOptionPane.INFORMATION_MESSAGE: {
@@ -30,5 +30,15 @@ public class VistaMensajes {
         }
 
         JOptionPane.showMessageDialog(null, text, title, messageType);
+    }
+    
+    public int ShowConfirm(String text, int messageType){
+        return JOptionPane.showConfirmDialog(
+                null, 
+                "Confirmar", 
+                "¿ Estás seguro ?", 
+                JOptionPane.YES_NO_OPTION, 
+                JOptionPane.INFORMATION_MESSAGE
+        );
     }
 }

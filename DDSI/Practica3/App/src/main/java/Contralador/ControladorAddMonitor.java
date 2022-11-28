@@ -102,10 +102,10 @@ public class ControladorAddMonitor {
         
         try {
             this.mDAO.añadeMonitor(m);
-            v.ShowConectionMessage("Monitor añadido/actualizado correctamente", JOptionPane.INFORMATION_MESSAGE);
+            v.ShowMessage("Monitor añadido/actualizado correctamente", JOptionPane.INFORMATION_MESSAGE);
             this.vaddMonitor.dispose();
         } catch (SQLException error) {
-            v.ShowConectionMessage("Error al añadir/actualizar monitor", JOptionPane.ERROR_MESSAGE);
+            v.ShowMessage("Error al añadir/actualizar monitor", JOptionPane.ERROR_MESSAGE);
         }
     }
 

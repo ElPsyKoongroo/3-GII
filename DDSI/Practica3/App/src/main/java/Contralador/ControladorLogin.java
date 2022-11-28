@@ -102,13 +102,13 @@ public class ControladorLogin implements ActionListener {
                 try {
                     Conectar();
                     this.vc.mensajeConsola("Se ha conectado con exito");
-                    this.vMensajes.ShowConectionMessage("Conectado con exito", JOptionPane.INFORMATION_MESSAGE);
+                    this.vMensajes.ShowMessage("Conectado con exito", JOptionPane.INFORMATION_MESSAGE);
                     vLogin.dispose();
                     new ControladorPrincipal(this.conexion);
 
                 } catch (SQLException exception) {
                     this.vc.mensajeConsola("Error al conectarse");
-                    this.vMensajes.ShowConectionMessage(exception.getMessage(), JOptionPane.ERROR_MESSAGE);
+                    this.vMensajes.ShowMessage(exception.getMessage(), JOptionPane.ERROR_MESSAGE);
                 }
                 break;
             }

@@ -66,9 +66,9 @@ public class ControladorAddSocio {
         VistaMensajes v = new VistaMensajes();
         try {
             this.sDAO.añadeSocio(m);
-            v.ShowConectionMessage("Socio añadido correctamente", JOptionPane.INFORMATION_MESSAGE);
+            v.ShowMessage("Socio añadido correctamente", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException error) {
-            v.ShowConectionMessage("Error al añadir Socio", JOptionPane.ERROR_MESSAGE);
+            v.ShowMessage("Error al añadir Socio", JOptionPane.ERROR_MESSAGE);
         }
     }
 
