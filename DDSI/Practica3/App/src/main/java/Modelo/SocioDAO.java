@@ -15,20 +15,45 @@ import java.util.ArrayList;
  */
 public class SocioDAO {
 
-    private static final int NUMSOCIO = 1;
-    private static final int NOMBRE = 2;
-    private static final int DNI = 3;
-    private static final int FNACIMIENTO = 4;
-    private static final int TEL = 5;
-    private static final int CORREO = 6;
-    private static final int FENTRADA = 7;
-    private static final int CATEGORIA = 8;
+    public static final int NUMSOCIO = 1;
+    public static final int NOMBRE = 2;
+    public static final int DNI = 3;
+    public static final int FNACIMIENTO = 4;
+    public static final int TEL = 5;
+    public static final int CORREO = 6;
+    public static final int FENTRADA = 7;
+    public static final int CATEGORIA = 8;
 
     private Conexion con;
     private PreparedStatement ps = null;
 
     public SocioDAO(Conexion _con) {
         this.con = _con;
+    }
+
+    public void añadeSocio(Socio s) throws SQLException {
+        String consulta = String.format(
+            "insert into SOCIO VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
+            s.getNumeroSocio(),
+            s.getNombre(),
+            s.getDni(),
+            s.getFechaNacimiento(),
+            s.getTelefono(),
+            s.getCorreo(),
+            s.getFechaEntrada(),
+            s.getCategoria() 
+        );
+        ps = this.con.getConexion().prepareStatement(consulta);
+        ps.executeQuery(); 
+    }
+
+    public void eliminaSocio(String numSocio) throws SQLException {
+        String consulta = String.format(
+            "DELETE FROM SOCIO WHERE SOCIO.NUMSOCIO = '%s'",
+            numSocio
+        );
+        ps = this.con.getConexion().prepareStatement(consulta);
+        ps.executeUpdate();
     }
 
     public ArrayList<Socio> listaSocio() throws SQLException {

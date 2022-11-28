@@ -8,12 +8,12 @@ package Vista;
  *
  * @author sergio
  */
-public class VistaAddMonitor extends javax.swing.JDialog {
+public class VistaAddSocio extends javax.swing.JDialog {
 
     /**
      * Creates new form VistaAddMonitor
      */
-    public VistaAddMonitor(java.awt.Frame parent, boolean modal) {
+    public VistaAddSocio(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -27,13 +27,14 @@ public class VistaAddMonitor extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        CodeTextBox = new javax.swing.JTextField();
+        NumSocioTextBox = new javax.swing.JTextField();
         NameTextBox = new javax.swing.JTextField();
         DniTextBox = new javax.swing.JTextField();
         TelTextBox = new javax.swing.JTextField();
         EmailTextBox = new javax.swing.JTextField();
         DateTextBox = new javax.swing.JTextField();
-        NickTextBox = new javax.swing.JTextField();
+        BirthDateTextBox = new javax.swing.JTextField();
+        CategoriaTextBox = new javax.swing.JTextField();
         codeLabel = new javax.swing.JLabel();
         nameLabel = new javax.swing.JLabel();
         dniLabel = new javax.swing.JLabel();
@@ -43,14 +44,15 @@ public class VistaAddMonitor extends javax.swing.JDialog {
         nickLabel = new javax.swing.JLabel();
         InsertButton = new javax.swing.JButton();
         CancelButton = new javax.swing.JButton();
+        categoriaLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        CodeTextBox.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        CodeTextBox.setMinimumSize(new java.awt.Dimension(80, 22));
-        CodeTextBox.addActionListener(new java.awt.event.ActionListener() {
+        NumSocioTextBox.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        NumSocioTextBox.setMinimumSize(new java.awt.Dimension(80, 22));
+        NumSocioTextBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CodeTextBoxActionPerformed(evt);
+                NumSocioTextBoxActionPerformed(evt);
             }
         });
 
@@ -69,10 +71,13 @@ public class VistaAddMonitor extends javax.swing.JDialog {
         DateTextBox.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         DateTextBox.setMinimumSize(new java.awt.Dimension(80, 22));
 
-        NickTextBox.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        NickTextBox.setMinimumSize(new java.awt.Dimension(80, 22));
+        BirthDateTextBox.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BirthDateTextBox.setMinimumSize(new java.awt.Dimension(80, 22));
 
-        codeLabel.setText("Código");
+        CategoriaTextBox.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CategoriaTextBox.setMinimumSize(new java.awt.Dimension(80, 22));
+
+        codeLabel.setText("Numero Socio");
 
         nameLabel.setText("Nombre");
 
@@ -84,7 +89,7 @@ public class VistaAddMonitor extends javax.swing.JDialog {
 
         dateLabel.setText("Fecha de Entrada");
 
-        nickLabel.setText("Nick");
+        nickLabel.setText("Fecha de Nacimiento");
 
         InsertButton.setText("Insertar");
         InsertButton.addActionListener(new java.awt.event.ActionListener() {
@@ -100,33 +105,42 @@ public class VistaAddMonitor extends javax.swing.JDialog {
             }
         });
 
+        categoriaLabel.setText("Categoria");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(codeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nameLabel)
-                    .addComponent(dniLabel)
-                    .addComponent(telLabel))
-                .addGap(18, 18, 18)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nameLabel)
+                            .addComponent(dniLabel)
+                            .addComponent(telLabel)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(codeLabel)))
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(TelTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(247, 247, 247)
+                        .addComponent(categoriaLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CategoriaTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(NameTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(DniTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CodeTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(NumSocioTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 247, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(nickLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(NickTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(BirthDateTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(emailLabel)
@@ -134,8 +148,8 @@ public class VistaAddMonitor extends javax.swing.JDialog {
                                 .addGap(40, 40, 40)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(EmailTextBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(DateTextBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(221, 221, 221))))
+                                    .addComponent(DateTextBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addGap(221, 221, 221))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(InsertButton)
@@ -148,7 +162,7 @@ public class VistaAddMonitor extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CodeTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(NumSocioTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(EmailTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(codeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(emailLabel))
@@ -161,13 +175,17 @@ public class VistaAddMonitor extends javax.swing.JDialog {
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(DniTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(NickTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BirthDateTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dniLabel)
                     .addComponent(nickLabel))
                 .addGap(43, 43, 43)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TelTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(telLabel))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(CategoriaTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(categoriaLabel))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(TelTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(telLabel)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(InsertButton)
@@ -186,9 +204,9 @@ public class VistaAddMonitor extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_CancelButtonActionPerformed
 
-    private void CodeTextBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CodeTextBoxActionPerformed
+    private void NumSocioTextBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NumSocioTextBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_CodeTextBoxActionPerformed
+    }//GEN-LAST:event_NumSocioTextBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -207,20 +225,21 @@ public class VistaAddMonitor extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VistaAddMonitor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaAddSocio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VistaAddMonitor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaAddSocio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VistaAddMonitor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaAddSocio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VistaAddMonitor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaAddSocio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                VistaAddMonitor dialog = new VistaAddMonitor(new javax.swing.JFrame(), true);
+                VistaAddSocio dialog = new VistaAddSocio(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -233,15 +252,17 @@ public class VistaAddMonitor extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JTextField BirthDateTextBox;
     public javax.swing.JButton CancelButton;
-    public javax.swing.JTextField CodeTextBox;
+    public javax.swing.JTextField CategoriaTextBox;
     public javax.swing.JTextField DateTextBox;
     public javax.swing.JTextField DniTextBox;
     public javax.swing.JTextField EmailTextBox;
     public javax.swing.JButton InsertButton;
     public javax.swing.JTextField NameTextBox;
-    public javax.swing.JTextField NickTextBox;
+    public javax.swing.JTextField NumSocioTextBox;
     public javax.swing.JTextField TelTextBox;
+    private javax.swing.JLabel categoriaLabel;
     private javax.swing.JLabel codeLabel;
     private javax.swing.JLabel dateLabel;
     private javax.swing.JLabel dniLabel;

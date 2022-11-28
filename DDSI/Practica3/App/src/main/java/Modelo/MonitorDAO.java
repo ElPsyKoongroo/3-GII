@@ -15,13 +15,13 @@ import java.util.ArrayList;
  */
 public class MonitorDAO {
     
-    private static final int CODIGO = 1;
-    private static final int NOMBRE = 2;
-    private static final int DNI = 3;
-    private static final int TEL = 4;
-    private static final int CORREO = 5;
-    private static final int FENTRADA = 6;
-    private static final int NICK = 7;
+    public static final int CODIGO = 1;
+    public static final int NOMBRE = 2;
+    public static final int DNI = 3;
+    public static final int TEL = 4;
+    public static final int CORREO = 5;
+    public static final int FENTRADA = 6;
+    public static final int NICK = 7;
     
     
     Conexion con = null;
@@ -34,16 +34,25 @@ public class MonitorDAO {
     public void añadeMonitor(Monitor m) throws SQLException {
         String consulta = String.format(
             "insert into MONITOR VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s')",
-            m.getcodigoMonitor(),
-            m.getnombre(),
-            m.getdni(),
-            m.gettelefono(),
-            m.getcorreo(),
-            m.getfechaEntrada(),
-            m.getnick() 
+            m.getCodigoMonitor(),
+            m.getNombre(),
+            m.getDni(),
+            m.getTelefono(),
+            m.getCorreo(),
+            m.getFechaEntrada(),
+            m.getNick() 
         );
         ps = this.con.getConexion().prepareStatement(consulta);
-        ResultSet rs = ps.executeQuery(); 
+        ps.executeQuery(); 
+    }
+    
+    public void eliminaMonitor(String idMonitor) throws SQLException {
+        String consulta = String.format(
+            "DELETE FROM MONITOR WHERE MONITOR.CODMONITOR = '%s'",
+            idMonitor
+        );
+        ps = this.con.getConexion().prepareStatement(consulta);
+        ps.executeUpdate();
     }
     
     public ArrayList<Monitor> listaMonitores() throws SQLException {

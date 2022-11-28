@@ -35,9 +35,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTableMonitores = new javax.swing.JTable();
         jSociosPanel = new javax.swing.JPanel();
-        ButtonNuevo1 = new javax.swing.JButton();
-        ButtonBaja1 = new javax.swing.JButton();
-        ButtonUpdate1 = new javax.swing.JButton();
+        jButtonNewSocio = new javax.swing.JButton();
+        jButtonUpdateSocio = new javax.swing.JButton();
+        jButtonDeleteSocio = new javax.swing.JButton();
         ButtonCerrar1 = new javax.swing.JButton();
         jGestionLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -61,7 +61,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
         ButtonCerrar.setActionCommand("CerrarCommand");
 
         jGestionLabel2.setText("Gestion De Monitores");
-        jGestionLabel2.setPreferredSize(new java.awt.Dimension(124, 16));
 
         jTableMonitores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -89,7 +88,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                         .addComponent(jButtonUpdateMonitor)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonDeleteMonitor)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 369, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 465, Short.MAX_VALUE)
                         .addComponent(ButtonCerrar)
                         .addGap(16, 16, 16))
                     .addComponent(jScrollPane3)
@@ -105,7 +104,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 .addComponent(jGestionLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addGroup(jMonitoresPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonNewMonitor)
                     .addComponent(jButtonUpdateMonitor)
@@ -116,11 +115,24 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         jSociosPanel.setPreferredSize(new java.awt.Dimension(955, 370));
 
-        ButtonNuevo1.setText("jButton1");
+        jButtonNewSocio.setText("Nuevo Socio");
+        jButtonNewSocio.setActionCommand("ButtonNewSocio");
+        jButtonNewSocio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNewSocioActionPerformed(evt);
+            }
+        });
 
-        ButtonBaja1.setText("jButton2");
+        jButtonUpdateSocio.setText("Borrar Socio");
+        jButtonUpdateSocio.setActionCommand("ButtonDeleteSocio");
+        jButtonUpdateSocio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonUpdateSocioActionPerformed(evt);
+            }
+        });
 
-        ButtonUpdate1.setText("jButton3");
+        jButtonDeleteSocio.setText("Actualiza Socio");
+        jButtonDeleteSocio.setActionCommand("ButtonUpdateSocio");
 
         ButtonCerrar1.setText("Salir");
         ButtonCerrar1.setActionCommand("CerrarCommand");
@@ -149,12 +161,12 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jSociosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jSociosPanelLayout.createSequentialGroup()
-                        .addComponent(ButtonNuevo1)
+                        .addComponent(jButtonNewSocio)
                         .addGap(18, 18, 18)
-                        .addComponent(ButtonBaja1)
+                        .addComponent(jButtonUpdateSocio)
                         .addGap(18, 18, 18)
-                        .addComponent(ButtonUpdate1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 594, Short.MAX_VALUE)
+                        .addComponent(jButtonDeleteSocio)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 509, Short.MAX_VALUE)
                         .addComponent(ButtonCerrar1)
                         .addGap(16, 16, 16))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 949, Short.MAX_VALUE)
@@ -170,11 +182,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 .addComponent(jGestionLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addGroup(jSociosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ButtonNuevo1)
-                    .addComponent(ButtonBaja1)
-                    .addComponent(ButtonUpdate1)
+                    .addComponent(jButtonNewSocio)
+                    .addComponent(jButtonUpdateSocio)
+                    .addComponent(jButtonDeleteSocio)
                     .addComponent(ButtonCerrar1))
                 .addGap(22, 22, 22))
         );
@@ -213,18 +225,26 @@ public class VistaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonNewSocioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNewSocioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonNewSocioActionPerformed
+
+    private void jButtonUpdateSocioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateSocioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonUpdateSocioActionPerformed
+
     /**
      * @param args the command line arguments
      */
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ButtonBaja1;
     public javax.swing.JButton ButtonCerrar;
     public javax.swing.JButton ButtonCerrar1;
-    private javax.swing.JButton ButtonNuevo1;
-    private javax.swing.JButton ButtonUpdate1;
-    private javax.swing.JButton jButtonDeleteMonitor;
+    public javax.swing.JButton jButtonDeleteMonitor;
+    public javax.swing.JButton jButtonDeleteSocio;
     public javax.swing.JButton jButtonNewMonitor;
-    private javax.swing.JButton jButtonUpdateMonitor;
+    public javax.swing.JButton jButtonNewSocio;
+    public javax.swing.JButton jButtonUpdateMonitor;
+    public javax.swing.JButton jButtonUpdateSocio;
     public javax.swing.JLabel jGestionLabel1;
     public javax.swing.JLabel jGestionLabel2;
     public javax.swing.JPanel jMonitoresPanel;

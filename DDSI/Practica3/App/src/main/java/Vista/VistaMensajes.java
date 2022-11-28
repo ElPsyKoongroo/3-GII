@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
-* @author ElPsy
+ * @author ElPsy
  */
 public class VistaMensajes {
 

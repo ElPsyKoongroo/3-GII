@@ -34,31 +34,31 @@ public class Monitor {
         this.nick = _nick;
     }
 
-    public String getcodigoMonitor(){
+    public String getCodigoMonitor(){
         return this.codigoMonitor;
     }
        
-    public String getnombre(){
+    public String getNombre(){
         return this.nombre;
     }
        
-    public String getdni(){
+    public String getDni(){
         return this.dni;
     }
        
-    public String gettelefono(){
+    public String getTelefono(){
         return this.telefono;
     }
        
-    public String getcorreo(){
+    public String getCorreo(){
         return this.correo;
     }
        
-    public String getfechaEntrada(){
+    public String getFechaEntrada(){
         return this.fechaEntrada;
     }
        
-    public String getnick(){
+    public String getNick(){
         return this.nick;
     }
        

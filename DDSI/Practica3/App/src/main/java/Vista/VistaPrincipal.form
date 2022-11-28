@@ -83,7 +83,7 @@
                           <Component id="jButtonUpdateMonitor" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jButtonDeleteMonitor" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="369" max="32767" attributes="0"/>
+                          <EmptySpace pref="465" max="32767" attributes="0"/>
                           <Component id="ButtonCerrar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                       </Group>
@@ -104,7 +104,7 @@
                   <Component id="jGestionLabel2" min="-2" pref="42" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jScrollPane3" min="-2" pref="250" max="-2" attributes="0"/>
-                  <EmptySpace pref="15" max="32767" attributes="0"/>
+                  <EmptySpace pref="22" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jButtonNewMonitor" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jButtonUpdateMonitor" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -131,6 +131,9 @@
             <Property name="text" type="java.lang.String" value="Actualiza Monitor"/>
             <Property name="actionCommand" type="java.lang.String" value="ButtonUpdateMonitor"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonDeleteMonitor">
           <Properties>
@@ -138,6 +141,9 @@
             <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="actionCommand" type="java.lang.String" value="ButtonRemoveMonitor"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="ButtonCerrar">
           <Properties>
@@ -151,9 +157,6 @@
         <Component class="javax.swing.JLabel" name="jGestionLabel2">
           <Properties>
             <Property name="text" type="java.lang.String" value="Gestion De Monitores"/>
-            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[124, 16]"/>
-            </Property>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -248,12 +251,12 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="ButtonNuevo1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonNewSocio" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="ButtonBaja1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonUpdateSocio" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="ButtonUpdate1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="594" max="32767" attributes="0"/>
+                          <Component id="jButtonDeleteSocio" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="509" max="32767" attributes="0"/>
                           <Component id="ButtonCerrar1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                       </Group>
@@ -274,11 +277,11 @@
                   <Component id="jGestionLabel1" min="-2" pref="42" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="250" max="-2" attributes="0"/>
-                  <EmptySpace pref="15" max="32767" attributes="0"/>
+                  <EmptySpace pref="22" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="ButtonNuevo1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="ButtonBaja1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="ButtonUpdate1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonNewSocio" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonUpdateSocio" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonDeleteSocio" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="ButtonCerrar1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
@@ -287,20 +290,38 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="ButtonNuevo1">
+        <Component class="javax.swing.JButton" name="jButtonNewSocio">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jButton1"/>
+            <Property name="text" type="java.lang.String" value="Nuevo Socio"/>
+            <Property name="actionCommand" type="java.lang.String" value="ButtonNewSocio"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonNewSocioActionPerformed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
         </Component>
-        <Component class="javax.swing.JButton" name="ButtonBaja1">
+        <Component class="javax.swing.JButton" name="jButtonUpdateSocio">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jButton2"/>
+            <Property name="text" type="java.lang.String" value="Borrar Socio"/>
+            <Property name="actionCommand" type="java.lang.String" value="ButtonDeleteSocio"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonUpdateSocioActionPerformed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
         </Component>
-        <Component class="javax.swing.JButton" name="ButtonUpdate1">
+        <Component class="javax.swing.JButton" name="jButtonDeleteSocio">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jButton3"/>
+            <Property name="text" type="java.lang.String" value="Actualiza Socio"/>
+            <Property name="actionCommand" type="java.lang.String" value="ButtonUpdateSocio"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="ButtonCerrar1">
           <Properties>
