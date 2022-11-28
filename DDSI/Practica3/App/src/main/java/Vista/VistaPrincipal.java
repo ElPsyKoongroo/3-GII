@@ -88,7 +88,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                         .addComponent(jButtonUpdateMonitor)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonDeleteMonitor)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 465, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 475, Short.MAX_VALUE)
                         .addComponent(ButtonCerrar)
                         .addGap(16, 16, 16))
                     .addComponent(jScrollPane3)
@@ -113,6 +113,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 .addGap(22, 22, 22))
         );
 
+        jSociosPanel.setName("jSociosPanel"); // NOI18N
         jSociosPanel.setPreferredSize(new java.awt.Dimension(955, 370));
 
         jButtonNewSocio.setText("Nuevo Socio");

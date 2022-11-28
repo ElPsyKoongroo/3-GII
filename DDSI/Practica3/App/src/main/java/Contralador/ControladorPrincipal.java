@@ -22,6 +22,24 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
+ * 
+ *  !TODO
+ *      1.  Reemplazar el estilo de las cartas. Ahora mismo el estilo card va 
+ *          fixed con lo que hay en la Vista Principal. Lo suyo es crear dos objetos
+ *          que sean JPanel, añadirlo a 'crd' y añadirlo a vPrincipal para poder
+ *          intarcambiarlos mas facilmente
+ * 
+ *      2.  Añadir las funcionalidades para Socios
+ * 
+ *      3.  Al borrar un Socio/Monitor hacer que aparezca un "ShowConfigDialog" para
+ *          confirmar la accion de borrar
+ *          
+ * 
+ * 
+ */
+
+
+/**
  *
  * @author ElPsy
  */
@@ -29,12 +47,17 @@ public class ControladorPrincipal {
 
     private Conexion con;
     private VistaPrincipal vPrincipal;
-    private VistaMonitor vMonitor;
+    
+    private MonitorPanelLayout monitorPanel;
+    private SocioPanelLayout socioPanel;
+    
     private JMenuBar barrita;
     private JMenu socios;
     private JMenu monitores;
+    
     private final String actionMonitores = "Gestión de monitores";
     private final String actionSocios = "Gestión de socios";
+    
     private ActionListener vPrinListener;
     private ActionListener vSocioListener;
     private ActionListener vMonitorListener;
@@ -52,16 +75,26 @@ public class ControladorPrincipal {
         this.vPrincipal = new VistaPrincipal();
         this.buildMenu();
 
-        this.vMonitor = new VistaMonitor();
-        this.vMonitor.setVisible(true);
-        this.vMonitor.jTableMonitores.setVisible(true);
+       
 
         //this.vPrincipal.jGestionLabel.setText(this.actionMonitores);
         this.vPrincipal.setLocationRelativeTo(null);
         this.vPrincipal.setJMenuBar(this.barrita);
+        
+        this.vPrincipal.jSociosPanel.setVisible(false);
+        this.vPrincipal.jMonitoresPanel.setVisible(false);
+        
+        this.monitorPanel = new MonitorPanelLayout();
+        this.socioPanel = new SocioPanelLayout();
+        
+        this.monitorPanel.setVisible(true);
+        this.socioPanel.setVisible(true);
 
         this.crd = new CardLayout();
-
+        this.crd.addLayoutComponent(this.monitorPanel, "m");
+        this.crd.addLayoutComponent(this.socioPanel, "s");
+        
+        this.vPrincipal.add(this.monitorPanel);
         this.vPrincipal.getContentPane().setLayout(crd);
 
         this.modeloTablaMonitores = new DefaultTableModel() {
@@ -98,6 +131,7 @@ public class ControladorPrincipal {
         //TODO! Add Update Monitor/Socio
         this.vPrincipal.jButtonNewMonitor.addActionListener(vMonitorListener);
         this.vPrincipal.jButtonDeleteMonitor.addActionListener(vMonitorListener);
+        this.vPrincipal.jButtonUpdateMonitor.addActionListener(vMonitorListener);
 
         this.vPrincipal.jButtonNewSocio.addActionListener(vSocioListener);
         this.vPrincipal.jButtonDeleteSocio.addActionListener(vSocioListener);
@@ -115,22 +149,29 @@ public class ControladorPrincipal {
     }
 
     private void drawMonitoresTable() {
+        
+        int[] column_sizes = {40, 240, 70, 70, 200, 150, 60};
+
+        for (int i = 0; i < column_sizes.length; i++) {
+            this.monitorPanel.jTableMonitores.getColumnModel().getColumn(i).setPreferredWidth(column_sizes[i]);
+        }
+        
         String[] columns = {"Codigo", "Nombre", "DNI", "Telefono",
             "Correo", "FechaEntrada", "Nick"};
 
         this.modeloTablaMonitores.setColumnIdentifiers(columns);
-
-        this.vPrincipal.jTableMonitores.getTableHeader().setReorderingAllowed(false);
-        this.vPrincipal.jTableMonitores.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
-
-        int[] column_sizes = {40, 240, 70, 70, 200, 150, 60};
-
-        for (int i = 0; i < column_sizes.length; i++) {
-            this.vPrincipal.jTableMonitores.getColumnModel().getColumn(i).setPreferredWidth(column_sizes[i]);
-        }
+        this.monitorPanel.jTableMonitores.getTableHeader().setReorderingAllowed(false);
+        this.monitorPanel.jTableMonitores.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+      
     }
 
     private void drawSociosTable() {
+        int[] column_sizes = {40, 240, 70, 70, 200, 150, 60};
+
+        for (int i = 0; i < column_sizes.length; i++) {
+            this.vPrincipal.jTableSocios.getColumnModel().getColumn(i).setPreferredWidth(column_sizes[i]);
+        }
+        
         String[] columns = {"Num Socio", "Nombre", "DNI", "FechaNacimiento", "Telefono",
             "Correo", "FechaEntrada", "Categoria"};
 
@@ -138,11 +179,6 @@ public class ControladorPrincipal {
 
         this.vPrincipal.jTableSocios.getTableHeader().setReorderingAllowed(false);
         this.vPrincipal.jTableSocios.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
-        int[] column_sizes = {40, 240, 70, 70, 200, 150, 60};
-
-        for (int i = 0; i < column_sizes.length; i++) {
-            this.vPrincipal.jTableSocios.getColumnModel().getColumn(i).setPreferredWidth(column_sizes[i]);
-        }
     }
 
     private void fillMonitorTable(DefaultTableModel table, ArrayList<Monitor> content) {
@@ -203,8 +239,9 @@ public class ControladorPrincipal {
         } catch (SQLException ex) {
             System.out.println("Error al obtener los monitores");
         }
-        this.vPrincipal.jTableMonitores.setModel(this.modeloTablaMonitores);
-        this.crd.last(this.vPrincipal.getContentPane());
+        this.monitorPanel.jTableMonitores.setModel(this.modeloTablaMonitores);
+        this.crd.show(this.vPrincipal.getContentPane(), "m");
+        //this.crd.last(this.vPrincipal.getContentPane());
     }
 
     private void setSociosCard() {
@@ -215,6 +252,7 @@ public class ControladorPrincipal {
             System.out.println("Error al obtener los socios");
         }
         this.vPrincipal.jTableSocios.setModel(this.modeloTablaSocios);
+        //this.crd.show(this.vPrincipal.getContentPane(), "jSociosPanel");
         this.crd.first(this.vPrincipal.getContentPane());
     }
 
@@ -256,6 +294,19 @@ public class ControladorPrincipal {
             );
         }
     }
+    
+    private Monitor getMonitorFromSelectedRow(){
+        int selected_row = this.vPrincipal.jTableMonitores.getSelectedRow();
+        return new Monitor(
+                (String) this.vPrincipal.jTableMonitores.getValueAt(selected_row, MonitorDAO.CODIGO - 1), 
+                (String) this.vPrincipal.jTableMonitores.getValueAt(selected_row, MonitorDAO.NOMBRE - 1), 
+                (String) this.vPrincipal.jTableMonitores.getValueAt(selected_row, MonitorDAO.DNI - 1), 
+                (String) this.vPrincipal.jTableMonitores.getValueAt(selected_row, MonitorDAO.TEL - 1),
+                (String) this.vPrincipal.jTableMonitores.getValueAt(selected_row, MonitorDAO.CORREO - 1), 
+                (String) this.vPrincipal.jTableMonitores.getValueAt(selected_row, MonitorDAO.FENTRADA - 1), 
+                (String) this.vPrincipal.jTableMonitores.getValueAt(selected_row, MonitorDAO.NICK - 1)
+        );
+    }
 
     private void actionPerformedMonitor(ActionEvent e) {
         switch (e.getActionCommand()) {
@@ -272,13 +323,16 @@ public class ControladorPrincipal {
 
             case "ButtonUpdateMonitor": {
                 System.out.println("Actualizando Monitor");
-                new ControladorAddMonitor(this.vPrincipal, this.con);
+                Monitor m = this.getMonitorFromSelectedRow();
+                var c = new ControladorAddMonitor(this.vPrincipal, this.con, m);
+                break;
             }
 
             default: {
                 this.defaultCase();
             }
         }
+        this.setMonitoresCard();
     }
 
     private void eliminaSocio(){
@@ -309,11 +363,12 @@ public class ControladorPrincipal {
                 this.eliminaSocio();
                 break;
             }
-
+            
             default: {
                 this.defaultCase();
             }
         }
+        this.setSociosCard();
     }
 
     private void defaultCase() {

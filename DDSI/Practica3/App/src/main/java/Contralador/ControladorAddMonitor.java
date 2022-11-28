@@ -24,6 +24,8 @@ public class ControladorAddMonitor {
     private ActionListener vAddMonitorListener;
     private VistaAddMonitor vaddMonitor;
     private MonitorDAO mDAO;
+    private Monitor placeHolder;
+    public boolean success = false;
 
     public ControladorAddMonitor(Frame parent, Conexion con) {
         this.mDAO = new MonitorDAO(con);
@@ -33,8 +35,31 @@ public class ControladorAddMonitor {
         this.addListeners();
 
         this.vaddMonitor.setVisible(true);
+        placeHolder = null;
     }
+    
+    public ControladorAddMonitor(Frame parent, Conexion con, Monitor m) {
+        this.mDAO = new MonitorDAO(con);
+        this.vaddMonitor = new VistaAddMonitor(parent, true);
+        this.vAddMonitorListener = (ActionEvent e) -> actionPerformedMonitor(e);
+        this.placeHolder = m;
+        this.setPlaceHolder();
+        this.vaddMonitor.InsertButton.setText("Actualizar");
+        this.addListeners();
 
+        this.vaddMonitor.setVisible(true);
+    }
+    
+    public void setPlaceHolder(){
+        this.vaddMonitor.CodeTextBox.setText(this.placeHolder.getCodigoMonitor());
+        this.vaddMonitor.DniTextBox.setText(this.placeHolder.getDni());
+        this.vaddMonitor.TelTextBox.setText(this.placeHolder.getTelefono());
+        this.vaddMonitor.EmailTextBox.setText(this.placeHolder.getCorreo());
+        this.vaddMonitor.DateTextBox.setText(this.placeHolder.getFechaEntrada());
+        this.vaddMonitor.NickTextBox.setText(this.placeHolder.getNick());
+        this.vaddMonitor.NameTextBox.setText(this.placeHolder.getNombre());
+    }
+    
     private void addListeners() {
         this.vaddMonitor.CancelButton.addActionListener(vAddMonitorListener);
         this.vaddMonitor.InsertButton.addActionListener(vAddMonitorListener);
@@ -67,11 +92,20 @@ public class ControladorAddMonitor {
         );
 
         VistaMensajes v = new VistaMensajes();
+        
+        if (placeHolder != null){
+            try{
+                this.mDAO.eliminaMonitor(placeHolder.getCodigoMonitor());
+            } catch (SQLException err){
+            }
+        }
+        
         try {
             this.mDAO.añadeMonitor(m);
-            v.ShowConectionMessage("Monitor añadido correctamente", JOptionPane.INFORMATION_MESSAGE);
+            v.ShowConectionMessage("Monitor añadido/actualizado correctamente", JOptionPane.INFORMATION_MESSAGE);
+            this.vaddMonitor.dispose();
         } catch (SQLException error) {
-            v.ShowConectionMessage("Error al añadir monitor", JOptionPane.ERROR_MESSAGE);
+            v.ShowConectionMessage("Error al añadir/actualizar monitor", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -83,6 +117,10 @@ public class ControladorAddMonitor {
                 break;
             }
 
+            case "Actualizar": {
+                System.out.println("Dropping !");
+            }
+            
             case "Insertar": {
                 this.getMonitorData();
                 break;
