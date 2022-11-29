@@ -55,6 +55,30 @@ public class MonitorDAO {
         ps.executeUpdate();
     }
     
+    public void updateMonitor(Monitor m) throws SQLException {
+        String consulta = String.format(
+            "UPDATE MONITOR " +
+            "SET MONITOR.nombre = '%s', " + 
+            "MONITOR.dni = '%s', " + 
+            "MONITOR.telefono = '%s', " + 
+            "MONITOR.correo = '%s', " + 
+            "MONITOR.fechaEntrada = '%s', " + 
+            "MONITOR.nick = '%s' " +
+            "WHERE MONITOR.codMonitor = '%s'",
+            m.getNombre(),
+            m.getDni(),
+            m.getTelefono(),
+            m.getCorreo(),
+            m.getFechaEntrada(),
+            m.getNick(),
+            m.getCodigoMonitor()
+        );
+
+        System.out.println(consulta);
+        ps = this.con.getConexion().prepareStatement(consulta);
+        ps.executeQuery(); 
+    }
+    
     public ArrayList<Monitor> listaMonitores() throws SQLException {
         ArrayList<Monitor> listaMonitores = new ArrayList<Monitor>();
         String consulta = "SELECT * FROM MONITOR";

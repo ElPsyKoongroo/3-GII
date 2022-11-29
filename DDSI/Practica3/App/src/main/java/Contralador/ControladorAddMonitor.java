@@ -24,9 +24,17 @@ public class ControladorAddMonitor {
     private ActionListener vAddMonitorListener;
     private VistaAddMonitor vaddMonitor;
     private MonitorDAO mDAO;
-    private Monitor placeHolder;
-    public boolean success = false;
 
+    // If placeHolder is not null that means that this GUI was called
+    // from Update Monitor which means that we will do mDAO.updateMonitor()
+    // instead of mDAO.addMonitor()
+    private Monitor placeHolder = null;
+
+    /**  
+    * 
+    *  <h3> Add Monitor constructor ! </h3>
+    * 
+    */
     public ControladorAddMonitor(Frame parent, Conexion con) {
         this.mDAO = new MonitorDAO(con);
         this.vaddMonitor = new VistaAddMonitor(parent, true);
@@ -35,23 +43,32 @@ public class ControladorAddMonitor {
         this.addListeners();
 
         this.vaddMonitor.setVisible(true);
-        placeHolder = null;
     }
     
+
+    /**  
+    * 
+    *  <h3> Update Monitor constructor ! </h3>
+    * 
+    */
     public ControladorAddMonitor(Frame parent, Conexion con, Monitor m) {
         this.mDAO = new MonitorDAO(con);
         this.vaddMonitor = new VistaAddMonitor(parent, true);
         this.vAddMonitorListener = (ActionEvent e) -> actionPerformedMonitor(e);
         this.placeHolder = m;
         this.setPlaceHolder();
-        this.vaddMonitor.InsertButton.setText("Actualizar");
         this.addListeners();
+
+        
+        // Cuando se cambia el texto tambien se cambia el Action Command !!!
+        this.vaddMonitor.InsertButton.setText("Actualizar");
 
         this.vaddMonitor.setVisible(true);
     }
     
     public void setPlaceHolder(){
         this.vaddMonitor.CodeTextBox.setText(this.placeHolder.getCodigoMonitor());
+        this.vaddMonitor.CodeTextBox.setEnabled(false);
         this.vaddMonitor.DniTextBox.setText(this.placeHolder.getDni());
         this.vaddMonitor.TelTextBox.setText(this.placeHolder.getTelefono());
         this.vaddMonitor.EmailTextBox.setText(this.placeHolder.getCorreo());
@@ -93,15 +110,15 @@ public class ControladorAddMonitor {
 
         VistaMensajes v = new VistaMensajes();
         
-        if (placeHolder != null){
-            try{
-                this.mDAO.eliminaMonitor(placeHolder.getCodigoMonitor());
-            } catch (SQLException err){
-            }
-        }
-        
         try {
-            this.mDAO.añadeMonitor(m);
+
+            // If there is a place holder that means we are updating 
+            // not adding.
+            if (placeHolder != null)
+                this.mDAO.updateMonitor(m);
+            else 
+                this.mDAO.añadeMonitor(m);
+
             v.ShowMessage("Monitor añadido/actualizado correctamente", JOptionPane.INFORMATION_MESSAGE);
             this.vaddMonitor.dispose();
         } catch (SQLException error) {

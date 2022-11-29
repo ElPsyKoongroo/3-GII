@@ -23,19 +23,22 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * !TODO 1. Reemplazar el estilo de las cartas. Ahora mismo el estilo card va
- * fixed con lo que hay en la Vista Principal. Lo suyo es crear dos objetos que
- * sean JPanel, añadirlo a 'crd' y añadirlo a vPrincipal para poder
- * intarcambiarlos mas facilmente
- *
- * 2. Añadir las funcionalidades para Socios
- *
- * 3. Al borrar un Socio/Monitor hacer que aparezca un "ShowConfigDialog" para
- * confirmar la accion de borrar
+ * !TODO 
+ * 
+ *  1.  Reemplazar el estilo de las cartas. Ahora mismo el estilo card va
+ *      fixed con lo que hay en la Vista Principal. Lo suyo es crear dos objetos que
+ *      sean JPanel, añadirlo a 'crd' y añadirlo a vPrincipal para poder
+ *      intarcambiarlos mas facilmente (Casi hecho ?)
+ *  
+ *  2.  Añadir las funcionalidades para Socios 
+ *  
+ *  3.  Al borrar un Socio/Monitor hacer que aparezca un "ShowConfigDialog" para
+ *      confirmar la accion de borrar (Hecho para socio)
  *
  *
  *
  */
+
 /**
  *
  * @author ElPsy
@@ -70,13 +73,10 @@ public class ControladorPrincipal {
         this.vPrinListener = (ActionEvent e) -> actionPerformedPrincipal(e);
         this.con = con;
         this.vPrincipal = new VistaPrincipal();
+
         this.buildMenu();
-
-        //this.vPrincipal.jGestionLabel.setText(this.actionMonitores);
-        this.vPrincipal.setLocationRelativeTo(null);
-        this.vPrincipal.setJMenuBar(this.barrita);
-
         this.setCardsLayout();
+        this.addListeners();
 
         this.modeloTablaMonitores = new DefaultTableModel() {
             @Override
@@ -91,8 +91,9 @@ public class ControladorPrincipal {
             }
         };
 
-        addListeners();
+
         this.vPrincipal.setVisible(true);
+        this.vPrincipal.setLocationRelativeTo(null);
 
         this.setMonitoresCard();
 
@@ -126,6 +127,9 @@ public class ControladorPrincipal {
         this.socios.add(actionSocios);
         this.barrita.add(this.monitores);
         this.barrita.add(this.socios);
+
+        
+        this.vPrincipal.setJMenuBar(this.barrita);
     }
 
     private void addListeners() {
@@ -155,11 +159,12 @@ public class ControladorPrincipal {
         }
     }
 
-    /*
-        /=====================================\
-        |   ACTION LISTENERS ABOUT METHODS    |
-        \=====================================/
-     */
+    //
+    //  /=====================================\
+    //  |   ACTION LISTENERS ABOUT METHODS    |
+    //  \=====================================/
+    //
+    
     private void actionPerformedPrincipal(ActionEvent e) {
         switch (e.getActionCommand()) {
             case "CerrarCommand": {
@@ -167,6 +172,7 @@ public class ControladorPrincipal {
                 System.exit(0);
                 break;
             }
+
             case actionMonitores: {
                 this.setMonitoresCard();
                 break;
@@ -176,6 +182,7 @@ public class ControladorPrincipal {
                 this.setSociosCard();
                 break;
             }
+            
             default: {
                 System.out.println(e.getActionCommand());
                 System.out.println("¿ Qué has hecho para llegar aqui viajero ?");
@@ -200,10 +207,11 @@ public class ControladorPrincipal {
                 break;
             }
 
+            
             case "ButtonUpdateMonitor": {
                 System.out.println("Actualizando Monitor");
                 Monitor m = this.getMonitorFromSelectedRow();
-                var c = new ControladorAddMonitor(this.vPrincipal, this.con, m);
+                new  ControladorAddMonitor(this.vPrincipal, this.con, m);
                 break;
             }
 
@@ -239,11 +247,12 @@ public class ControladorPrincipal {
         v.ShowMessage("Que has hecho para llegar hasta aqui viajero ?", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    /*
-        /=====================================\
-        |       MONITOR ABOUT METHODS         |
-        \=====================================/
-     */
+    //
+    //  /=====================================\
+    //  |       MONITOR ABOUT METHODS         |
+    //  \=====================================/
+    //
+    
     private void fillMonitorTable(DefaultTableModel table, ArrayList<Monitor> content) {
         Object[] fila = new Object[7];
         var lenght = content.size();
@@ -325,11 +334,12 @@ public class ControladorPrincipal {
         );
     }
 
-    /*
-        /=====================================\
-        |         SOCIO ABOUT METHODS         |
-        \=====================================/
-     */
+    //
+    //  /=====================================\
+    //  |         SOCIO ABOUT METHODS         |
+    //  \=====================================/
+    //
+    
     private void fillSocioTable(DefaultTableModel table, ArrayList<Socio> content) {
         Object[] fila = new Object[8];
         var lenght = content.size();
