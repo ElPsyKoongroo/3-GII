@@ -6,7 +6,8 @@ package Contralador;
 
 import Modelo.Conexion;
 import Modelo.Monitor;
-import Modelo.MonitorDAO;
+import Modelo.MariaMonitorDAO;
+import Modelo.IMonitorDAO;
 import Vista.VistaAddMonitor;
 import Vista.VistaMensajes;
 import java.awt.Frame;
@@ -23,7 +24,14 @@ public class ControladorAddMonitor {
 
     private ActionListener vAddMonitorListener;
     private VistaAddMonitor vaddMonitor;
-    private MonitorDAO mDAO;
+    private IMonitorDAO mDAO;
+
+    // Because Java enums **** lets agree on: 
+    // dataBase = true (MARIADB)
+    // dataBase = false (ORACLE)
+    private boolean dataBase;
+
+
 
     // If placeHolder is not null that means that this GUI was called
     // from Update Monitor which means that we will do mDAO.updateMonitor()
@@ -36,7 +44,7 @@ public class ControladorAddMonitor {
     * 
     */
     public ControladorAddMonitor(Frame parent, Conexion con) {
-        this.mDAO = new MonitorDAO(con);
+        this.mDAO = new MariaMonitorDAO(con);
         this.vaddMonitor = new VistaAddMonitor(parent, true);
         this.vAddMonitorListener = (ActionEvent e) -> actionPerformedMonitor(e);
 
@@ -52,7 +60,7 @@ public class ControladorAddMonitor {
     * 
     */
     public ControladorAddMonitor(Frame parent, Conexion con, Monitor m) {
-        this.mDAO = new MonitorDAO(con);
+        this.mDAO = new MariaMonitorDAO(con);
         this.vaddMonitor = new VistaAddMonitor(parent, true);
         this.vAddMonitorListener = (ActionEvent e) -> actionPerformedMonitor(e);
         this.placeHolder = m;
@@ -84,13 +92,13 @@ public class ControladorAddMonitor {
 
     private void getMonitorData() {
         String args[] = new String[7];
-        args[MonitorDAO.CODIGO - 1] = this.vaddMonitor.CodeTextBox.getText();
-        args[MonitorDAO.NOMBRE - 1] = this.vaddMonitor.NameTextBox.getText();
-        args[MonitorDAO.DNI - 1] = this.vaddMonitor.DniTextBox.getText();
-        args[MonitorDAO.TEL - 1] = this.vaddMonitor.TelTextBox.getText();
-        args[MonitorDAO.CORREO - 1] = this.vaddMonitor.EmailTextBox.getText();
-        args[MonitorDAO.FENTRADA - 1] = this.vaddMonitor.DateTextBox.getText();
-        args[MonitorDAO.NICK - 1] = this.vaddMonitor.NickTextBox.getText();
+        args[MariaMonitorDAO.CODIGO - 1] = this.vaddMonitor.CodeTextBox.getText();
+        args[MariaMonitorDAO.NOMBRE - 1] = this.vaddMonitor.NameTextBox.getText();
+        args[MariaMonitorDAO.DNI - 1] = this.vaddMonitor.DniTextBox.getText();
+        args[MariaMonitorDAO.TEL - 1] = this.vaddMonitor.TelTextBox.getText();
+        args[MariaMonitorDAO.CORREO - 1] = this.vaddMonitor.EmailTextBox.getText();
+        args[MariaMonitorDAO.FENTRADA - 1] = this.vaddMonitor.DateTextBox.getText();
+        args[MariaMonitorDAO.NICK - 1] = this.vaddMonitor.NickTextBox.getText();
 
         for (String value : args) {
             if (value == null) {
@@ -99,13 +107,13 @@ public class ControladorAddMonitor {
         }
 
         Monitor m = new Monitor(
-                args[MonitorDAO.CODIGO - 1],
-                args[MonitorDAO.NOMBRE - 1],
-                args[MonitorDAO.DNI - 1],
-                args[MonitorDAO.TEL - 1],
-                args[MonitorDAO.CORREO - 1],
-                args[MonitorDAO.FENTRADA - 1],
-                args[MonitorDAO.NICK - 1]
+                args[MariaMonitorDAO.CODIGO - 1],
+                args[MariaMonitorDAO.NOMBRE - 1],
+                args[MariaMonitorDAO.DNI - 1],
+                args[MariaMonitorDAO.TEL - 1],
+                args[MariaMonitorDAO.CORREO - 1],
+                args[MariaMonitorDAO.FENTRADA - 1],
+                args[MariaMonitorDAO.NICK - 1]
         );
 
         VistaMensajes v = new VistaMensajes();

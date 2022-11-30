@@ -5,10 +5,11 @@
 package Contralador;
 
 import Modelo.Conexion;
+import Modelo.IMonitorDAO;
 import Modelo.Monitor;
-import Modelo.MonitorDAO;
+import Modelo.MariaMonitorDAO;
 import Modelo.Socio;
-import Modelo.SocioDAO;
+import Modelo.MariaSocioDAO;
 import Vista.*;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
@@ -20,24 +21,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-
-/**
- *
- * !TODO 
- * 
- *  1.  Reemplazar el estilo de las cartas. Ahora mismo el estilo card va
- *      fixed con lo que hay en la Vista Principal. Lo suyo es crear dos objetos que
- *      sean JPanel, añadirlo a 'crd' y añadirlo a vPrincipal para poder
- *      intarcambiarlos mas facilmente (Casi hecho ?)
- *  
- *  2.  Añadir las funcionalidades para Socios 
- *  
- *  3.  Al borrar un Socio/Monitor hacer que aparezca un "ShowConfigDialog" para
- *      confirmar la accion de borrar (Hecho para socio)
- *
- *
- *
- */
 
 /**
  *
@@ -67,12 +50,18 @@ public class ControladorPrincipal {
 
     private CardLayout crd;
 
+    // Because Java enums **** lets agree on: 
+    // dataBase = true (MARIADB)
+    // dataBase = false (ORACLE)
+    private boolean dataBase;
+
     public ControladorPrincipal(Conexion con) {
         this.vMonitorListener = (ActionEvent e) -> actionPerformedMonitor(e);
         this.vSocioListener = (ActionEvent e) -> actionPerformedSocio(e);
         this.vPrinListener = (ActionEvent e) -> actionPerformedPrincipal(e);
-        this.con = con;
         this.vPrincipal = new VistaPrincipal();
+        this.con = con;
+        this.dataBase = true;
 
         this.buildMenu();
         this.setCardsLayout();
@@ -84,6 +73,7 @@ public class ControladorPrincipal {
                 return false;
             }
         };
+        
         this.modeloTablaSocios = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -91,8 +81,8 @@ public class ControladorPrincipal {
             }
         };
 
-
         this.vPrincipal.setVisible(true);
+        
         this.vPrincipal.setLocationRelativeTo(null);
 
         this.setMonitoresCard();
@@ -140,6 +130,7 @@ public class ControladorPrincipal {
 
         this.socioPanel.jButtonNewSocio.addActionListener(vSocioListener);
         this.socioPanel.jButtonDeleteSocio.addActionListener(vSocioListener);
+        this.socioPanel.jButtonUpdateSocio.addActionListener(vSocioListener);
 
         this.monitorPanel.ButtonCerrar.addActionListener(vPrinListener);
         this.socioPanel.ButtonCerrar1.addActionListener(vPrinListener);
@@ -229,9 +220,18 @@ public class ControladorPrincipal {
                 break;
             }
 
-            case "ButtonRemoveMonitor": {
-                System.out.println("Eliminando Monitor");
-                this.eliminaSocio();
+            case "ButtonRemoveSocio": {
+                System.out.println("Eliminando Socio");
+                VistaMensajes v = new VistaMensajes();
+                Integer status = v.ShowConfirm("Seguro ?", 0);
+                if (status == 0) // 0 Es que ha confirmado
+                    this.eliminaSocio();
+                break;
+            }
+            case "ButtonUpdateSocio": {
+                System.out.println("Actualizando Socio");
+                Socio s = getSocioFromSelectedRow();
+                new ControladorAddSocio(this.vPrincipal, this.con, s);
                 break;
             }
 
@@ -286,7 +286,7 @@ public class ControladorPrincipal {
     }
 
     private void getMonitores() throws SQLException {
-        ArrayList<Monitor> m = new MonitorDAO(this.con).listaMonitores();
+        ArrayList<Monitor> m = new MariaMonitorDAO(this.con).listaMonitores();
         this.clearTable(this.modeloTablaMonitores);
         this.fillMonitorTable(this.modeloTablaMonitores, m);
     }
@@ -308,7 +308,7 @@ public class ControladorPrincipal {
     private void eliminaMonitor() {
         int selected_row = this.monitorPanel.jTableMonitores.getSelectedRow();
         String id_monitor = (String) this.monitorPanel.jTableMonitores.getValueAt(selected_row, 0);
-        MonitorDAO temp_dao = new MonitorDAO(this.con);
+        MariaMonitorDAO temp_dao = new MariaMonitorDAO(this.con);
         try {
             System.out.println("Eliminando monitor con codigo: " + id_monitor);
             temp_dao.eliminaMonitor(id_monitor);
@@ -324,13 +324,13 @@ public class ControladorPrincipal {
     private Monitor getMonitorFromSelectedRow() {
         int selected_row = this.monitorPanel.jTableMonitores.getSelectedRow();
         return new Monitor(
-                (String) this.monitorPanel.jTableMonitores.getValueAt(selected_row, MonitorDAO.CODIGO - 1),
-                (String) this.monitorPanel.jTableMonitores.getValueAt(selected_row, MonitorDAO.NOMBRE - 1),
-                (String) this.monitorPanel.jTableMonitores.getValueAt(selected_row, MonitorDAO.DNI - 1),
-                (String) this.monitorPanel.jTableMonitores.getValueAt(selected_row, MonitorDAO.TEL - 1),
-                (String) this.monitorPanel.jTableMonitores.getValueAt(selected_row, MonitorDAO.CORREO - 1),
-                (String) this.monitorPanel.jTableMonitores.getValueAt(selected_row, MonitorDAO.FENTRADA - 1),
-                (String) this.monitorPanel.jTableMonitores.getValueAt(selected_row, MonitorDAO.NICK - 1)
+                (String) this.monitorPanel.jTableMonitores.getValueAt(selected_row, IMonitorDAO.CODIGO - 1),
+                (String) this.monitorPanel.jTableMonitores.getValueAt(selected_row, IMonitorDAO.NOMBRE - 1),
+                (String) this.monitorPanel.jTableMonitores.getValueAt(selected_row, IMonitorDAO.DNI - 1),
+                (String) this.monitorPanel.jTableMonitores.getValueAt(selected_row, IMonitorDAO.TEL - 1),
+                (String) this.monitorPanel.jTableMonitores.getValueAt(selected_row, IMonitorDAO.CORREO - 1),
+                (String) this.monitorPanel.jTableMonitores.getValueAt(selected_row, IMonitorDAO.FENTRADA - 1),
+                (String) this.monitorPanel.jTableMonitores.getValueAt(selected_row, IMonitorDAO.NICK - 1)
         );
     }
 
@@ -357,7 +357,7 @@ public class ControladorPrincipal {
     }
 
     private void getSocios() throws SQLException {
-        ArrayList<Socio> s = new SocioDAO(this.con).listaSocio();
+        ArrayList<Socio> s = new MariaSocioDAO(this.con).listaSocio();
         this.clearTable(this.modeloTablaSocios);
         this.fillSocioTable(this.modeloTablaSocios, s);
     }
@@ -393,7 +393,9 @@ public class ControladorPrincipal {
     private void eliminaSocio() {
         int selected_row = this.vPrincipal.jTableSocios.getSelectedRow();
         String id_monitor = (String) this.vPrincipal.jTableSocios.getValueAt(selected_row, 0);
-        SocioDAO temp_dao = new SocioDAO(this.con);
+
+        MariaSocioDAO temp_dao = new MariaSocioDAO(this.con);
+        
         try {
             System.out.println("Eliminando socio con codigo: " + id_monitor);
             temp_dao.eliminaSocio(id_monitor);
@@ -404,6 +406,20 @@ public class ControladorPrincipal {
                     JOptionPane.ERROR_MESSAGE
             );
         }
+    }
+
+    private Socio getSocioFromSelectedRow() {
+        int selected_row = this.socioPanel.jTableSocios.getSelectedRow();
+        return new Socio(
+                (String) this.socioPanel.jTableSocios.getValueAt(selected_row, MariaSocioDAO.NUMSOCIO - 1),
+                (String) this.socioPanel.jTableSocios.getValueAt(selected_row, MariaSocioDAO.NOMBRE - 1),
+                (String) this.socioPanel.jTableSocios.getValueAt(selected_row, MariaSocioDAO.DNI - 1),
+                (String) this.socioPanel.jTableSocios.getValueAt(selected_row, MariaSocioDAO.FNACIMIENTO - 1),
+                (String) this.socioPanel.jTableSocios.getValueAt(selected_row, MariaSocioDAO.TEL - 1),
+                (String) this.socioPanel.jTableSocios.getValueAt(selected_row, MariaSocioDAO.CORREO - 1),
+                (String) this.socioPanel.jTableSocios.getValueAt(selected_row, MariaSocioDAO.FENTRADA - 1),
+                (String) this.socioPanel.jTableSocios.getValueAt(selected_row, MariaSocioDAO.CATEGORIA - 1)
+        );
     }
 
 }

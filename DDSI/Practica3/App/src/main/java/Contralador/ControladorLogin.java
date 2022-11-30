@@ -42,7 +42,7 @@ public class ControladorLogin implements ActionListener {
         String password = new String(this.vLogin.PassTextBox.getPassword()).trim();
         this.conexion = new Conexion(server, ip, server_bd, user, password);
 
-        this.showMetaData();
+        // this.showMetaData();
     }
 
     public void Desconectar() {

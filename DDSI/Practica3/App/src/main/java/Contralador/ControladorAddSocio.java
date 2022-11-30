@@ -19,6 +19,7 @@ public class ControladorAddSocio {
     private ActionListener vAddSocioListener;
     private VistaAddSocio vaddSocio;
     private SocioDAO sDAO;
+    private Socio placeHolder = null;
 
     public ControladorAddSocio(Frame parent, Conexion con) {
         this.sDAO = new SocioDAO(con);
@@ -30,9 +31,25 @@ public class ControladorAddSocio {
         this.vaddSocio.setVisible(true);
     }
 
+    public ControladorAddSocio(Frame parent, Conexion con, Socio s) {
+        this.sDAO = new SocioDAO(con);
+        this.vaddSocio = new VistaAddSocio(parent, true);
+        this.vAddSocioListener = (ActionEvent e) -> actionPerformedSocio(e);
+        this.placeHolder = s;
+        this.setPlaceHolder();
+        this.addListeners();
+
+        
+        // Cuando se cambia el texto tambien se cambia el Action Command !!!
+        this.vaddSocio.InsertButton.setText("Actualizar");
+
+        this.vaddSocio.setVisible(true);
+    }
+
     private void addListeners() {
         this.vaddSocio.CancelButton.addActionListener(vAddSocioListener);
         this.vaddSocio.InsertButton.addActionListener(vAddSocioListener);
+
     }
 
     private void getSocioData() {
@@ -52,7 +69,7 @@ public class ControladorAddSocio {
             }
         }
 
-        Socio m = new Socio(
+        Socio s = new Socio(
                 args[SocioDAO.NUMSOCIO - 1],
                 args[SocioDAO.NOMBRE - 1],
                 args[SocioDAO.DNI - 1],
@@ -62,11 +79,16 @@ public class ControladorAddSocio {
                 args[SocioDAO.FENTRADA - 1],
                 args[SocioDAO.CATEGORIA - 1]
         );
-
+        
         VistaMensajes v = new VistaMensajes();
+
         try {
-            this.sDAO.añadeSocio(m);
+            if(placeHolder !=null)
+                this.sDAO.updateSocio(s);
+            else
+                this.sDAO.añadeSocio(s);
             v.ShowMessage("Socio añadido correctamente", JOptionPane.INFORMATION_MESSAGE);
+            this.vaddSocio.dispose();
         } catch (SQLException error) {
             v.ShowMessage("Error al añadir Socio", JOptionPane.ERROR_MESSAGE);
         }
@@ -78,6 +100,10 @@ public class ControladorAddSocio {
                 System.out.println("Cerrando");
                 this.vaddSocio.dispose();
                 break;
+            }
+            
+            case "Actualizar":{
+                System.out.println("Dropping !");
             }
 
             case "Insertar": {
@@ -91,5 +117,17 @@ public class ControladorAddSocio {
 
         }
     }
-}
 
+    public void setPlaceHolder(){
+        this.vaddSocio.NumSocioTextBox.setText(this.placeHolder.getNumeroSocio());
+        this.vaddSocio.NumSocioTextBox.setEnabled(false);
+        this.vaddSocio.NameTextBox.setText(this.placeHolder.getNombre());
+        this.vaddSocio.DniTextBox.setText(this.placeHolder.getDni());
+        this.vaddSocio.BirthDateTextBox.setText(this.placeHolder.getFechaNacimiento());
+        this.vaddSocio.TelTextBox.setText(this.placeHolder.getTelefono());
+        this.vaddSocio.EmailTextBox.setText(this.placeHolder.getCorreo());
+        this.vaddSocio.DateTextBox.setText(this.placeHolder.getFechaEntrada());
+        this.vaddSocio.CategoriaTextBox.setText(this.placeHolder.getCategoria());
+        //No se si tengo que hacer algo mas..
+    }
+}
