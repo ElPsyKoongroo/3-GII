@@ -43,7 +43,7 @@ public class SocioPanelLayout extends javax.swing.JPanel {
         });
 
         jButtonUpdateSocio.setText("Borrar Socio");
-        jButtonUpdateSocio.setActionCommand("ButtonDeleteSocio");
+        jButtonUpdateSocio.setActionCommand("ButtonRemoveSocio");
         jButtonUpdateSocio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonUpdateSocioActionPerformed(evt);
