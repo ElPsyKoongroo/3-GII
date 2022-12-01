@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 import java.awt.Frame;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class ControladorAddSocio {
@@ -53,14 +55,24 @@ public class ControladorAddSocio {
     }
 
     private void getSocioData() {
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+
+        
         String args[] = new String[8];
         args[MariaSocioDAO.NUMSOCIO - 1] = this.vaddSocio.NumSocioTextBox.getText();
         args[MariaSocioDAO.NOMBRE - 1] = this.vaddSocio.NameTextBox.getText();
         args[MariaSocioDAO.DNI - 1] = this.vaddSocio.DniTextBox.getText();
-        args[MariaSocioDAO.FNACIMIENTO -1] = this.vaddSocio.BirthDateTextBox.getText();
+        
+        
+        args[MariaSocioDAO.FNACIMIENTO -1] = formatoFecha.format(this.vaddSocio.birthDate.getDate());
+        
+        
         args[MariaSocioDAO.TEL - 1] = this.vaddSocio.TelTextBox.getText();
         args[MariaSocioDAO.CORREO - 1] = this.vaddSocio.EmailTextBox.getText();
-        args[MariaSocioDAO.FENTRADA - 1] = this.vaddSocio.DateTextBox.getText();
+        
+        
+        args[MariaSocioDAO.FENTRADA - 1] = formatoFecha.format(this.vaddSocio.joinDate.getDate());
+        
         args[MariaSocioDAO.CATEGORIA - 1] = this.vaddSocio.CategoriaTextBox.getText();
 
         for (String value : args) {
@@ -118,14 +130,26 @@ public class ControladorAddSocio {
     }
 
     public void setPlaceHolder(){
+        
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+        
         this.vaddSocio.NumSocioTextBox.setText(this.placeHolder.getNumeroSocio());
         this.vaddSocio.NumSocioTextBox.setEnabled(false);
         this.vaddSocio.NameTextBox.setText(this.placeHolder.getNombre());
         this.vaddSocio.DniTextBox.setText(this.placeHolder.getDni());
-        this.vaddSocio.BirthDateTextBox.setText(this.placeHolder.getFechaNacimiento());
+        
+        try {
+            this.vaddSocio.birthDate.setDate(formatoFecha.parse(this.placeHolder.getFechaNacimiento()));
+            this.vaddSocio.joinDate.setDate(formatoFecha.parse(this.placeHolder.getFechaEntrada()));
+        } catch(Exception e)
+        {
+        }
+
+        
         this.vaddSocio.TelTextBox.setText(this.placeHolder.getTelefono());
         this.vaddSocio.EmailTextBox.setText(this.placeHolder.getCorreo());
-        this.vaddSocio.DateTextBox.setText(this.placeHolder.getFechaEntrada());
+        
+        
         this.vaddSocio.CategoriaTextBox.setText(this.placeHolder.getCategoria());
         //No se si tengo que hacer algo mas..
     }
