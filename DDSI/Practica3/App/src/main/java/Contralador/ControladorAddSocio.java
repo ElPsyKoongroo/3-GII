@@ -2,7 +2,7 @@ package Contralador;
 
 import Modelo.Conexion;
 import Modelo.Socio;
-import Modelo.SocioDAO;
+import Modelo.MariaSocioDAO;
 import Vista.VistaAddSocio;
 import Vista.VistaMensajes;
 
@@ -18,11 +18,11 @@ import java.awt.Frame;
 public class ControladorAddSocio {
     private ActionListener vAddSocioListener;
     private VistaAddSocio vaddSocio;
-    private SocioDAO sDAO;
+    private MariaSocioDAO sDAO;
     private Socio placeHolder = null;
 
     public ControladorAddSocio(Frame parent, Conexion con) {
-        this.sDAO = new SocioDAO(con);
+        this.sDAO = new MariaSocioDAO(con);
         this.vaddSocio = new VistaAddSocio(parent, true);
         this.vAddSocioListener = (ActionEvent e) -> actionPerformedSocio(e);
 
@@ -32,7 +32,7 @@ public class ControladorAddSocio {
     }
 
     public ControladorAddSocio(Frame parent, Conexion con, Socio s) {
-        this.sDAO = new SocioDAO(con);
+        this.sDAO = new MariaSocioDAO(con);
         this.vaddSocio = new VistaAddSocio(parent, true);
         this.vAddSocioListener = (ActionEvent e) -> actionPerformedSocio(e);
         this.placeHolder = s;
@@ -54,14 +54,14 @@ public class ControladorAddSocio {
 
     private void getSocioData() {
         String args[] = new String[8];
-        args[SocioDAO.NUMSOCIO - 1] = this.vaddSocio.NumSocioTextBox.getText();
-        args[SocioDAO.NOMBRE - 1] = this.vaddSocio.NameTextBox.getText();
-        args[SocioDAO.DNI - 1] = this.vaddSocio.DniTextBox.getText();
-        args[SocioDAO.FNACIMIENTO -1] = this.vaddSocio.BirthDateTextBox.getText();
-        args[SocioDAO.TEL - 1] = this.vaddSocio.TelTextBox.getText();
-        args[SocioDAO.CORREO - 1] = this.vaddSocio.EmailTextBox.getText();
-        args[SocioDAO.FENTRADA - 1] = this.vaddSocio.DateTextBox.getText();
-        args[SocioDAO.CATEGORIA - 1] = this.vaddSocio.CategoriaTextBox.getText();
+        args[MariaSocioDAO.NUMSOCIO - 1] = this.vaddSocio.NumSocioTextBox.getText();
+        args[MariaSocioDAO.NOMBRE - 1] = this.vaddSocio.NameTextBox.getText();
+        args[MariaSocioDAO.DNI - 1] = this.vaddSocio.DniTextBox.getText();
+        args[MariaSocioDAO.FNACIMIENTO -1] = this.vaddSocio.BirthDateTextBox.getText();
+        args[MariaSocioDAO.TEL - 1] = this.vaddSocio.TelTextBox.getText();
+        args[MariaSocioDAO.CORREO - 1] = this.vaddSocio.EmailTextBox.getText();
+        args[MariaSocioDAO.FENTRADA - 1] = this.vaddSocio.DateTextBox.getText();
+        args[MariaSocioDAO.CATEGORIA - 1] = this.vaddSocio.CategoriaTextBox.getText();
 
         for (String value : args) {
             if (value == null) {
@@ -70,14 +70,14 @@ public class ControladorAddSocio {
         }
 
         Socio s = new Socio(
-                args[SocioDAO.NUMSOCIO - 1],
-                args[SocioDAO.NOMBRE - 1],
-                args[SocioDAO.DNI - 1],
-                args[SocioDAO.FNACIMIENTO - 1],
-                args[SocioDAO.TEL - 1],
-                args[SocioDAO.CORREO - 1],
-                args[SocioDAO.FENTRADA - 1],
-                args[SocioDAO.CATEGORIA - 1]
+                args[MariaSocioDAO.NUMSOCIO - 1],
+                args[MariaSocioDAO.NOMBRE - 1],
+                args[MariaSocioDAO.DNI - 1],
+                args[MariaSocioDAO.FNACIMIENTO - 1],
+                args[MariaSocioDAO.TEL - 1],
+                args[MariaSocioDAO.CORREO - 1],
+                args[MariaSocioDAO.FENTRADA - 1],
+                args[MariaSocioDAO.CATEGORIA - 1]
         );
         
         VistaMensajes v = new VistaMensajes();
@@ -114,7 +114,6 @@ public class ControladorAddSocio {
             default: {
                 System.out.println("Que has hecho para llegar aqui viajero ?");
             }
-
         }
     }
 
