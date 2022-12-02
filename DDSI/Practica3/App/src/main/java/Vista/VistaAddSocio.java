@@ -32,8 +32,6 @@ public class VistaAddSocio extends javax.swing.JDialog {
         DniTextBox = new javax.swing.JTextField();
         TelTextBox = new javax.swing.JTextField();
         EmailTextBox = new javax.swing.JTextField();
-        DateTextBox = new javax.swing.JTextField();
-        BirthDateTextBox = new javax.swing.JTextField();
         CategoriaTextBox = new javax.swing.JTextField();
         codeLabel = new javax.swing.JLabel();
         nameLabel = new javax.swing.JLabel();
@@ -45,6 +43,8 @@ public class VistaAddSocio extends javax.swing.JDialog {
         InsertButton = new javax.swing.JButton();
         CancelButton = new javax.swing.JButton();
         categoriaLabel = new javax.swing.JLabel();
+        joinDate = new com.toedter.calendar.JDateChooser();
+        birthDate = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -67,12 +67,6 @@ public class VistaAddSocio extends javax.swing.JDialog {
 
         EmailTextBox.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         EmailTextBox.setMinimumSize(new java.awt.Dimension(80, 22));
-
-        DateTextBox.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DateTextBox.setMinimumSize(new java.awt.Dimension(80, 22));
-
-        BirthDateTextBox.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        BirthDateTextBox.setMinimumSize(new java.awt.Dimension(80, 22));
 
         CategoriaTextBox.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         CategoriaTextBox.setMinimumSize(new java.awt.Dimension(80, 22));
@@ -129,7 +123,8 @@ public class VistaAddSocio extends javax.swing.JDialog {
                         .addGap(247, 247, 247)
                         .addComponent(categoriaLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(CategoriaTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(CategoriaTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(65, 65, 65))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(NameTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -138,18 +133,18 @@ public class VistaAddSocio extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 247, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(nickLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(BirthDateTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(emailLabel)
                                     .addComponent(dateLabel))
                                 .addGap(40, 40, 40)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(EmailTextBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(DateTextBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addGap(221, 221, 221))
+                                    .addComponent(EmailTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(joinDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(nickLabel)
+                                .addGap(18, 18, 18)
+                                .addComponent(birthDate, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(156, 156, 156))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(InsertButton)
@@ -167,17 +162,19 @@ public class VistaAddSocio extends javax.swing.JDialog {
                     .addComponent(codeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(emailLabel))
                 .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(NameTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(DateTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nameLabel)
-                    .addComponent(dateLabel))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(NameTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nameLabel)
+                        .addComponent(dateLabel))
+                    .addComponent(joinDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(DniTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BirthDateTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dniLabel)
-                    .addComponent(nickLabel))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(DniTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(dniLabel)
+                        .addComponent(nickLabel))
+                    .addComponent(birthDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -252,21 +249,21 @@ public class VistaAddSocio extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JTextField BirthDateTextBox;
     public javax.swing.JButton CancelButton;
     public javax.swing.JTextField CategoriaTextBox;
-    public javax.swing.JTextField DateTextBox;
     public javax.swing.JTextField DniTextBox;
     public javax.swing.JTextField EmailTextBox;
     public javax.swing.JButton InsertButton;
     public javax.swing.JTextField NameTextBox;
     public javax.swing.JTextField NumSocioTextBox;
     public javax.swing.JTextField TelTextBox;
+    public com.toedter.calendar.JDateChooser birthDate;
     private javax.swing.JLabel categoriaLabel;
     private javax.swing.JLabel codeLabel;
     private javax.swing.JLabel dateLabel;
     private javax.swing.JLabel dniLabel;
     private javax.swing.JLabel emailLabel;
+    public com.toedter.calendar.JDateChooser joinDate;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JLabel nickLabel;
     private javax.swing.JLabel telLabel;

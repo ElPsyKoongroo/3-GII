@@ -14,6 +14,9 @@ import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -80,7 +83,10 @@ public class ControladorAddMonitor {
         this.vaddMonitor.DniTextBox.setText(this.placeHolder.getDni());
         this.vaddMonitor.TelTextBox.setText(this.placeHolder.getTelefono());
         this.vaddMonitor.EmailTextBox.setText(this.placeHolder.getCorreo());
-        this.vaddMonitor.DateTextBox.setText(this.placeHolder.getFechaEntrada());
+        
+        this.vaddMonitor.DateChoose.setDate(new Date(this.placeHolder.getFechaEntrada()));
+        
+        
         this.vaddMonitor.NickTextBox.setText(this.placeHolder.getNick());
         this.vaddMonitor.NameTextBox.setText(this.placeHolder.getNombre());
     }
@@ -91,13 +97,15 @@ public class ControladorAddMonitor {
     }
 
     private void getMonitorData() {
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+        
         String args[] = new String[7];
         args[MariaMonitorDAO.CODIGO - 1] = this.vaddMonitor.CodeTextBox.getText();
         args[MariaMonitorDAO.NOMBRE - 1] = this.vaddMonitor.NameTextBox.getText();
         args[MariaMonitorDAO.DNI - 1] = this.vaddMonitor.DniTextBox.getText();
         args[MariaMonitorDAO.TEL - 1] = this.vaddMonitor.TelTextBox.getText();
         args[MariaMonitorDAO.CORREO - 1] = this.vaddMonitor.EmailTextBox.getText();
-        args[MariaMonitorDAO.FENTRADA - 1] = this.vaddMonitor.DateTextBox.getText();
+        args[MariaMonitorDAO.FENTRADA - 1] = formatoFecha.format(this.vaddMonitor.DateChoose.getDate());
         args[MariaMonitorDAO.NICK - 1] = this.vaddMonitor.NickTextBox.getText();
 
         for (String value : args) {
