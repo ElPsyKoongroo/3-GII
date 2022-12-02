@@ -87,7 +87,7 @@ public class Tunel {
                     (numFurgos < 2) ||      // hay menos de dos furgos y hay coches esperando O
                     (esperaCoches == 0)) {  // si no hay coches esperando
                 try{
-                    System.out.println("LLamando Furgo\n");
+                    System.out.println("C: LLamando Furgo\n");
                     this.condEntradaFurgo.signal();
                 }
                 catch(Exception e){
@@ -143,7 +143,7 @@ public class Tunel {
                     (numFurgos < 2) || // hay menos de dos furgos y hay coches esperando O
                     (esperaCoches == 0)) { // si no hay coches esperando
                     try{
-                        System.out.println("LLamando Furgo\n");
+                        System.out.println("F: LLamando Furgo\n");
                         this.condEntradaFurgo.signal();
                     }
                     catch(Exception e){

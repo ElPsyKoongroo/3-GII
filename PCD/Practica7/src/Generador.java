@@ -10,9 +10,9 @@ import java.awt.Frame;
  */
 public class Generador {
 
-    private static final int MAX_ESPERA = 2000;
-    private static final int MIN_ESPERA = 1000;
-    private static final int NUM_VEHICULOS = 10;
+    private static final int MAX_ESPERA = 1000;
+    private static final int MIN_ESPERA = 400;
+    private static final int NUM_VEHICULOS = 30;
     /**
      * @param args the command line arguments
      */
