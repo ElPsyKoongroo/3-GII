@@ -30,7 +30,8 @@ public class Tienda {
                 donde = 'V';
                 break;
             }
-            else if(compradores > 2){
+            // Comprobar primero si el mecanico esta libre
+            else if(compradores > 2 && libres[1]) {
                 libres[1] = false;
                 donde = 'M';
                 break;
