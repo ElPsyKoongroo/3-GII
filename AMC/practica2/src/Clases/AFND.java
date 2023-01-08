@@ -63,12 +63,19 @@ public class AFND implements Proceso{
 
     public int[] transicion(int[] macroEstado, char simbolo){
         ArrayList<Integer> transiciones = new ArrayList<>();
+        Arrays.stream(macroEstado)
+        .forEach(estado ->
+              Arrays.stream(transicion(estado, simbolo))
+              .forEach(estadosFin -> transiciones.add(estadosFin))
+        );
 
+        /*
         for (int estado : macroEstado){
             for (int estadosFin : transicion(estado, simbolo)) {
                 transiciones.add(estadosFin);
             }
         }
+        */
 
         return transiciones
                 .stream()
