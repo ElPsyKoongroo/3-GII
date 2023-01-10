@@ -1,5 +1,7 @@
 package Clases;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.lang.reflect.Array;
 import java.util.*;
 import java.util.stream.Collector;
@@ -7,7 +9,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class AFND implements Proceso{
-    private static class TransicionAFND {
+    public static class TransicionAFND {
         public int E1, E2;
         public char Simb;
         public TransicionAFND(int _E1, char _Simb, int _E2){
@@ -16,7 +18,7 @@ public class AFND implements Proceso{
             this.Simb = _Simb;
         }
     }
-    private static class TransicionL {
+    public static class TransicionL {
         public int E1, E2;
         public TransicionL(int _E1, int _E2){
             this.E1 = _E1;
@@ -24,11 +26,12 @@ public class AFND implements Proceso{
         }
     }
 
-    private int[] estadosFinales;
-    private ArrayList<AFND.TransicionAFND> transiciones;
-    private ArrayList<TransicionL> transicionesL; //indica la lista de transiciones λ del AFND
+    public int[] estadosFinales;
+    public ArrayList<AFND.TransicionAFND> transiciones;
+    public ArrayList<TransicionL> transicionesL; //indica la lista de transiciones λ del AFND
+    public List<String> estados;
 
-    private AFND(int[] estados){
+    public AFND(int[] estados){
         estadosFinales = estados;
         transiciones = new ArrayList<>();
         transicionesL = new ArrayList<>();
@@ -101,7 +104,7 @@ public class AFND implements Proceso{
             .stream(macroEstado)
             .anyMatch(estado -> esFinal(estado));
     }
-    private int[] clausuraL(int[] macroestado){
+    public int[] clausuraL(int[] macroestado){
         ArrayList<Integer> nextEstadosPorL = new ArrayList<>();
 
 
@@ -136,46 +139,88 @@ public class AFND implements Proceso{
         }
         return esFinal(macroestado);
     }
-
-
-    public static AFND LeerAFND(){
-        /*
-            ESTADOS: q0 q1 q2 q3
-            INICIAL: q0
-            FINALES: q3
-            TRANSICIONES:
-            q0 '0' q0
-            q0 '1' q0
-            q0 '0' q1
-
-            q1 '1' q2
-            q1 '0' q2
-
-            q2 '1' q3
-            q2 '0' q3
-            FIN
-        * */
-
-        AFND afnd = new AFND(new int[]{2,4});
-
-        TransicionAFND[] transiciones = new TransicionAFND[] {
-                new TransicionAFND(1, 'a', 2),
-                new TransicionAFND(3, 'b', 4),
-
-                new TransicionAFND(2, 'a', 2),
-                new TransicionAFND(4, 'b', 4),
-        };
-
-        TransicionL[] transicionesL = new TransicionL[] {
-                new TransicionL(0, 1),
-                new TransicionL(0, 3),
-        };
-
-        for (TransicionAFND trans : transiciones){
-            afnd.agregarTransicion(trans);
+    
+    private String lastInput = null;
+    private int State[];
+    private int lastPos = -1;
+    public String StepByStep(String cadena) {
+        
+        if(lastInput == null || !lastInput.equals(cadena) || lastPos == lastInput.length())
+        {
+            lastInput = cadena;
+            State = new int[]{0};
+            lastPos = 0;
         }
-        for (TransicionL trans : transicionesL){
-            afnd.agregarTransicionL(trans);
+        int inputSize = lastInput.length();
+        
+        State = transicion(State,cadena.toCharArray()[lastPos]);
+        lastPos++;
+        
+        if (State.length == 0) return lastPos + " FINAL-RECHAZADO";
+        
+        if (lastPos == inputSize)
+        {
+            for(int i = 0; i < estadosFinales.length; ++i)
+            {
+                for(int j = 0; j < State.length; j++)
+                {
+                    if(estadosFinales[i] == State[j])
+                        return lastPos + " FINAL-ACEPTADO";
+                }
+            }
+            return lastPos + " FINAL-RECHAZADO";
+        }
+        boolean estado = esFinal(State);
+        
+        if(estado)
+        {
+            return lastPos + " EN_PROGRESO-ACEPTADO";
+        }
+        return lastPos + " EN_PROGRESO-RECHAZADO";
+    }
+
+
+    public static AFND LeerAFND(String path){
+        AFND afnd;
+        try {
+            var reader = new BufferedReader(new FileReader(path));
+            var estados = Arrays.stream(reader.readLine().trim().split(" "))
+                    .skip(1)
+                    .toList();
+            
+
+            int estadoInicial = Integer.parseInt(
+                    Arrays.stream(reader.readLine().trim().split(" "))
+                        .skip(1)
+                        .findFirst()
+                        .get()
+                        .substring(1)
+            );
+            
+            int[] estadosFinales = Arrays.stream(reader.readLine().trim().split(" "))
+                    .skip(1)
+                    .mapToInt(estadoFinal -> Integer.parseInt(estadoFinal.substring(1)))
+                    .toArray();
+
+
+            String transicion = reader.readLine(); // Esta de aqui no sirve pa nah
+            afnd = new AFND(estadosFinales);
+            afnd.estados = estados;
+
+            while (!"FIN".equals(transicion = reader.readLine().trim())) {
+                String[] datos = transicion.split(" ");
+                int from = Integer.parseInt(datos[0].substring(1));
+                char simbolo = datos[1].charAt(1);
+                int to = Integer.parseInt(datos[2].substring(1));
+                if (simbolo == 'L') {
+                    afnd.agregarTransicionL(from, to);
+                } else {
+                    afnd.agregarTransicion(from, simbolo, to);
+                }
+            }
+
+        } catch (Exception _e) {
+            afnd = new AFND(new int[]{2});
         }
 
         return afnd;
@@ -219,32 +264,3 @@ public class AFND implements Proceso{
     }
 }
 
-/*
-public class AFND {
- private int [ ] estadosFinales; //indica cuales son los estados Finales
- private List<TransicionAFND> transiciones; //indica la lista de transiciones del AFND
- private List<Transicionλ> transicionesλ; //indica la lista de transiciones λ del AFND
-
- public AFND();
- public agregarTransicion(int e1, char simbolo, int [ ] e2);
- public agregarTransicionλ(int e1, int [ ] e2);
- private int [ ] transicion(int estado, char simbolo);
- public int [ ] transicion(int [ ] macroestado, char simbolo);
- public int [ ] transicionλ (int estado) ;
- private boolean esFinal(int estado);
- public boolean esFinal(int [ ] macroestado);
- private int[ ] λ_clausura(int[ ] macroestado);
- public boolean reconocer(String cadena) {
- char[ ] simbolo = cadena.toCharArray();
- int [ ] estado = { 0 }; //El estado inicial es el 0
- int[ ] macroestado = λ_clausura(estado);
- for(int i=0; i<simbolo.length; i++) {
- macroestado = transicion(macroestado, simbolo[i]);
- }
- return esFinal(macroestado);
- }
-
- public static AFND pedir():
- }
-
-* */
