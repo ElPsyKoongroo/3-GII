@@ -59,10 +59,15 @@ public class ControladorConfiguracionActividad {
             String NombreSocio = (String)socios.get(i)[0];
             if(NombreSocio.equals(socio.getNombre())){
                 this.vConfActividad.EstadoActividad.setText("Estado: ALTA");
+                this.vConfActividad.jButtonDeBaja.setEnabled(true);
+                this.vConfActividad.jButtonAlta.setEnabled(false);
+                
                 return;
             }
         }
         this.vConfActividad.EstadoActividad.setText("Estado: BAJA");
+        this.vConfActividad.jButtonDeBaja.setEnabled(false);
+        this.vConfActividad.jButtonAlta.setEnabled(true);
     }
     
     

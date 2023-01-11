@@ -5,6 +5,7 @@
 package Modelo;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -60,7 +61,7 @@ public class Socio implements Serializable {
     @Column(name = "CATEGORIA")
     private Character categoria;
     @ManyToMany(mappedBy = "socios")
-    private Set<Actividad> actividades;
+    private Set<Actividad> actividades = new HashSet<>();
 
     public Socio() {
     }

@@ -4,9 +4,9 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">org.mariadb.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mariadb://172.18.1.241:3306/DDSI_024</property>
-        <property name="hibernate.connection.username">DDSI_024</property>
-        <property name="hibernate.connection.password">82AD5V</property>
+        <property name="hibernate.connection.url">jdbc:mariadb://172.18.1.241:3306/DDSI_XXX</property>
+        <property name="hibernate.connection.username">DDSI_XXX</property>
+        <property name="hibernate.connection.password">XXXXXX</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MariaDB106Dialect</property>
         <property name="hibernate.show_sql">true</property>
         <mapping class="Modelo.Monitor"/>
