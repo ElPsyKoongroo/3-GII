@@ -10,22 +10,26 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ControladorActividades {
     private ActionListener vActividadesListener;
     private VistaActividades vActividades;
     private IActividadDAO actividadDAO;
+    private ArrayList<Actividad> actividades;
 
 
-    ControladorActividades(Frame parent, Conexion con, String dataBase){
+    ControladorActividades(Frame parent, Conexion con, String dataBase) throws SQLException{
         if (dataBase.equals("mariadb")) {
             this.actividadDAO = new MariaActividadDAO(con);
         } else {
-            this.actividadDAO = new MariaActividadDAO(con); // Cambiar
+            this.actividadDAO = new OracleActividadDAO(con); // Cambiar
         }
         this.vActividades = new VistaActividades(parent, true);
         this.vActividadesListener = (ActionEvent e) -> actionPerformedActividad(e);
         this.addListeners();
+        
+        this.PopulateActividades();
 
         this.vActividades.setVisible(true);
     }
@@ -36,7 +40,12 @@ public class ControladorActividades {
     }
 
     private void rellenaTabla() throws SQLException {
-        ArrayList<Object[]> socios = this.actividadDAO.getSocioByActividad("AC01");
+        
+        int index = vActividades.ActividadesComboBox.getSelectedIndex();
+        
+        String idActividad = actividades.get(index).getidActividad();
+        
+        ArrayList<Object[]> socios = this.actividadDAO.getSocioByActividad(idActividad);
         System.out.println("Socios : " + socios);
         for(int i = 0; i<socios.size(); ++i) {
             Object[] fila = new Object[2];
@@ -69,6 +78,15 @@ public class ControladorActividades {
             default: {
                 System.out.println(e.getActionCommand());
             }
+        }
+    }
+
+    private void PopulateActividades() throws SQLException {
+        actividades = this.actividadDAO.getActividades();
+        
+        for(var actividad: actividades)
+        {
+            vActividades.ActividadesComboBox.addItem(actividad.getnombre());
         }
     }
 }

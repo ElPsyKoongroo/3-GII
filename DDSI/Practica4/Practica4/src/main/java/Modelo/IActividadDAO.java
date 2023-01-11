@@ -12,6 +12,6 @@ public interface IActividadDAO {
     public final int ID_MONITOR     = 5;
 
     Conexion con = null;
-    PreparedStatement ps = null;
     ArrayList<Object[]> getSocioByActividad(String idActividad) throws SQLException;
+    ArrayList<Actividad> getActividades() throws SQLException;
 }

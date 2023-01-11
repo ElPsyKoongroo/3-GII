@@ -39,8 +39,6 @@ public class VistaActividades extends javax.swing.JDialog {
 
         jLabel1.setText("Actividad");
 
-        ActividadesComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         SociosInscritosButton.setText("Socios Inscritos");
         SociosInscritosButton.setActionCommand("SociosInscritos");
 
