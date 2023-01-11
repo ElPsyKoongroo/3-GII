@@ -182,7 +182,10 @@ public class ControladorPrincipal {
 
             case actionActividades: {
                 System.out.println("Actividades");
-                new ControladorActividades(this.vPrincipal, this.con, this.dataBase);
+                try{
+                    new ControladorActividades(this.vPrincipal, this.con, this.dataBase);
+                }
+                catch(SQLException ex){}
 
                 break;
             }
