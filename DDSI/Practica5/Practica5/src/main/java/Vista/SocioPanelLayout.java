@@ -33,6 +33,7 @@ public class SocioPanelLayout extends javax.swing.JPanel {
         jGestionLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableSocios = new javax.swing.JTable();
+        jButtonConfigureSocio = new javax.swing.JButton();
 
         jButtonNewSocio.setText("Nuevo Socio");
         jButtonNewSocio.setActionCommand("ButtonNewSocio");
@@ -43,7 +44,7 @@ public class SocioPanelLayout extends javax.swing.JPanel {
         });
 
         jButtonUpdateSocio.setText("Borrar Socio");
-        jButtonUpdateSocio.setActionCommand("ButtonRemoveSocio");
+        jButtonUpdateSocio.setActionCommand("ButtonDeleteSocio");
         jButtonUpdateSocio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonUpdateSocioActionPerformed(evt);
@@ -52,6 +53,11 @@ public class SocioPanelLayout extends javax.swing.JPanel {
 
         jButtonDeleteSocio.setText("Actualiza Socio");
         jButtonDeleteSocio.setActionCommand("ButtonUpdateSocio");
+        jButtonDeleteSocio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDeleteSocioActionPerformed(evt);
+            }
+        });
 
         ButtonCerrar1.setText("Salir");
         ButtonCerrar1.setActionCommand("CerrarCommand");
@@ -72,6 +78,14 @@ public class SocioPanelLayout extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTableSocios);
 
+        jButtonConfigureSocio.setText("Configuracion de Actividades");
+        jButtonConfigureSocio.setActionCommand("ButtonConfigureActivity");
+        jButtonConfigureSocio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConfigureSocioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -85,6 +99,8 @@ public class SocioPanelLayout extends javax.swing.JPanel {
                         .addComponent(jButtonUpdateSocio)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonDeleteSocio)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonConfigureSocio)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(ButtonCerrar1)
                         .addGap(16, 16, 16))
@@ -106,7 +122,8 @@ public class SocioPanelLayout extends javax.swing.JPanel {
                     .addComponent(jButtonNewSocio)
                     .addComponent(jButtonUpdateSocio)
                     .addComponent(jButtonDeleteSocio)
-                    .addComponent(ButtonCerrar1))
+                    .addComponent(ButtonCerrar1)
+                    .addComponent(jButtonConfigureSocio))
                 .addGap(22, 22, 22))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -119,9 +136,18 @@ public class SocioPanelLayout extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonUpdateSocioActionPerformed
 
+    private void jButtonConfigureSocioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfigureSocioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonConfigureSocioActionPerformed
+
+    private void jButtonDeleteSocioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteSocioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonDeleteSocioActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton ButtonCerrar1;
+    public javax.swing.JButton jButtonConfigureSocio;
     public javax.swing.JButton jButtonDeleteSocio;
     public javax.swing.JButton jButtonNewSocio;
     public javax.swing.JButton jButtonUpdateSocio;

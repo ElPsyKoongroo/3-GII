@@ -127,6 +127,10 @@ public class Actividad implements Serializable {
         socios.add(socio);
         socio.getActividades().add(this);
     }
+    public void deleteSocio(Socio socio){
+        socios.remove(socio);
+        socio.getActividades().remove(this);
+    }
 
     @Override
     public int hashCode() {

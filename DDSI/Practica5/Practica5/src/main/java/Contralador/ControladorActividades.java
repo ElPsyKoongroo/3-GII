@@ -63,7 +63,7 @@ public class ControladorActividades {
     }
     private void actionPerformedActividad(ActionEvent e) {
         switch (e.getActionCommand()) {
-            case "Salir": {
+            case "Cancelar": {
                 this.vActividades.dispose();
                 break;
             }

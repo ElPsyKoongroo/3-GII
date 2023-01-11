@@ -8,7 +8,7 @@ import Modelo.IMonitorDAO;
 import Modelo.MariaMonitorDAO;
 import Modelo.MariaSocioDAO;
 import Modelo.Monitor;
-import Modelo.Socio;;
+import Modelo.Socio;
 import Vista.*;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
@@ -134,6 +134,7 @@ public class ControladorPrincipal {
         this.socioPanel.jButtonNewSocio.addActionListener(vSocioListener);
         this.socioPanel.jButtonDeleteSocio.addActionListener(vSocioListener);
         this.socioPanel.jButtonUpdateSocio.addActionListener(vSocioListener);
+        this.socioPanel.jButtonConfigureSocio.addActionListener(vSocioListener);
 
         this.monitorPanel.ButtonCerrar.addActionListener(vPrinListener);
         this.socioPanel.ButtonCerrar1.addActionListener(vPrinListener);
@@ -272,6 +273,19 @@ public class ControladorPrincipal {
                     );
                 } else {
                     new ControladorAddSocio(this.vPrincipal, this.sesion, s);
+                }
+                break;
+            }
+            case "ButtonConfigureActivity": {
+                System.out.println("Configurando Socio");
+                Socio s = getSocioFromSelectedRow();
+                if (s == null){
+                    new VistaMensajes().ShowMessage(
+                            "Entre tú y yo, para actualizar un socio deberia haber alguno seleccionado",
+                            JOptionPane.ERROR_MESSAGE
+                    );
+                } else {
+                    new ControladorConfiguracionActividad(this.vPrincipal, this.sesion, s, this.dataBase); //Controlador GestionActividad
                 }
                 break;
             }
